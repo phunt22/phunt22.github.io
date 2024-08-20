@@ -11,6 +11,8 @@ const ragnar = require('../assets/images/Ws/Ragnar.JPG')
 const cseed = require('../assets/images/Ws/Buildspace.png')
 const bb = require('../assets/images/Ws/bubblebashing.jpeg')
 const ifc = require('../assets/images/Ws/ifcphilooty.jpeg')
+const stamm24 = require('../assets/images/Ws/Branch.png')
+const adpoch = require('../assets/images/Ws/ADPoch.JPG')
 
 
 const awards = [{
@@ -23,6 +25,16 @@ const awards = [{
     image: cseed,
     alt: 'Me at cseed buildspace',
     description: "Recognized as a top project at the end of cseed's first ever UW cohort!"
+}, {
+    heading: 'A. D. Pochter Award',
+    image: adpoch,
+    alt: 'My friends receiving the Andrew D. Pochter award for Philanthropy',
+    description: 'Recognized by Alpha Delta Phi International for excellence and innovation in philanthropy'
+}, {
+    heading: "Stamm Camp '24",
+    image: stamm24,
+    alt: 'Me as Branch from Trolls',
+    description: 'Cabin volunteer responsible for 6 campers 24 hours a day. Was Branch from Trolls in the camp skit (pictured)'
 }, {
     heading: 'Eugene Marathon',
     image: eugenePic,

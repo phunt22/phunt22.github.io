@@ -31,7 +31,7 @@ export default function Home() {
                 ={{ marginTop: '20px' }}>
 
 
-                <p style={{ width: '100%', textAlign: 'left' }}>Hi! I'm a student at the University of Washington, majoring in Computer Science and minoring in Business, set to graduate in 2026. I am currently looking for software engineering intern roles for Summer 2025! </p>
+                <p style={{ width: '100%', textAlign: 'left' }}>Hi! I'm a student at the University of Washington, majoring in Computer Science and minoring in Business, set to graduate in spring 2026. I am currently looking for software engineering intern roles for Summer 2025! </p>
                 <p style={{ textAlign: 'left' }}>Right now, I am...</p>
 
 
@@ -40,14 +40,14 @@ export default function Home() {
                     <li>
                         President of the Bubble Bash Guild, which benefits <a target="_blank" rel="noopener noreferrer"
                             href="https://www.seattlechildrens.org/clinics/stanley-stamm-summer-camp/">Stanley Stamm Camp
-                            Camp</a>. In my 2nd year, I want to raise $75,000, improve our software stack, and ensure more stability year after year.
+                            Camp</a>. In my 2nd year, I want to raise $75,000, improve our software stack, secure corporate sponsors, and ensure more stability year after year.
                     </li>
                     <li>
                         Working with REV––a local startup––to maintain their mobile app which I created.
                     </li>
-                    <li>
+                    {/* <li>
                         Working on a research paper regarding the effectiveness of improving patient experience by volunteers having conversations with liver and kidney transplant patients at UW Medicine in Montlake.
-                    </li>
+                    </li> */}
                     <li>
                         A full time student at UW over the summer
 

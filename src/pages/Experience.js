@@ -9,6 +9,7 @@ const MBwOwen = require('../assets/images/MBwOwen.JPG')
 const Nordstrom = require('../assets/images/NordstromNLogoBlack.png')
 const REVRLogo = require('../assets/images/REVRLogo.jpeg')
 const HaulingImage = require('../assets/images/HaulingStockImage.webp')
+const BBLogo = require('../assets/images/Bubble Bash Logo.png')
 
 
 
@@ -16,6 +17,8 @@ const HaulingImage = require('../assets/images/HaulingStockImage.webp')
 export default function Experience() {
 
     const revDescription = "Most recently, I have worked for REV developing their mobile app. It has been a great experience in which I have learned so much about software development (especially in React) and business operation. With REV's target market being my peers, it was easy to understand what consumer needs and wants were and implement those changes into the mobile app. Now, over 50% of REV's sales are through this app as the company continues to succeed."
+
+    const bubbleBashDescrption = "The Bubble Bash Guild is a guild of Seattle Children's Hospital (SCH) ran by undergraduates at UW. All money raied goes directly to Stanley Stamm Camp––a SCH program ensuring that kids can go to summer camp regardless of their medical needs or ability to pay. During my first year as President, we have raised $65,000, started a volunteering program in the hospital playroom, made some great relations with local businesses and SCH representatives, and dramatically improved marketing campaigns to create a more sustainable future for the guild. Over the past year, I have personally contributed nearly 200 volunteering hours directly with Seattle Children's Hospital (and the camp itself), which has reinforced my motivation to keep working hard to support Stamm Camp!"
 
     const nordstromDecsription = "In my time at Nordstrom, I worked in fulfillment for online orders. This was a great experience where I learned a lot about quality assurance, customer service, and how large businesses operate. In my one summer there, I exceeded company standards"
 
@@ -31,6 +34,12 @@ export default function Experience() {
             subtitle: "Software Engineer (Mobile)",
             description: revDescription,
             photo: REVRLogo
+        },
+        {
+            title: "Bubble Bash Guild",
+            subtitle: "President",
+            description: bubbleBashDescrption,
+            photo: BBLogo
         },
         {
             title: "Moss Bay",
