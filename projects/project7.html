@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Multilingual Character Prediction Model - A project by Will Hunt">
+  <title>Ngram Model | Will Hunt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <main class="content-container">
+    <section class="project-detail">
+      <div class="project-header">
+        <a href="../projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        <h1>Multilingual Character Prediction Model</h1>
+        <div class="project-meta">
+          <div class="tech-list">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">NLP</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-content">
+        <div class="project-section">
+          <h2>Overview</h2>
+          <p>Developed for CSE 447 (Natural Language Processing), this project created a lightweight predictive model for suggesting the top 3 most likely next characters in text input. The system uses a hybrid approach combining 5-gram and unigram character-level models to optimize for both accuracy and speed across multiple languages.</p>
+          <p><a href="../assets/img/projects/nlp_final_report_formatted.pdf" target="_blank">View Full Report</a></p>
+        </div>
+
+        <div class="project-section">
+          <h2>Technical Implementation</h2>
+          <p>The core components of the prediction system included:</p>
+          <ul>
+            <li>A hybrid 5-gram and unigram character-level model for prediction</li>
+            <li>Optimized data structures (defaultdict, Counter) chosen over external libraries to reduce runtime</li>
+            <li>Training on the OpenAssistant dataset with 161,433 messages across multiple languages</li>
+            <li>Preprocessing pipeline to filter non-UTF-8 characters while preserving punctuation, casing, and whitespace</li>
+            <li>Language-specific model adaptations to handle different character sets</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Results</h2>
+          <p>The final system achieved the following performance metrics:</p>
+          <ul>
+            <li>54.75% overall accuracy on the multilingual validation dataset</li>
+            <li>62.94% accuracy on ASCII-based languages (340 samples)</li>
+            <li>8.33% accuracy on non-Latin scripts (60 samples)</li>
+            <li>Strong performance on letter-based languages (English, Spanish, German, French, Vietnamese, Swedish)</li>
+            <li>Struggled with character-based languages (Chinese, Korean, Japanese) and non-Latin scripts (Russian, Hebrew, Arabic)</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Future Improvements</h2>
+          <p>While successful, the model could be enhanced through:</p>
+          <ul>
+            <li>Better handling of non-Latin scripts, namely better training data</li>
+            <li>Implementation of more sophisticated backoff strategies for rare character sequences</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html> 

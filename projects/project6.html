@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KInARowBot - An AI game bot by Will Hunt">
+  <title>KInARowBot | Will Hunt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <main class="content-container">
+    <section class="project-detail">
+      <div class="project-header">
+        <a href="../projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        <h1>KInARowBot</h1>
+        <div class="project-meta">
+          <div class="tech-list">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">AI</span>
+          </div>
+          <div class="project-links">
+            <a href="../assets/img/projects/phunt22_kinarowgame.pdf" class="project-link btn-download" target="_blank"><i class="fas fa-file-pdf"></i> View Game Script</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-showcase">
+        <img src="../assets/img/projects/kinarow.png" alt="KInARowBot Game Interface" class="project-main-image">
+      </div>
+
+      <div class="project-content">
+        <div class="project-section">
+          <h2>Overview</h2>
+          <p>KInARowBot is an AI-powered agent designed to play K-in-a-Row with Forbidden Squares, a strategic variation of tic-tac-toe, for CSE473 (Artificial Intelligence) at UW.</p>
+        </div>
+
+        <div class="project-section">
+          <h2>Assignment</h2>
+          <p>The main challenges were creating an agent that could:</p>
+          <ul>
+            <li>Play on variable-sized boards with configurable K-in-a-row win conditions</li>
+            <li>Handle forbidden squares and handicap positions</li>
+            <li>Implement efficient minimax search with alpha-beta pruning</li>
+            <li>Generate contextually appropriate dialogue while playing</li>
+            <li>Operate effectively under time constraints</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Solution</h2>
+          <p>I implemented several innovative features:</p>
+          <ul>
+            <li>Efficient minimax algorithm with alpha-beta pruning for optimal move selection</li>
+            <li>Sophisticated static evaluation function considering elements such as an offensive and defensive heuristic</li>
+            <li>Dynamic depth adjustment based on time constraints</li>
+            <li>Implemented OpenAI's API to generate utterances for the agent as "LeBot James" (see the game script)</li>
+            <li>Support for any game configuration by using Q-Learning to generate a policy</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Results</h2>
+          <p>The KInARowBot achieved notable success:</p>
+          <ul>
+            <li>Advanced to the semifinals of the class tournament (top 50% of competitors)</li>
+            <li>Never lost a match in tournament play (only tied in later rounds)</li>
+            <li>Earned extra credit for the LeBot James personality implementation</li>
+            <li>Demonstrated effective defensive strategy, though conservative play prevented advancement in later rounds</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Reflections</h2>
+          <p>While the agent performed exceptionally well defensively, the experience taught me valuable lessons about balance in AI strategy. A more aggressive approach might have yielded victories instead of ties in the later tournament rounds. Unfortunately, the original code was lost when my laptop was wiped after my phone was stolen so I will never be able to revisit it, but the project demonstrated my ability to implement effective game-playing algorithms and create engaging AI personalities.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html> 

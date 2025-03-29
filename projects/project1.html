@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="REV Mobile - A project by Will Hunt">
+  <title>REV Mobile | Will Hunt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <main class="content-container">
+    <section class="project-detail">
+      <div class="project-header">
+        <a href="../projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        <h1>REV Mobile</h1>
+        <div class="project-meta">
+          <div class="tech-list">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">TypeScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://apps.apple.com/us/app/rev-delivery/id6477323287" class="project-link" target="_blank"><i class="fas fa-mobile-alt"></i> App Store</a>
+            <a href="#" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="project-content">
+        <div class="project-section">
+          <h2>Overview</h2>
+          <p>REV Mobile is a delivery app for a high-growth delivery startup serving college campuses. The app has acquired over 6,000 users and generated $600K in sales since launch.</p>
+          <p>Check out this demo video of the Valentine's Day Update, which led to a 10% increase in orders and a 20% increase in total revenue!</p>
+        </div>
+
+        <div class="project-showcase">
+          <div class="project-gallery">
+            <video controls autoplay muted loop>
+              <source src="../assets/img/projects/rev_vday_video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <img src="../assets/img/projects/rev_vday1.png" alt="REV Mobile Screenshot 1">
+            <img src="../assets/img/projects/rev_vday2.png" alt="REV Mobile Screenshot 2">
+            <img src="../assets/img/projects/rev_vday3.png" alt="REV Mobile Screenshot 3">
+            
+          </div>
+        </div>
+
+        <div class="project-section">
+          <h2>My Role</h2>
+          <p>As the only developer, I was responsbile for all aspects of the app outside of design. </p>
+        </div>
+
+        <div class="project-section">
+          <h2>Challenge</h2>
+          <p>
+            The project faced several key challenges:
+          </p>
+          <ul>
+            <li>Developing a mobile app quickly while maintaining high quality and performance</li>
+            <li>Managing 6,200 existing user accounts with duplicates, especailly when many users were not aware they had an account</li>
+            <li>Migrating from Shopify to Stripe payment processor mid-development</li>
+            <li>Building a cheap, maintainable solution</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Solution</h2>
+          <ul>
+            <li>Developed a React Native app with TypeScript for type safety and better maintainability</li>
+            <li>Created an intuitive onboarding flow with OTP phone verification and account linking</li>
+            <li>Successfully migrated payment processing to Stripe, ensuring minimal disruption to users, and incorporating Apple Pay, Link, etc. for easier checkout</li>
+            <li>Leveraged as much functionality from Shopify as possible</li>
+          </ul>
+        </div>
+
+        <div class="project-section">
+          <h2>Results</h2>
+          <p>Since launching the app:</p>
+          <ul>
+            <li>Over 6,000 active users at UW</li>
+            <li>Over 6,000 orders per month</li>
+            <li>Over 80% of orders are now through the mobile app</li>
+            <li>REV acquired Duffl, a formerly Y-Combinator backed startup, bringing scooter delivery to more campuses such as USC and UCLA</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html> 
