@@ -66,7 +66,7 @@ export default function Navbar() {
                     >
                         <Link to="/" className="flex items-center space-x-3">
                             <motion.div
-                                className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg"
+                                className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg overflow-hidden"
                                 variants={{
                                     hover: {
                                         rotate: -8,
@@ -79,7 +79,11 @@ export default function Navbar() {
                                     damping: 20
                                 }}
                             >
-                                <span className="text-white font-bold text-lg">WH</span>
+                                <img
+                                    src="/assets/headshot.png"
+                                    alt="Will Hunt"
+                                    className="w-full h-full object-cover"
+                                />
                             </motion.div>
                             <div>
                                 <h1 className="text-xl font-bold text-gray-800">Will Hunt</h1>

@@ -39,7 +39,7 @@ export default function Homepage() {
     return (
         <div className="relative overflow-x-visible bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             {/* ----------------------------- hero ------------------------------- */}
-            <section id="home" className="relative flex min-h-[88vh] items-center justify-center px-4 py-12 sm:py-16 lg:py-20">
+            <section id="home" className="relative flex min-h-[90vh] items-center justify-center px-4 py-12 sm:py-16 lg:py-20">
                 <div className="relative z-10 grid w-full max-w-7xl gap-8 lg:gap-12 lg:grid-cols-2 lg:items-center">
                     {/* text content */}
                     <motion.div
@@ -96,7 +96,7 @@ export default function Homepage() {
                                 }}
                             />
                             <motion.div
-                                className="relative z-10 flex h-full w-full items-center justify-center rounded-[2.5rem] sm:rounded-[3rem] bg-gradient-to-br from-indigo-500/90 via-purple-500/90 to-pink-500/90 text-5xl sm:text-6xl font-bold text-white"
+                                className="relative z-10 flex h-full w-full items-center justify-center rounded-[2.5rem] sm:rounded-[3rem] bg-gradient-to-br from-indigo-500/90 via-purple-500/90 to-pink-500/90 overflow-hidden"
                                 animate={{
                                     rotate: [0, -2, 2, 0],
                                     scale: [1, 0.98, 1]
@@ -108,7 +108,11 @@ export default function Homepage() {
                                     delay: 1
                                 }}
                             >
-                                WH
+                                <img
+                                    src="/assets/headshot.png"
+                                    alt="Will Hunt"
+                                    className="w-full h-full object-cover"
+                                />
                             </motion.div>
                         </div>
                     </motion.div>
