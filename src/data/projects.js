@@ -118,7 +118,7 @@ export const projects = [
         title: "Snapchat Lenses",
         subtitle: "6 Snapchat lenses gaining 12 million views",
         period: "January 2021 - January 2022",
-        description: "Created 6 lenses gaining over 12 million views and 700k shares. While not very great, they were very fun to make and was my introduction to computer science",
+        description: "Created 6 lenses gaining over 12 million views and 700k shares. While not very great, they were very fun to make and were my introduction to computer science",
         skills: ["Snapchat Lens Studio"],
         attachments: [
             { name: "My Lenses", url: "https://www.snapchat.com/add/whunt43" }

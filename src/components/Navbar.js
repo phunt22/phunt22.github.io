@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function Navbar() {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
 
     // Scroll effect for navbar - almost invisible initially, compact when scrolling
     const { scrollY } = useScroll();
@@ -29,14 +28,6 @@ export default function Navbar() {
         [0, 100],
         [0, 0.1]
     );
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     const navLinks = [
         { path: '/projects', label: 'Projects' },
@@ -127,21 +118,16 @@ export default function Navbar() {
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <div className="relative w-6 h-6 flex flex-col justify-center items-center">
+                        <div className="relative w-6 h-6 flex flex-col justify-center items-center gap-2">
                             <motion.div
-                                className="w-6 h-0.5 bg-gray-600 absolute"
-                                animate={isMenuOpen ? { rotate: 45 } : { rotate: 0 }}
-                                transition={{ duration: 0.3 }}
+                                className="w-6 h-0.5 bg-gray-600 absolute top-2"
+                                animate={isMenuOpen ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
+                                transition={{ duration: 0.4 }}
                             />
                             <motion.div
-                                className="w-6 h-0.5 bg-gray-600 absolute"
-                                animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                                transition={{ duration: 0.3 }}
-                            />
-                            <motion.div
-                                className="w-6 h-0.5 bg-gray-600 absolute"
-                                animate={isMenuOpen ? { rotate: -45 } : { rotate: 0 }}
-                                transition={{ duration: 0.3 }}
+                                className="w-6 h-0.5 bg-gray-600 absolute bottom-2"
+                                animate={isMenuOpen ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
+                                transition={{ duration: 0.4 }}
                             />
                         </div>
                     </motion.button>
@@ -151,8 +137,13 @@ export default function Navbar() {
                 <motion.div
                     className="md:hidden overflow-hidden"
                     initial={false}
+                    style={{
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        backgroundColor: "rgba(255, 255, 255, 0.8)"
+                    }}
                     animate={isMenuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
                     <div className="py-4 space-y-4 border-t border-gray-200/50">
                         {navLinks.map(({ path, label }) => (

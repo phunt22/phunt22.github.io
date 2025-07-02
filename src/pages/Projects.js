@@ -27,7 +27,7 @@ function Card({ data, onOpen, large, hidden }) {
                 <motion.img
                     src={data.img}
                     alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                     layoutId={`card-img-${data.id}`}
                     draggable={false}
                 />
@@ -60,7 +60,7 @@ function Modal({ data, onClose }) {
         >
             {/* Backdrop */}
             <motion.div
-                className="absolute inset-0 bg-black/80"
+                className="absolute inset-0 bg-black/80 cursor-pointer"
                 onClick={onClose}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -83,6 +83,20 @@ function Modal({ data, onClose }) {
                     className="w-full h-[420px] object-cover"
                     draggable={false}
                 />
+
+                {/* Close button */}
+                <motion.button
+                    className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg"
+                    onClick={onClose}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </motion.button>
 
                 {/* Title overlay */}
                 <motion.div
@@ -155,7 +169,7 @@ export default function AppStore() {
                 <header className="flex items-center justify-between mb-6">
                     <h1 className="text-4xl font-semibold tracking-tight">My Work</h1>
                     <motion.button
-                        className="relative overflow-hidden bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out"
+                        className="relative overflow-hidden bg-neutral-900 hover:bg-neutral-800 text-white px-4 py-2 sm:px-5 sm:py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => {
@@ -163,22 +177,22 @@ export default function AppStore() {
                             window.open(pdfUrl, '_blank');
                         }}
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <span>Download Resume</span>
+                        <span>Resume</span>
                     </motion.button>
                 </header>
 
                 <LayoutGroup>
                     {/* Card grid */}
-                    <ul className="flex flex-wrap gap-5">
+                    <ul className="flex flex-wrap gap-4">
                         {projects.map((project, idx) => (
                             <Card
                                 key={project.id}
                                 data={project}
                                 onOpen={open}
-                                large={idx % 4 === 0 || idx % 4 === 3}
+                                large={window.innerWidth > 768 ? (idx % 4 === 0 || idx % 4 === 3) : false}
                                 hidden={openId === project.id}
                             />
                         ))}
