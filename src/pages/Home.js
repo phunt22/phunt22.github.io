@@ -39,7 +39,7 @@ export default function Homepage() {
     return (
         <div className="relative overflow-x-visible bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             {/* ----------------------------- hero ------------------------------- */}
-            <section id="home" className="relative flex min-h-[90vh] items-center justify-center px-4 py-12 sm:py-16 lg:py-20">
+            <section id="home" className="relative flex min-h-[90vh] items-center justify-center px-4 py-12 sm:py-16 lg:py-20 pt-20">
                 <div className="relative z-10 grid w-full max-w-7xl gap-8 lg:gap-12 lg:grid-cols-2 lg:items-center">
                     {/* text content */}
                     <motion.div

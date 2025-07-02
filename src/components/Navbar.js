@@ -10,22 +10,22 @@ export default function Navbar() {
     const { scrollY } = useScroll();
     const backgroundColor = useTransform(
         scrollY,
-        [0, 50, 100],
+        [0, 25, 50],
         ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.7)', 'rgba(255, 255, 255, 0.95)']
     );
     const backdropBlur = useTransform(
         scrollY,
-        [0, 50, 100],
+        [0, 25, 50],
         ['blur(0px)', 'blur(8px)', 'blur(16px)']
     );
     const navPadding = useTransform(
         scrollY,
-        [0, 100],
+        [0, 50],
         ['1rem', '0.75rem']
     );
     const borderOpacity = useTransform(
         scrollY,
-        [0, 100],
+        [0, 50],
         [0, 0.1]
     );
 
@@ -135,29 +135,29 @@ export default function Navbar() {
 
                 {/* Mobile Menu */}
                 <motion.div
-                    className="md:hidden overflow-hidden"
+                    className="md:hidden overflow-hidden rounded-xl mt-3 shadow-lg border border-gray-200/30"
                     initial={false}
                     style={{
-                        backdropFilter: "blur(8px)",
-                        WebkitBackdropFilter: "blur(8px)",
-                        backgroundColor: "rgba(255, 255, 255, 0.8)"
+                        backdropFilter: "blur(12px)",
+                        WebkitBackdropFilter: "blur(12px)",
+                        backgroundColor: "rgba(255, 255, 255, 0.9)"
                     }}
                     animate={isMenuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                    <div className="py-4 space-y-4 border-t border-gray-200/50">
+                    <div className="py-4 space-y-2">
                         {navLinks.map(({ path, label }) => (
                             <motion.div
                                 key={path}
-                                whileHover={{ x: 5 }}
+                                whileHover={{ x: 3 }}
                                 whileTap={{ x: 0 }}
                             >
                                 <Link
                                     to={path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className={`block py-2 px-4 rounded-lg transition-all duration-200 ${location.pathname === path
-                                        ? 'text-indigo-600 bg-indigo-50/80 font-semibold'
-                                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50/80'
+                                    className={`block py-3 px-6 transition-all duration-200 ${location.pathname === path
+                                        ? 'text-indigo-600 bg-indigo-50/90 font-semibold mx-2 rounded-lg'
+                                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50/90 mx-2 rounded-lg'
                                         }`}
                                 >
                                     {label}

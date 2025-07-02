@@ -15,7 +15,7 @@ function Card({ data, onOpen, large, hidden }) {
         <motion.li
             layoutId={`card-container-${data.id}`}
             onClick={() => onOpen(data.id)}
-            className={`relative h-[420px] cursor-pointer transition-opacity ${large ? "basis-[calc(60%-20px)]" : "basis-[40%]"} ${hidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`relative h-[420px] cursor-pointer transition-opacity ${large ? "basis-[calc(60%-8px)]" : "basis-[calc(50%-8px)] md:basis-[calc(40%-8px)]"} ${hidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
             whileHover={{
                 scale: 1.02,
                 transition: { duration: 0.2, ease: "easeOut" }
@@ -38,9 +38,9 @@ function Card({ data, onOpen, large, hidden }) {
                 layoutId={`card-title-${data.id}`}
                 className={`absolute top-4 left-4 max-w-[300px] ${data.dark ? "text-black" : "text-white"}`}
             >
-                <span className="uppercase text-sm tracking-wide">{data.category}</span>
-                <h2 className="text-2xl font-semibold leading-snug">{data.title}</h2>
-                <p className="text-sm opacity-80 mt-1">{data.subtitle}</p>
+                <span className="uppercase text-[10px] sm:text-xs tracking-wide font-medium">{data.category}</span>
+                <h2 className="text-lg sm:text-2xl font-semibold leading-snug mt-1">{data.title}</h2>
+                <p className="text-xs sm:text-sm opacity-80 mt-1">{data.subtitle}</p>
             </motion.div>
         </motion.li>
     );
@@ -103,27 +103,27 @@ function Modal({ data, onClose }) {
                     layoutId={`card-title-${data.id}`}
                     className={`absolute top-6 left-6 max-w-[320px] ${data.dark ? "text-black" : "text-white"}`}
                 >
-                    <span className="uppercase text-sm tracking-wide">{data.category}</span>
-                    <h2 className="text-3xl font-semibold leading-tight">{data.title}</h2>
-                    <p className="text-lg opacity-90 mt-1">{data.subtitle}</p>
+                    <span className="uppercase text-[10px] sm:text-xs tracking-wide font-medium">{data.category}</span>
+                    <h2 className="text-xl sm:text-3xl font-semibold leading-tight mt-1">{data.title}</h2>
+                    <p className="text-sm sm:text-lg opacity-90 mt-1">{data.subtitle}</p>
                 </motion.div>
 
                 {/* Body */}
-                <div className="p-8 space-y-6 bg-white text-neutral-800">
+                <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 bg-white text-neutral-800">
                     {/* Period and Attachments */}
-                    <div className="flex justify-between items-center">
-                        <div className="text-sm text-neutral-600 font-medium">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
+                        <div className="text-xs sm:text-sm text-neutral-600 font-medium">
                             {data.period}
                         </div>
                         {data.attachments && data.attachments.length > 0 && (
-                            <div className="flex gap-2">
+                            <div className="flex flex-wrap gap-2">
                                 {data.attachments.map((attachment, index) => (
                                     <a
                                         key={index}
                                         href={attachment.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors cursor-pointer"
+                                        className="px-2 py-1 sm:px-3 sm:py-1 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-200 transition-colors cursor-pointer"
                                     >
                                         {attachment.name}
                                     </a>
@@ -133,7 +133,7 @@ function Modal({ data, onClose }) {
                     </div>
 
                     {/* Description */}
-                    <p className="text-lg leading-relaxed">
+                    <p className="text-sm sm:text-lg leading-relaxed">
                         {data.description}
                     </p>
 
@@ -142,7 +142,7 @@ function Modal({ data, onClose }) {
                         {data.skills.map((skill, index) => (
                             <span
                                 key={index}
-                                className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm font-medium"
+                                className="px-2 py-1 sm:px-3 sm:py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs sm:text-sm font-medium"
                             >
                                 {skill}
                             </span>
