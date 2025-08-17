@@ -56,7 +56,7 @@ export default function Homepage() {
                         </motion.h1>
 
                         <motion.p className="mx-auto lg:mx-0 max-w-lg text-lg sm:text-xl text-gray-600">
-                            Full stack engineer passionate about shipping high-impact software with speed, ownership, and purpose.
+                            Shipping high impact software
                         </motion.p>
 
                         <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
