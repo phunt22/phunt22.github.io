@@ -10,7 +10,7 @@ export const socialLinks = [
     },
     {
         name: 'linkedin',
-        url: 'https://www.linkedin.com/in/william-hunt-7895a3212/',
+        url: 'https://www.linkedin.com/in/phunt22/',
         icon: <LinkedInIcon />,
     },
     {
