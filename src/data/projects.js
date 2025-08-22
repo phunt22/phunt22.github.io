@@ -11,7 +11,7 @@ export const projects = [
             { name: "Poster", url: "/assets/projects/EmojiGEN-Poster.pdf" },
             { name: "Repository", url: "#" }
         ],
-        img: "/assets/projects/thumbnails/emojigen_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/emojigen_thumb.png",
         dark: true,
     },
     {
@@ -25,7 +25,7 @@ export const projects = [
         attachments: [
             { name: "Video Demo", url: "/assets/projects/rev_vday_video.mp4" }
         ],
-        img: "/assets/projects/thumbnails/rev_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/rev_thumb.png",
         dark: true,
     },
     {
@@ -39,7 +39,7 @@ export const projects = [
         attachments: [
             { name: "Website", url: "https://rippleu.net" }
         ],
-        img: "/assets/projects/thumbnails/ripple_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/ripple_thumb.png",
         dark: true,
     },
     {
@@ -54,7 +54,7 @@ export const projects = [
             { name: "Website", url: "https://dr-bayes-41882b.pages.cs.washington.edu/" },
             { name: "Repository", url: "https://gitlab.cs.washington.edu/cse442/25wi/fp/Dr.Bayes" },
         ],
-        img: "/assets/projects/thumbnails/drbayes_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/drbayes_thumb.png",
         dark: true,
     },
     {
@@ -68,7 +68,7 @@ export const projects = [
         attachments: [
             { name: "Project Report", url: "/assets/projects/nlp_final_report_formatted.pdf" }
         ],
-        img: "/assets/projects/thumbnails/ngram_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/ngram_thumb.png",
         dark: true,
     },
     {
@@ -82,7 +82,7 @@ export const projects = [
         attachments: [
             { name: "Example Game", url: "/assets/projects/phunt22_kinarowgame.pdf" }
         ],
-        img: "/assets/projects/thumbnails/kinarow_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/kinarow_thumb.png",
         dark: true,
     },
     {
@@ -96,7 +96,7 @@ export const projects = [
         attachments: [
             { name: "Video Demo", url: "https://youtu.be/74wTpJIU6AA" }
         ],
-        img: "/assets/projects/thumbnails/shout_thumb.png", dark: false,
+        img: "/assets/projects/thumbnails/optimized/shout_thumb.png", dark: false,
     },
     {
         id: "meal-maker",
@@ -109,7 +109,7 @@ export const projects = [
         attachments: [
             { name: "Video Demo", url: "https://youtu.be/ZBi613l0N6w" }
         ],
-        img: "/assets/projects/thumbnails/mealmaker_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/mealmaker_thumb.png",
         dark: true,
     },
     {
@@ -123,7 +123,7 @@ export const projects = [
         attachments: [
             { name: "My Lenses", url: "https://www.snapchat.com/add/whunt43" }
         ],
-        img: "/assets/projects/thumbnails/snapchat_thumb.png",
+        img: "/assets/projects/thumbnails/optimized/snapchat_thumb.jpg",
         dark: true,
     },
 ]; 

@@ -12,17 +12,10 @@ code {
     monospace;
 }
 
-/* Custom utility classes for enhanced animations */
-.clip-triangle {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-/* Smooth scrolling for better animation performance */
 html {
   scroll-behavior: smooth;
 }
 
-/* Optimize animations for better performance */
 * {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;

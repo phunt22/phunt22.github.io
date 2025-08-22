@@ -2,28 +2,32 @@ import './App.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { AnimatePresence } from 'framer-motion';
-import Home from './pages/Home';
+import CleanHome from './pages/CleanHome';
 import Projects from './pages/Projects';
-import Experience from './pages/Experience';
 import Footer from './components/Footer';
 
 function App() {
   return (
     <HashRouter>
-
-      <div className='min-h-screen flex flex-col'>
-        <Navbar />
-        <main className='flex-1'>
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/experience" element={<Experience />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
-        <Footer />
-      </div>
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route path="/" element={
+            <div className='min-h-screen flex flex-col'>
+              <CleanHome />
+              <Footer />
+            </div>
+          } />
+          <Route path="/projects" element={
+            <div className='min-h-screen flex flex-col cursor-auto'>
+              <Navbar />
+              <main className='flex-1'>
+                <Projects />
+              </main>
+              <Footer />
+            </div>
+          } />
+        </Routes>
+      </AnimatePresence>
     </HashRouter>
   );
 }

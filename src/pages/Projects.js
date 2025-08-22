@@ -3,13 +3,6 @@ import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import AnimatedPage from "../components/AnimatedPage";
 import { projects } from "../data/projects";
 
-/** ------------------------------------------------------------------------
- *  Data – replace or extend as you like
- *  ---------------------------------------------------------------------*/
-
-/* -------------------------------------------------------------------------- */
-/*                              Individual Card                               */
-/* -------------------------------------------------------------------------- */
 function Card({ data, onOpen, large, hidden }) {
     return (
         <motion.li
@@ -22,8 +15,7 @@ function Card({ data, onOpen, large, hidden }) {
             }}
             whileTap={{ scale: 0.98 }}
         >
-            {/* Background / image */}
-            <motion.div className="absolute inset-0 overflow-hidden rounded-2xl bg-neutral-900 border-2 border-neutral-200/50">
+            <motion.div className="absolute inset-0 overflow-hidden rounded-2xl bg-neutral-900 border-2 border-neutral-200/90">
                 <motion.img
                     src={data.img}
                     alt=""
@@ -33,7 +25,6 @@ function Card({ data, onOpen, large, hidden }) {
                 />
             </motion.div>
 
-            {/* Title */}
             <motion.div
                 layoutId={`card-title-${data.id}`}
                 className={`absolute top-4 left-4 max-w-[300px] ${data.dark ? "text-black" : "text-white"}`}
@@ -46,9 +37,6 @@ function Card({ data, onOpen, large, hidden }) {
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                   Modal                                    */
-/* -------------------------------------------------------------------------- */
 function Modal({ data, onClose }) {
     return (
         <motion.aside
@@ -58,7 +46,6 @@ function Modal({ data, onClose }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            {/* Backdrop */}
             <motion.div
                 className="absolute inset-0 bg-black/80 cursor-pointer"
                 onClick={onClose}
@@ -75,7 +62,6 @@ function Modal({ data, onClose }) {
                 exit={{ scale: 0.95 }}
             // transition={{ type: "spring", stiffness: 150, damping: 20 }}
             >
-                {/* Animated hero image */}
                 <motion.img
                     layoutId={`card-img-${data.id}`}
                     src={data.img}
@@ -84,7 +70,6 @@ function Modal({ data, onClose }) {
                     draggable={false}
                 />
 
-                {/* Close button */}
                 <motion.button
                     className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg"
                     onClick={onClose}
@@ -98,7 +83,6 @@ function Modal({ data, onClose }) {
                     </svg>
                 </motion.button>
 
-                {/* Title overlay */}
                 <motion.div
                     layoutId={`card-title-${data.id}`}
                     className={`absolute top-6 left-6 max-w-[320px] ${data.dark ? "text-black" : "text-white"}`}
@@ -108,9 +92,7 @@ function Modal({ data, onClose }) {
                     <p className="text-sm sm:text-lg opacity-90 mt-1">{data.subtitle}</p>
                 </motion.div>
 
-                {/* Body */}
                 <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 bg-white text-neutral-800">
-                    {/* Period and Attachments */}
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
                         <div className="text-xs sm:text-sm text-neutral-600 font-medium">
                             {data.period}
@@ -154,18 +136,15 @@ function Modal({ data, onClose }) {
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               Main Component                               */
-/* -------------------------------------------------------------------------- */
 export default function AppStore() {
     const [openId, setOpenId] = useState(null);
+
     const open = (id) => setOpenId(id);
     const close = () => setOpenId(null);
 
     return (
         <AnimatedPage>
-            <div className="w-full max-w-[1200px] mx-auto py-20 px-5">
-                {/* Header */}
+            <div className="w-full max-w-[1200px] mx-auto pt-20 px-5">
                 <header className="flex items-center justify-between mb-6">
                     <h1 className="text-4xl font-semibold tracking-tight">My Work</h1>
                     <motion.button
@@ -185,7 +164,6 @@ export default function AppStore() {
                 </header>
 
                 <LayoutGroup>
-                    {/* Card grid */}
                     <ul className="flex flex-wrap gap-4">
                         {projects.map((project, idx) => (
                             <Card
@@ -198,7 +176,6 @@ export default function AppStore() {
                         ))}
                     </ul>
 
-                    {/* Modal */}
                     <AnimatePresence mode="wait">
                         {openId && (
                             <Modal
