@@ -9,7 +9,7 @@ export const projects = [
         skills: ["Python", "Google Cloud Platform", "Machine Learning"],
         attachments: [
             { name: "Poster", url: "/assets/projects/EmojiGEN-Poster.pdf" },
-            { name: "Repository", url: "#" }
+            { name: "Repository", url: "https://github.com/phunt22/emoji-gen" }
         ],
         img: "/assets/projects/thumbnails/optimized/emojigen_thumb.png",
         dark: true,
