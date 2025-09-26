@@ -7,6 +7,7 @@ export default function CleanHome() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [mouseTrail, setMouseTrail] = useState([]);
     const [isHoveringNav, setIsHoveringNav] = useState(false);
+    const [showClearHint, setShowClearHint] = useState(false);
     const containerRef = useRef(null);
 
     const mouseX = useMotionValue(0);
@@ -42,6 +43,28 @@ export default function CleanHome() {
         const timer = setTimeout(() => setIsLoaded(true), 500);
         return () => clearTimeout(timer);
     }, []);
+
+    // keyboard even handler
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (e.key.toLowerCase() === 'c' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+                setMouseTrail([]);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
+    }, []);
+
+    // wait for drawing
+    useEffect(() => {
+        if (mouseTrail.length > 10) {
+            const timer = setTimeout(() => setShowClearHint(true), 800);
+            return () => clearTimeout(timer);
+        } else {
+            setShowClearHint(false);
+        }
+    }, [mouseTrail.length]);
 
     return (
         <div
@@ -79,6 +102,22 @@ export default function CleanHome() {
             <div className="cursor-auto">
                 <MagneticNav mousePos={mousePos} setIsHoveringNav={setIsHoveringNav} />
             </div>
+
+            {/* Clear Drawing Hint */}
+            {showClearHint && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                        duration: 2,
+                        ease: "easeOut"
+                    }}
+                    className="fixed bottom-6 right-6 text-black text-sm font-light pointer-events-none z-50"
+                >
+                    Press c to clear drawing
+                </motion.div>
+            )}
 
             {/* Subtle Grid Background */}
             {/* <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
@@ -409,13 +448,11 @@ const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{
                 opacity: 1,
-                y: 0,
                 x: itemPos.x,
                 y: itemPos.y
             }}
             transition={{
                 opacity: { duration: 0.6, delay: 2.5 + index * 0.1 },
-                y: { duration: 0.6, delay: 2.5 + index * 0.1 },
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 y: { type: "spring", stiffness: 300, damping: 30 }
             }}
