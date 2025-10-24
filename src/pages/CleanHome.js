@@ -263,7 +263,7 @@ const AnimatedSubtitle = ({ isLoaded }) => {
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 1.4 }}
         >
-            Scrappy, people-focused SWE graduating from UW in March 2026
+            Software Engineer, graduating UW in March '26
         </motion.p>
     );
 };
