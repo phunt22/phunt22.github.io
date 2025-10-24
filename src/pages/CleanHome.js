@@ -15,7 +15,6 @@ export default function CleanHome() {
     const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 40 });
     const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 40 });
 
-    // Mouse tracking with trail
     useEffect(() => {
         const handleMouseMove = (e) => {
             const rect = containerRef.current?.getBoundingClientRect();
@@ -71,26 +70,22 @@ export default function CleanHome() {
             ref={containerRef}
             className={`relative flex-1 bg-white overflow-hidden ${isHoveringNav ? 'cursor-auto' : 'cursor-none'}`}
             style={{
-                // ...spotlightStyle, 
-                minHeight: 'calc(100vh - 80px)'
+                // ...spotlightStyle,
+                minHeight: '100%'
             }}
         >
-            {/* Custom Cursor with Trail */}
             <CustomCursor mousePos={mousePos} mouseTrail={mouseTrail} isHoveringNav={isHoveringNav} />
 
-            {/* Main Content Grid */}
             <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-full max-w-6xl mx-auto px-8">
-                    <div className="grid grid-cols-12 gap-8 items-center min-h-screen">
+                    <div className="grid grid-cols-12 gap-8 items-center min-h-full">
 
-                        {/* Left Side - Text Content */}
                         <div className="col-span-7 space-y-8">
                             <AnimatedTitle mousePos={mousePos} isLoaded={isLoaded} />
                             <AnimatedSubtitle isLoaded={isLoaded} />
                             <MagneticButton mousePos={mousePos} />
                         </div>
 
-                        {/* Right Side - Photo */}
                         <div className="col-span-5 flex justify-end">
                             <InteractivePhoto mouseX={smoothMouseX} mouseY={smoothMouseY} isLoaded={isLoaded} />
                         </div>
@@ -118,26 +113,13 @@ export default function CleanHome() {
                     Press c to clear drawing
                 </motion.div>
             )}
-
-            {/* Subtle Grid Background */}
-            {/* <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-                <div className="w-full h-full" style={{
-                    backgroundImage: `
-                        linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '50px 50px'
-                }} />
-            </div> */}
         </div>
     );
 }
 
-// Persistent paint trail (behind everything) and simple cursor
 const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
     return (
         <>
-            {/* Paint trail that stays behind everything */}
             {mouseTrail.length > 1 && (
                 <svg
                     className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
@@ -163,7 +145,6 @@ const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
                 </svg>
             )}
 
-            {/* Simple free-flowing cursor dot - hidden when hovering nav */}
             <motion.div
                 className="fixed top-0 left-0 w-2 h-2 bg-[#4b2e83] rounded-full pointer-events-none z-50"
                 style={{
@@ -181,7 +162,6 @@ const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
     );
 };
 
-// Animated title that reveals on mouse proximity
 const AnimatedTitle = ({ mousePos, isLoaded }) => {
     const name = "Will Hunt";
     const greeting = "Hi, I'm ";
@@ -230,9 +210,7 @@ const AnimatedTitle = ({ mousePos, isLoaded }) => {
     );
 };
 
-// Simple letter animation with enhanced hover
 const AnimatedLetter = ({ letter, index, isLoaded, mousePos }) => {
-    // Calculate proximity to mouse for magnetic effect
     const letterRef = useRef(null);
     const [proximity, setProximity] = useState(0);
 
@@ -248,7 +226,6 @@ const AnimatedLetter = ({ letter, index, isLoaded, mousePos }) => {
             Math.pow(mousePos.y - centerY, 2)
         );
 
-        // Increased radius from 60px to 120px for bigger hover area
         const maxRadius = 60;
         const proximityValue = Math.max(0, 1 - distance / maxRadius);
         setProximity(proximityValue);
@@ -277,7 +254,6 @@ const AnimatedLetter = ({ letter, index, isLoaded, mousePos }) => {
     );
 };
 
-// Animated subtitle
 const AnimatedSubtitle = ({ isLoaded }) => {
 
     return (
@@ -292,7 +268,6 @@ const AnimatedSubtitle = ({ isLoaded }) => {
     );
 };
 
-// Magnetic button that pulls toward mouse
 const MagneticButton = ({ mousePos }) => {
     const buttonRef = useRef(null);
     const [buttonPos, setButtonPos] = useState({ x: 0, y: 0 });
@@ -353,11 +328,9 @@ const MagneticButton = ({ mousePos }) => {
     );
 };
 
-// Interactive photo with reveal effect
 const InteractivePhoto = ({ mouseX, mouseY, isLoaded }) => {
     const photoRef = useRef(null);
 
-    // Subtle parallax effect based on mouse position
     const offsetX = useTransform(mouseX, [0, 1], [-8, 8]);
     const offsetY = useTransform(mouseY, [0, 1], [-8, 8]);
 
@@ -370,7 +343,6 @@ const InteractivePhoto = ({ mouseX, mouseY, isLoaded }) => {
             transition={{ duration: 1, delay: 1.0 }}
             style={{ x: offsetX, y: offsetY }}
         >
-            {/* Photo container */}
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100">
                 <img
                     src="/assets/optimized/headshot.jpg"
@@ -378,17 +350,16 @@ const InteractivePhoto = ({ mouseX, mouseY, isLoaded }) => {
                     className="w-full h-full object-cover"
                 />
 
-                {/* Subtle overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
             </div>
         </motion.div>
     );
 };
 
-// Magnetic navigation
 const MagneticNav = ({ mousePos, setIsHoveringNav }) => {
     const navItems = [
         { label: 'Projects', href: '/projects' },
+        // {label: 'Thoughts', href: 'thoughts'}
         // { label: 'Experience', href: '/experience' }
     ];
 
