@@ -15,7 +15,7 @@ function Card({ data, onOpen, large, hidden }) {
             }}
             whileTap={{ scale: 0.98 }}
         >
-            <motion.div className="absolute inset-0 overflow-hidden rounded-2xl bg-neutral-900 border-2 border-neutral-200/90">
+            <motion.div className="absolute inset-0 overflow-hidden rounded-2xl bg-white border-2 border-neutral-200/90">
                 <motion.img
                     src={data.img}
                     alt=""
