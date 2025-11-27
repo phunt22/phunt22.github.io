@@ -67,7 +67,7 @@ function Modal({ data, onClose }) {
             {/* Card grows / shrinks */}
             <motion.div
                 layoutId={`card-container-${data.id}`}
-                className="relative max-w-[800px] w-[90vw] max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl"
+                className="relative max-w-[800px] w-[90vw] max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-white"
                 exit={{ scale: 0.95 }}
             // transition={{ type: "spring", stiffness: 150, damping: 20 }}
             >
