@@ -26,6 +26,9 @@ export const projects = [
             { name: "Video Demo", url: "/assets/projects/rev_vday_video.mp4" }
         ],
         img: "/assets/projects/thumbnails/optimized/rev_thumb.png",
+        fullObjectFit: "contain",
+        fullObjectPosition: "center center",
+        imageBg: "#ffffff",
         dark: true,
     },
     {

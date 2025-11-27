@@ -38,6 +38,15 @@ function Card({ data, onOpen, large, hidden }) {
 }
 
 function Modal({ data, onClose }) {
+    const fullImgStyle = {
+        ...(data.fullObjectPosition ? { objectPosition: data.fullObjectPosition } : data.objectPosition ? { objectPosition: data.objectPosition } : {}),
+        ...(data.fullObjectFit ? { objectFit: data.fullObjectFit } : {}),
+        ...(data.imageBg ? { backgroundColor: data.imageBg } : {}),
+    };
+    const fullImgClass = data.fullObjectFit
+        ? "w-full h-auto max-h-[80vh] object-contain"
+        : "w-full h-[420px] object-cover";
+
     return (
         <motion.aside
             className="fixed inset-0 z-50 flex items-center justify-center"
@@ -64,10 +73,12 @@ function Modal({ data, onClose }) {
             >
                 <motion.img
                     layoutId={`card-img-${data.id}`}
-                    src={data.img}
-                    alt=""
-                    className="w-full h-[420px] object-cover"
+                    src={data.fullImg || data.img}
+                    alt={data.title}
+                    className={fullImgClass}
                     draggable={false}
+                    decoding="async"
+                    style={fullImgStyle}
                 />
 
                 <motion.button
