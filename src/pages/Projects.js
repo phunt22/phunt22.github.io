@@ -19,7 +19,7 @@ function Card({ data, onOpen, large, hidden }) {
                 <motion.img
                     src={data.img}
                     alt=""
-                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    className="absolute inset-0 w-full h-full object-cover object-center bg-white"
                     layoutId={`card-img-${data.id}`}
                     draggable={false}
                 />
@@ -75,7 +75,7 @@ function Modal({ data, onClose }) {
                     layoutId={`card-img-${data.id}`}
                     src={data.fullImg || data.img}
                     alt={data.title}
-                    className={fullImgClass}
+                    className={`${fullImgClass} bg-white`}
                     draggable={false}
                     decoding="async"
                     style={fullImgStyle}

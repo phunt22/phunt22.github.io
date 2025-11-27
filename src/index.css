@@ -15,8 +15,3 @@ code {
 html {  
   scroll-behavior: smooth;
 }
-
-* {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}

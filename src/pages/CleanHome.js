@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 
 export default function CleanHome() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [shouldAnimateIntro] = useState(() => {
+        if (typeof window === 'undefined') return true;
+        return sessionStorage.getItem('homeVisited') !== 'true';
+    });
+    const [isLoaded, setIsLoaded] = useState(() => !shouldAnimateIntro);
     const [mouseTrail, setMouseTrail] = useState([]);
     const [isHoveringNav, setIsHoveringNav] = useState(false);
     const [showClearHint, setShowClearHint] = useState(false);
@@ -39,9 +43,22 @@ export default function CleanHome() {
     }, [mouseX, mouseY]);
 
     useEffect(() => {
-        const timer = setTimeout(() => setIsLoaded(true), 500);
+        if (!shouldAnimateIntro) {
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem('homeVisited', 'true');
+            }
+            setIsLoaded(true);
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem('homeVisited', 'true');
+            }
+        }, 500);
         return () => clearTimeout(timer);
-    }, []);
+    }, [shouldAnimateIntro]);
 
     // keyboard even handler
     useEffect(() => {
@@ -81,13 +98,13 @@ export default function CleanHome() {
                     <div className="grid grid-cols-12 gap-8 items-center min-h-full">
 
                         <div className="col-span-7 space-y-8">
-                            <AnimatedTitle mousePos={mousePos} isLoaded={isLoaded} />
-                            <AnimatedSubtitle isLoaded={isLoaded} />
-                            <MagneticButton mousePos={mousePos} />
+                            <AnimatedTitle mousePos={mousePos} isLoaded={isLoaded} shouldAnimateIntro={shouldAnimateIntro} />
+                            <AnimatedSubtitle isLoaded={isLoaded} shouldAnimateIntro={shouldAnimateIntro} />
+                            <MagneticButton mousePos={mousePos} shouldAnimateIntro={shouldAnimateIntro} />
                         </div>
 
                         <div className="col-span-5 flex justify-end">
-                            <InteractivePhoto mouseX={smoothMouseX} mouseY={smoothMouseY} isLoaded={isLoaded} />
+                            <InteractivePhoto mouseX={smoothMouseX} mouseY={smoothMouseY} isLoaded={isLoaded} shouldAnimateIntro={shouldAnimateIntro} />
                         </div>
                     </div>
                 </div>
@@ -95,7 +112,7 @@ export default function CleanHome() {
 
             {/* Navigation */}
             <div className="cursor-auto">
-                <MagneticNav mousePos={mousePos} setIsHoveringNav={setIsHoveringNav} />
+                <MagneticNav mousePos={mousePos} setIsHoveringNav={setIsHoveringNav} shouldAnimateIntro={shouldAnimateIntro} />
             </div>
 
             {/* Clear Drawing Hint */}
@@ -162,7 +179,7 @@ const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
     );
 };
 
-const AnimatedTitle = ({ mousePos, isLoaded }) => {
+const AnimatedTitle = ({ mousePos, isLoaded, shouldAnimateIntro }) => {
     const name = "Will Hunt";
     const greeting = "Hi, I'm ";
 
@@ -170,9 +187,9 @@ const AnimatedTitle = ({ mousePos, isLoaded }) => {
         <div className="space-y-2">
             <motion.p
                 className="text-lg text-gray-600 font-light"
-                initial={{ opacity: 0, y: 20 }}
+                initial={shouldAnimateIntro ? { opacity: 0, y: 20 } : false}
                 animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={shouldAnimateIntro ? { duration: 0.8, delay: 0.3 } : { duration: 0 }}
             >
                 {greeting}
             </motion.p>
@@ -190,6 +207,7 @@ const AnimatedTitle = ({ mousePos, isLoaded }) => {
                                         index={globalIndex}
                                         isLoaded={isLoaded}
                                         mousePos={mousePos}
+                                        shouldAnimateIntro={shouldAnimateIntro}
                                     />
                                 );
                             })}
@@ -200,6 +218,7 @@ const AnimatedTitle = ({ mousePos, isLoaded }) => {
                                     index={wordIndex === 0 ? 4 : 8}
                                     isLoaded={isLoaded}
                                     mousePos={mousePos}
+                                    shouldAnimateIntro={shouldAnimateIntro}
                                 />
                             )}
                         </span>
@@ -210,7 +229,7 @@ const AnimatedTitle = ({ mousePos, isLoaded }) => {
     );
 };
 
-const AnimatedLetter = ({ letter, index, isLoaded, mousePos }) => {
+const AnimatedLetter = ({ letter, index, isLoaded, mousePos, shouldAnimateIntro }) => {
     const letterRef = useRef(null);
     const [proximity, setProximity] = useState(0);
 
@@ -235,15 +254,15 @@ const AnimatedLetter = ({ letter, index, isLoaded, mousePos }) => {
         <motion.span
             ref={letterRef}
             className="inline-block px-1 py-2 -mx-1 -my-2 rounded-lg hover:text-[#4b2e83] transition-all duration-300 cursor-default"
-            initial={{ opacity: 0, y: 50 }}
+            initial={shouldAnimateIntro ? { opacity: 0, y: 50 } : false}
             animate={{
                 opacity: isLoaded ? 1 : 0,
                 y: isLoaded ? 0 : 50,
             }}
-            transition={{
+            transition={shouldAnimateIntro ? {
                 duration: 0.6,
                 delay: 0.4 + index * 0.05,
-            }}
+            } : { duration: 0 }}
             style={{
                 color: proximity > 0 ? '#4b2e83' : undefined,
                 transform: `scale(${1 + proximity * 0.1}) translateY(${-proximity * 3}px)`,
@@ -254,21 +273,21 @@ const AnimatedLetter = ({ letter, index, isLoaded, mousePos }) => {
     );
 };
 
-const AnimatedSubtitle = ({ isLoaded }) => {
+const AnimatedSubtitle = ({ isLoaded, shouldAnimateIntro }) => {
 
     return (
         <motion.p
             className="text-xl text-gray-500 font-light max-w-md leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldAnimateIntro ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
+            transition={shouldAnimateIntro ? { duration: 0.8, delay: 1.4 } : { duration: 0 }}
         >
             Software Engineer, graduating UW in March '26
         </motion.p>
     );
 };
 
-const MagneticButton = ({ mousePos }) => {
+const MagneticButton = ({ mousePos, shouldAnimateIntro }) => {
     const buttonRef = useRef(null);
     const [buttonPos, setButtonPos] = useState({ x: 0, y: 0 });
 
@@ -306,9 +325,9 @@ const MagneticButton = ({ mousePos }) => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldAnimateIntro ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.0 }}
+            transition={shouldAnimateIntro ? { duration: 0.8, delay: 2.0 } : { duration: 0 }}
         >
             <motion.button
                 ref={buttonRef}
@@ -328,7 +347,7 @@ const MagneticButton = ({ mousePos }) => {
     );
 };
 
-const InteractivePhoto = ({ mouseX, mouseY, isLoaded }) => {
+const InteractivePhoto = ({ mouseX, mouseY, isLoaded, shouldAnimateIntro }) => {
     const photoRef = useRef(null);
 
     const offsetX = useTransform(mouseX, [0, 1], [-8, 8]);
@@ -338,9 +357,9 @@ const InteractivePhoto = ({ mouseX, mouseY, isLoaded }) => {
         <motion.div
             ref={photoRef}
             className="relative w-80 h-80"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={shouldAnimateIntro ? { opacity: 0, scale: 0.8 } : false}
             animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-            transition={{ duration: 1, delay: 1.0 }}
+            transition={shouldAnimateIntro ? { duration: 1, delay: 1.0 } : { duration: 0 }}
             style={{ x: offsetX, y: offsetY }}
         >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100">
@@ -356,7 +375,7 @@ const InteractivePhoto = ({ mouseX, mouseY, isLoaded }) => {
     );
 };
 
-const MagneticNav = ({ mousePos, setIsHoveringNav }) => {
+const MagneticNav = ({ mousePos, setIsHoveringNav, shouldAnimateIntro }) => {
     const navItems = [
         { label: 'Projects', href: '/projects' },
         // {label: 'Thoughts', href: 'thoughts'}
@@ -373,6 +392,7 @@ const MagneticNav = ({ mousePos, setIsHoveringNav }) => {
                         mousePos={mousePos}
                         index={index}
                         setIsHoveringNav={setIsHoveringNav}
+                        shouldAnimateIntro={shouldAnimateIntro}
                     />
                 ))}
             </div>
@@ -380,7 +400,7 @@ const MagneticNav = ({ mousePos, setIsHoveringNav }) => {
     );
 };
 
-const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav }) => {
+const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav, shouldAnimateIntro }) => {
     const itemRef = useRef(null);
     const [itemPos, setItemPos] = useState({ x: 0, y: 0 });
 
@@ -416,14 +436,14 @@ const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav }) => {
         <motion.div
             ref={itemRef}
             className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
-            initial={{ opacity: 0, y: -20 }}
+            initial={shouldAnimateIntro ? { opacity: 0, y: -20 } : false}
             animate={{
                 opacity: 1,
                 x: itemPos.x,
                 y: itemPos.y
             }}
             transition={{
-                opacity: { duration: 0.6, delay: 2.5 + index * 0.1 },
+                opacity: shouldAnimateIntro ? { duration: 0.6, delay: 2.5 + index * 0.1 } : { duration: 0 },
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 y: { type: "spring", stiffness: 300, damping: 30 }
             }}
