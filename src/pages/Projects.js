@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import AnimatedPage from "../components/AnimatedPage";
 import { projects } from "../data/projects";
-
+import resumePdf from "../assets/Resume.pdf";
 function Card({ data, onOpen, large, hidden }) {
     return (
         <motion.li
@@ -163,8 +163,7 @@ export default function AppStore() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => {
-                            const pdfUrl = '/assets/Resume.pdf';
-                            window.open(pdfUrl, '_blank');
+                            window.open(resumePdf, '_blank');
                         }}
                     >
                         <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

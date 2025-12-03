@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import resumePdf from "../assets/Resume.pdf";
 
 export default function CleanHome() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -339,7 +340,7 @@ const MagneticButton = ({ mousePos, shouldAnimateIntro }) => {
                 transition={{ type: "spring", stiffness: 200, damping: 25 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open('/assets/Resume.pdf', '_blank')}
+                onClick={() => window.open(resumePdf, '_blank')}
             >
                 Download Resume
             </motion.button>
