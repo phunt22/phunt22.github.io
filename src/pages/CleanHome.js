@@ -34,7 +34,7 @@ export default function CleanHome() {
 
                 setMouseTrail(prev => [
                     newPos,
-                    ...prev
+                    ...prev.slice(0, 499)
                 ]);
             }
         };
@@ -143,19 +143,10 @@ const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
                     className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
                     style={{ overflow: 'visible' }}
                 >
-                    <defs>
-                        <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="rgba(79, 70, 229, 0)" />
-                            <stop offset="30%" stopColor="rgba(79, 70, 229, 0.05)" />
-                            <stop offset="70%" stopColor="rgba(79, 70, 229, 0.1)" />
-                            <stop offset="100%" stopColor="rgba(79, 70, 229, 0.15)" />
-                        </linearGradient>
-                    </defs>
-
                     <path
                         d={mouseTrail.length > 1 ? `M ${mouseTrail.map((pos, i) => `${pos.x},${pos.y}`).join(' L ')}` : ''}
-                        stroke="url(#brushGradient)"
-                        strokeWidth="4"
+                        stroke="rgba(0, 0, 0, 0.08)"
+                        strokeWidth="2"
                         fill="none"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -164,7 +155,7 @@ const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
             )}
 
             <motion.div
-                className="fixed top-0 left-0 w-2 h-2 bg-[#4b2e83] rounded-full pointer-events-none z-50"
+                className="fixed top-0 left-0 w-2 h-2 bg-black rounded-full pointer-events-none z-50"
                 style={{
                     x: mousePos.x - 4,
                     y: mousePos.y - 4,
@@ -254,7 +245,7 @@ const AnimatedLetter = ({ letter, index, isLoaded, mousePos, shouldAnimateIntro 
     return (
         <motion.span
             ref={letterRef}
-            className="inline-block px-1 py-2 -mx-1 -my-2 rounded-lg hover:text-[#4b2e83] transition-all duration-300 cursor-default"
+            className="inline-block px-1 py-2 -mx-1 -my-2 rounded-lg hover:text-black transition-all duration-300 cursor-default"
             initial={shouldAnimateIntro ? { opacity: 0, y: 50 } : false}
             animate={{
                 opacity: isLoaded ? 1 : 0,
@@ -265,7 +256,7 @@ const AnimatedLetter = ({ letter, index, isLoaded, mousePos, shouldAnimateIntro 
                 delay: 0.4 + index * 0.05,
             } : { duration: 0 }}
             style={{
-                color: proximity > 0 ? '#4b2e83' : undefined,
+                color: proximity > 0 ? '#000000' : undefined,
                 transform: `scale(${1 + proximity * 0.1}) translateY(${-proximity * 3}px)`,
             }}
         >
@@ -332,7 +323,7 @@ const MagneticButton = ({ mousePos, shouldAnimateIntro }) => {
         >
             <motion.button
                 ref={buttonRef}
-                className="relative overflow-hidden rounded-full bg-[#4b2e83] px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-semibold text-white shadow-lg hover:shadow-[#4b2e83]/30 focus-visible:outline-[#4b2e83] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out whitespace-nowrap"
+                className="relative overflow-hidden rounded-full bg-black px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-semibold text-white shadow-lg hover:shadow-black/30 focus-visible:outline-black before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out whitespace-nowrap"
                 animate={{
                     x: buttonPos.x,
                     y: buttonPos.y
@@ -342,7 +333,7 @@ const MagneticButton = ({ mousePos, shouldAnimateIntro }) => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.open(resumePdf, '_blank')}
             >
-                Download Resume
+                Resume
             </motion.button>
         </motion.div>
     );
