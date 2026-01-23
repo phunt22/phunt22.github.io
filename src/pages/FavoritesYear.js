@@ -1,0 +1,278 @@
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import AnimatedPage from '../components/AnimatedPage';
+import { getFavoritesByYear, filterByTypes, FAVORITE_TYPES, TYPE_LABELS } from '../data/favorites';
+
+function FavoriteCard({ data, onOpen }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    // Determine text color based on background brightness
+    const getBrightness = (hex) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return (r * 299 + g * 587 + b * 114) / 1000;
+    };
+
+    const textColor = getBrightness(data.bgColor) > 128 ? 'text-black' : 'text-white';
+    const textColorSecondary = getBrightness(data.bgColor) > 128 ? 'text-black/70' : 'text-white/70';
+
+    return (
+        <motion.li
+            className="relative aspect-square cursor-pointer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => onOpen(data.id)}
+            whileTap={{ scale: 0.98 }}
+        >
+            {/* Background color layer */}
+            <div
+                className="absolute inset-0"
+                style={{ backgroundColor: data.bgColor }}
+            />
+
+            {/* Image - fades out on hover */}
+            <motion.img
+                src={data.image}
+                alt={data.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                animate={{ opacity: isHovered ? 0 : 1 }}
+                transition={{ duration: 0.2 }}
+                draggable={false}
+            />
+
+            {/* Text - fades in on hover, centered */}
+            <motion.div
+                className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center ${textColor}`}
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.2 }}
+            >
+                <h3 className="font-semibold text-sm leading-tight">{data.title}</h3>
+                <p className={`text-xs mt-1 ${textColorSecondary}`}>{data.author}</p>
+            </motion.div>
+        </motion.li>
+    );
+}
+
+function FavoriteModal({ data, onClose }) {
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
+
+    return (
+        <motion.aside
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+            {/* Backdrop */}
+            <motion.div
+                className="absolute inset-0 bg-black/80 cursor-pointer"
+                onClick={onClose}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: "easeInOut", delay: 0.15 }}
+            />
+
+            {/* Modal content - wider, sharper */}
+            <motion.div
+                className="relative max-w-[700px] w-[90vw] max-h-[90vh] overflow-y-auto shadow-2xl bg-white"
+                exit={{ scale: 0.95 }}
+            >
+                <img
+                    src={data.image}
+                    alt={data.title}
+                    className="w-full aspect-square object-cover"
+                    draggable={false}
+                />
+
+                {/* Close button - no background */}
+                <motion.button
+                    className="absolute top-4 right-4 z-50 text-white hover:text-gray-300 transition-colors"
+                    onClick={onClose}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </motion.button>
+
+                {/* Content - no category tag */}
+                <div className="p-6 space-y-4">
+                    <div>
+                        <h2 className="text-2xl font-semibold text-gray-900">{data.title}</h2>
+                        <p className="text-gray-600 mt-1">{data.author}</p>
+                    </div>
+
+                    <p className="text-gray-700 leading-relaxed">
+                        {data.description}
+                    </p>
+                </div>
+            </motion.div>
+        </motion.aside>
+    );
+}
+
+function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
+    const types = Object.values(FAVORITE_TYPES);
+    const hasActiveFilters = activeFilters.size > 0;
+
+    return (
+        <div
+            className="fixed bottom-0 left-0 right-0 z-40 px-4 py-4"
+            style={{
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                backgroundColor: "rgba(0, 0, 0, 0.7)"
+            }}
+        >
+            <div className="flex items-center justify-center space-x-6 md:space-x-8">
+                {types.map((type) => (
+                    <motion.button
+                        key={type}
+                        onClick={() => toggleFilter(type)}
+                        className="text-sm font-medium"
+                        animate={{
+                            color: activeFilters.has(type) ? '#ffffff' : '#6b7280'
+                        }}
+                        transition={{ duration: 0.1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {TYPE_LABELS[type]}
+                    </motion.button>
+                ))}
+
+                {/* X button - inline, no border, immediately after Videos */}
+                <AnimatePresence>
+                    {hasActiveFilters && (
+                        <motion.button
+                            onClick={clearFilters}
+                            className="text-gray-400 hover:text-white transition-colors"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </motion.button>
+                    )}
+                </AnimatePresence>
+            </div>
+        </div>
+    );
+}
+
+export default function FavoritesYear() {
+    const { year } = useParams();
+    const [openId, setOpenId] = useState(null);
+    const [activeFilters, setActiveFilters] = useState(new Set());
+
+    const yearFavorites = getFavoritesByYear(year);
+    const filteredFavorites = filterByTypes(yearFavorites, activeFilters);
+
+    const toggleFilter = (type) => {
+        setActiveFilters(prev => {
+            const next = new Set(prev);
+            if (next.has(type)) {
+                next.delete(type);
+            } else {
+                next.add(type);
+            }
+            return next;
+        });
+    };
+
+    const clearFilters = () => setActiveFilters(new Set());
+
+    const open = (id) => setOpenId(id);
+    const close = () => setOpenId(null);
+
+    return (
+        <AnimatedPage>
+            <div className="w-full pt-20 pb-20">
+                {/* Header */}
+                <div className="flex items-center space-x-4 mb-6 px-4">
+                    <Link to="/favorites">
+                        <motion.button
+                            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </motion.button>
+                    </Link>
+                    <h1 className="text-4xl font-bold text-gray-900">{year}</h1>
+                </div>
+
+                {/* Grid - no gaps, edge-to-edge */}
+                <LayoutGroup>
+                    <motion.ul
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 w-full"
+                        layout
+                    >
+                        <AnimatePresence>
+                            {filteredFavorites.map((item) => (
+                                <FavoriteCard
+                                    key={item.id}
+                                    data={item}
+                                    onOpen={open}
+                                />
+                            ))}
+                        </AnimatePresence>
+                    </motion.ul>
+
+                    {/* Modal */}
+                    <AnimatePresence mode="wait">
+                        {openId && (
+                            <FavoriteModal
+                                key="modal"
+                                data={filteredFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
+                                onClose={close}
+                            />
+                        )}
+                    </AnimatePresence>
+                </LayoutGroup>
+
+                {/* Empty state */}
+                {filteredFavorites.length === 0 && (
+                    <motion.div
+                        className="flex flex-col items-center justify-center py-20"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                    >
+                        <p className="text-gray-400 text-lg">No items match the selected filters</p>
+                        <button
+                            onClick={clearFilters}
+                            className="mt-4 text-gray-600 hover:text-gray-900 underline"
+                        >
+                            Clear filters
+                        </button>
+                    </motion.div>
+                )}
+            </div>
+
+            {/* Filter bar */}
+            <FilterBar
+                activeFilters={activeFilters}
+                toggleFilter={toggleFilter}
+                clearFilters={clearFilters}
+            />
+        </AnimatedPage>
+    );
+}

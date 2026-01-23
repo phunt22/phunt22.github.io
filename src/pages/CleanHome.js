@@ -370,6 +370,7 @@ const InteractivePhoto = ({ mouseX, mouseY, isLoaded, shouldAnimateIntro }) => {
 const MagneticNav = ({ mousePos, setIsHoveringNav, shouldAnimateIntro }) => {
     const navItems = [
         { label: 'Projects', href: '/projects' },
+        { label: 'Favorites', href: '/favorites' },
         // {label: 'Thoughts', href: 'thoughts'}
         // { label: 'Experience', href: '/experience' }
     ];
