@@ -38,7 +38,7 @@ function FavoriteCard({ data, onOpen }) {
                 alt={data.title}
                 className="absolute inset-0 w-full h-full object-cover"
                 animate={{ opacity: isHovered ? 0 : 1 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: isHovered ? 0 : 0.8 }}
                 draggable={false}
             />
 
@@ -46,7 +46,7 @@ function FavoriteCard({ data, onOpen }) {
             <motion.div
                 className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center ${textColor}`}
                 animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: isHovered ? 0 : 0.8 }}
             >
                 <h3 className="font-semibold text-sm leading-tight">{data.title}</h3>
                 <p className={`text-xs mt-1 ${textColorSecondary}`}>{data.author}</p>
