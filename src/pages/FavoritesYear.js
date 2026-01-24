@@ -129,40 +129,51 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
     const hasActiveFilters = activeFilters.size > 0;
 
     return (
-        <div
-            className="fixed bottom-0 left-0 right-0 z-40 px-4 py-4"
-            style={{
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                backgroundColor: "rgba(0, 0, 0, 0.7)"
-            }}
-        >
-            <div className="flex items-center justify-center space-x-6 md:space-x-8">
-                {types.map((type) => (
-                    <motion.button
-                        key={type}
-                        onClick={() => toggleFilter(type)}
-                        className="text-sm font-medium"
-                        animate={{
-                            color: activeFilters.has(type) ? '#ffffff' : '#6b7280'
-                        }}
-                        transition={{ duration: 0.1 }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {TYPE_LABELS[type]}
-                    </motion.button>
-                ))}
+        <div className="fixed bottom-4 z-40 w-full flex justify-center pointer-events-none">
+            <div className="relative pointer-events-auto">
+                <div
+                    className="flex items-center py-3 px-6"
+                    style={{
+                        backdropFilter: "blur(20px)",
+                        WebkitBackdropFilter: "blur(20px)",
+                        backgroundColor: "rgba(0, 0, 0, 0.7)"
+                    }}
+                >
+                    <div className="flex items-center space-x-6 md:space-x-8">
+                        {types.map((type) => (
+                            <motion.button
+                                key={type}
+                                onClick={() => toggleFilter(type)}
+                                className="text-sm font-medium"
+                                animate={{
+                                    color: activeFilters.has(type) ? '#ffffff' : '#6b7280'
+                                }}
+                                transition={{ duration: 0.1 }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                {TYPE_LABELS[type]}
+                            </motion.button>
+                        ))}
+                    </div>
+                </div>
 
-                {/* X button - inline, no border, immediately after Videos */}
+                {/* X button - positioned to the right, outside main bar */}
                 <AnimatePresence>
                     {hasActiveFilters && (
                         <motion.button
                             onClick={clearFilters}
-                            className="text-gray-400 hover:text-white transition-colors"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
+                            className="absolute left-full top-0 h-full px-4 text-gray-400 hover:text-white transition-colors flex items-center"
+                            style={{
+                                backdropFilter: "blur(20px)",
+                                WebkitBackdropFilter: "blur(20px)",
+                                backgroundColor: "rgba(0, 0, 0, 0.7)",
+                                marginLeft: -1
+                            }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                             whileTap={{ scale: 0.9 }}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
