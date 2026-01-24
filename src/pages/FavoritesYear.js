@@ -169,7 +169,10 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
                                     color: activeFilters.has(type) ? '#ffffff' : '#6b7280'
                                 }}
                                 transition={{ duration: 0.1 }}
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    color: activeFilters.has(type) ? '#e5e5e5' : '#9ca3af'
+                                }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 {TYPE_LABELS[type]}
@@ -244,19 +247,28 @@ export default function FavoritesYear() {
         <AnimatedPage>
             <div className="w-full pt-20 pb-20">
                 {/* Header */}
-                <div className="flex items-center space-x-4 mb-6 px-4">
+                <div
+                    className="flex items-center space-x-3 py-2 px-4"
+                    style={{
+                        backdropFilter: "blur(20px)",
+                        WebkitBackdropFilter: "blur(20px)",
+                        backgroundColor: "rgba(0, 0, 0, 0.85)"
+                    }}
+                >
                     <Link to="/favorites">
                         <motion.button
-                            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
+                            className="w-8 h-8 flex items-center justify-center text-white/70 hover:text-white transition-colors"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
                         </motion.button>
                     </Link>
-                    <h1 className="text-4xl font-bold text-gray-900">{year}</h1>
+                    <h1 className="text-base font-medium text-white">
+                        {year}
+                    </h1>
                 </div>
 
                 {/* Grid - centers when sparse */}
