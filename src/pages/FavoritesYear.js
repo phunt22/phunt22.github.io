@@ -32,7 +32,7 @@ function FavoriteCard({ data, onOpen }) {
         <motion.li
             layout
             layoutId={data.id}
-            className="relative aspect-square cursor-pointer"
+            className="relative cursor-pointer w-[calc(50vw)] h-[calc(50vw)] sm:w-[calc(33.333vw)] sm:h-[calc(33.333vw)] md:w-[calc(25vw)] md:h-[calc(25vw)] lg:w-[calc(20vw)] lg:h-[calc(20vw)] xl:w-[calc(16.666vw)] xl:h-[calc(16.666vw)]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => onOpen(data.id)}
@@ -259,10 +259,10 @@ export default function FavoritesYear() {
                     <h1 className="text-4xl font-bold text-gray-900">{year}</h1>
                 </div>
 
-                {/* Grid - no gaps, edge-to-edge */}
+                {/* Grid - centers when sparse */}
                 <LayoutGroup>
                     <motion.ul
-                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 w-full"
+                        className="flex flex-wrap justify-start w-full"
                     >
                         <AnimatePresence mode="popLayout">
                             {shuffledFavorites.map((item) => (
