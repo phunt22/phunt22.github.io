@@ -1,8 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
 import { getFavoritesByYear, filterByTypes, FAVORITE_TYPES, TYPE_LABELS } from '../data/favorites';
+
+// Fisher-Yates shuffle
+const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+};
 
 function FavoriteCard({ data, onOpen }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -20,11 +30,21 @@ function FavoriteCard({ data, onOpen }) {
 
     return (
         <motion.li
+            layout
+            layoutId={data.id}
             className="relative aspect-square cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => onOpen(data.id)}
             whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{
+                layout: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+                scale: { duration: 0.2 }
+            }}
         >
             {/* Background color layer */}
             <div
@@ -191,9 +211,16 @@ export default function FavoritesYear() {
     const { year } = useParams();
     const [openId, setOpenId] = useState(null);
     const [activeFilters, setActiveFilters] = useState(new Set());
+    const [shuffleKey, setShuffleKey] = useState(0);
 
     const yearFavorites = getFavoritesByYear(year);
     const filteredFavorites = filterByTypes(yearFavorites, activeFilters);
+
+    // Shuffle items whenever filters change or on initial load
+    const shuffledFavorites = useMemo(() => {
+        return shuffleArray(filteredFavorites);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [shuffleKey, JSON.stringify([...activeFilters]), year]);
 
     const toggleFilter = (type) => {
         setActiveFilters(prev => {
@@ -205,6 +232,7 @@ export default function FavoritesYear() {
             }
             return next;
         });
+        setShuffleKey(k => k + 1);
     };
 
     const clearFilters = () => setActiveFilters(new Set());
@@ -235,10 +263,9 @@ export default function FavoritesYear() {
                 <LayoutGroup>
                     <motion.ul
                         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 w-full"
-                        layout
                     >
-                        <AnimatePresence>
-                            {filteredFavorites.map((item) => (
+                        <AnimatePresence mode="popLayout">
+                            {shuffledFavorites.map((item) => (
                                 <FavoriteCard
                                     key={item.id}
                                     data={item}
@@ -253,7 +280,7 @@ export default function FavoritesYear() {
                         {openId && (
                             <FavoriteModal
                                 key="modal"
-                                data={filteredFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
+                                data={shuffledFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
                                 onClose={close}
                             />
                         )}
@@ -261,7 +288,7 @@ export default function FavoritesYear() {
                 </LayoutGroup>
 
                 {/* Empty state */}
-                {filteredFavorites.length === 0 && (
+                {shuffledFavorites.length === 0 && (
                     <motion.div
                         className="flex flex-col items-center justify-center py-20"
                         initial={{ opacity: 0 }}
