@@ -29,7 +29,7 @@ function App() {
             </div>
           } />
           <Route path="/favorites" element={
-            <div className='min-h-screen flex flex-col cursor-auto'>
+            <div className='min-h-screen flex flex-col cursor-auto hide-scrollbar'>
               <Navbar />
               <main className='flex-1'>
                 <Favorites />
@@ -38,7 +38,7 @@ function App() {
             </div>
           } />
           <Route path="/favorites/:year" element={
-            <div className='min-h-screen flex flex-col cursor-auto'>
+            <div className='min-h-screen flex flex-col cursor-auto hide-scrollbar'>
               <Navbar />
               <main className='flex-1'>
                 <FavoritesYear />

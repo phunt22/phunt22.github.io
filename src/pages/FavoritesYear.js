@@ -245,10 +245,10 @@ export default function FavoritesYear() {
 
     return (
         <AnimatedPage>
-            <div className="w-full pt-20 pb-20">
+            <div className="w-full h-screen flex flex-col overflow-hidden pt-[80px]">
                 {/* Header */}
                 <div
-                    className="flex items-center space-x-3 py-2 px-4"
+                    className="flex items-center space-x-3 py-2 px-4 shrink-0"
                     style={{
                         backdropFilter: "blur(20px)",
                         WebkitBackdropFilter: "blur(20px)",
@@ -271,50 +271,52 @@ export default function FavoritesYear() {
                     </h1>
                 </div>
 
-                {/* Grid - centers when sparse */}
-                <LayoutGroup>
-                    <motion.ul
-                        className="flex flex-wrap justify-start w-full"
-                    >
-                        <AnimatePresence mode="popLayout">
-                            {shuffledFavorites.map((item) => (
-                                <FavoriteCard
-                                    key={item.id}
-                                    data={item}
-                                    onOpen={open}
-                                />
-                            ))}
-                        </AnimatePresence>
-                    </motion.ul>
-
-                    {/* Modal */}
-                    <AnimatePresence mode="wait">
-                        {openId && (
-                            <FavoriteModal
-                                key="modal"
-                                data={shuffledFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
-                                onClose={close}
-                            />
-                        )}
-                    </AnimatePresence>
-                </LayoutGroup>
-
-                {/* Empty state */}
-                {shuffledFavorites.length === 0 && (
-                    <motion.div
-                        className="flex flex-col items-center justify-center py-20"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                    >
-                        <p className="text-gray-400 text-lg">No items match the selected filters</p>
-                        <button
-                            onClick={clearFilters}
-                            className="mt-4 text-gray-600 hover:text-gray-900 underline"
+                {/* Grid - scrollable area */}
+                <div className="flex-1 overflow-y-auto hide-scrollbar pb-20">
+                    <LayoutGroup>
+                        <motion.ul
+                            className="flex flex-wrap justify-start w-full"
                         >
-                            Clear filters
-                        </button>
-                    </motion.div>
-                )}
+                            <AnimatePresence mode="popLayout">
+                                {shuffledFavorites.map((item) => (
+                                    <FavoriteCard
+                                        key={item.id}
+                                        data={item}
+                                        onOpen={open}
+                                    />
+                                ))}
+                            </AnimatePresence>
+                        </motion.ul>
+
+                        {/* Modal */}
+                        <AnimatePresence mode="wait">
+                            {openId && (
+                                <FavoriteModal
+                                    key="modal"
+                                    data={shuffledFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
+                                    onClose={close}
+                                />
+                            )}
+                        </AnimatePresence>
+                    </LayoutGroup>
+
+                    {/* Empty state */}
+                    {shuffledFavorites.length === 0 && (
+                        <motion.div
+                            className="flex flex-col items-center justify-center py-20"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                        >
+                            <p className="text-gray-400 text-lg">No items match the selected filters</p>
+                            <button
+                                onClick={clearFilters}
+                                className="mt-4 text-gray-600 hover:text-gray-900 underline"
+                            >
+                                Clear filters
+                            </button>
+                        </motion.div>
+                    )}
+                </div>
             </div>
 
             {/* Filter bar */}
