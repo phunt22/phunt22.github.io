@@ -179,7 +179,27 @@ export default function FavoritesYear() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                         >
-                            <p className="text-gray-400 text-lg">No items match the selected filters</p>
+                            <p className="text-gray-400 text-lg">
+                                {(() => {
+                                    const types = [...activeFilters];
+                                    const labels = types.map(t => TYPE_LABELS[t].toLowerCase());
+                                    if (types.length === 1) {
+                                        const t = types[0];
+                                        const verb = (t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE) ? 'read' :
+                                                     t === FAVORITE_TYPES.MUSIC ? 'listened to' : 'watched';
+                                        return `guess I haven't ${verb} any ${labels[0]} this year`;
+                                    }
+                                    // Group by verb
+                                    const read = types.filter(t => t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE);
+                                    const watched = types.filter(t => t === FAVORITE_TYPES.MOVIE || t === FAVORITE_TYPES.VIDEO);
+                                    const listened = types.filter(t => t === FAVORITE_TYPES.MUSIC);
+                                    const parts = [];
+                                    if (read.length) parts.push(`read any ${read.map(t => TYPE_LABELS[t].toLowerCase()).join(' or ')}`);
+                                    if (watched.length) parts.push(`watched any ${watched.map(t => TYPE_LABELS[t].toLowerCase()).join(' or ')}`);
+                                    if (listened.length) parts.push(`listened to any ${listened.map(t => TYPE_LABELS[t].toLowerCase()).join(' or ')}`);
+                                    return `guess I haven't ${parts.join(' or ')} this year`;
+                                })()}
+                            </p>
                             <button
                                 onClick={clearFilters}
                                 className="mt-4 text-gray-600 hover:text-gray-900 underline"
