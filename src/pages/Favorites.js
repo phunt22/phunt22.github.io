@@ -9,7 +9,7 @@ function FlyingImage({ src, speed, onDone }) {
         const size = 48 + Math.random() * 40; // 48-88px
         const topPercent = 5 + Math.random() * 70; // 5-75% from top
         const rotation = -20 + Math.random() * 40; // -20 to +20 deg
-        const baseDuration = 2.5 + Math.random() * 2; // 2.5-4.5s
+        const baseDuration = 4 + Math.random() * 2.5; // 4-6.5s
         const duration = baseDuration / speed;
 
         return {
@@ -42,6 +42,7 @@ function YearBanner({ year, index }) {
     const theme = getYearTheme(year);
     const [isHovered, setIsHovered] = useState(false);
     const [flyingImages, setFlyingImages] = useState([]);
+    const [shineKey, setShineKey] = useState(0);
     const nextId = useRef(0);
     const hoverStart = useRef(0);
 
@@ -68,28 +69,30 @@ function YearBanner({ year, index }) {
 
     useEffect(() => {
         if (!isHovered || imageSrcs.length === 0) {
-            setFlyingImages([]);
             return;
         }
 
         hoverStart.current = Date.now();
 
-        // Spawn a burst immediately
-        for (let i = 0; i < 4; i++) {
-            setTimeout(() => spawnImage(), i * 150);
-        }
-
-        // Accelerating spawn rate via recursive timeout
+        // Initial delay before anything spawns
         let timeoutId;
-        const scheduleNext = () => {
-            const speed = getSpeed();
-            const delay = Math.max(400 / speed, 80);
-            timeoutId = setTimeout(() => {
-                spawnImage();
-                scheduleNext();
-            }, delay);
-        };
-        scheduleNext();
+        timeoutId = setTimeout(() => {
+            // Spawn a burst
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => spawnImage(), i * 150);
+            }
+
+            // Then accelerating spawn rate
+            const scheduleNext = () => {
+                const speed = getSpeed();
+                const delay = Math.max(400 / speed, 80);
+                timeoutId = setTimeout(() => {
+                    spawnImage();
+                    scheduleNext();
+                }, delay);
+            };
+            scheduleNext();
+        }, 200);
 
         return () => clearTimeout(timeoutId);
     }, [isHovered, spawnImage, getSpeed, imageSrcs.length]);
@@ -109,7 +112,7 @@ function YearBanner({ year, index }) {
                         height: '28vh',
                         minHeight: '180px',
                     }}
-                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseEnter={() => { setIsHovered(true); setShineKey(k => k + 1); }}
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     {/* Heavy noise grain overlay */}
@@ -132,13 +135,32 @@ function YearBanner({ year, index }) {
                         />
                     ))}
 
-                    {/* Year text */}
-                    <span
-                        className="relative z-10 font-clash font-semibold text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight select-none"
+                    {/* Year text with shine */}
+                    <motion.span
+                        className="relative z-10 inline-block font-clash font-semibold text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight select-none"
                         style={{ color: theme.text }}
+                        animate={{ scale: isHovered ? 1.08 : 1 }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                     >
                         {year}
-                    </span>
+                        {/* Shine layer clipped to text shape */}
+                        <span
+                            key={shineKey}
+                            aria-hidden="true"
+                            className="absolute inset-0 pointer-events-none year-text-shine"
+                            style={{
+                                color: 'transparent',
+                                WebkitBackgroundClip: 'text',
+                                backgroundClip: 'text',
+                                backgroundImage: 'linear-gradient(90deg, transparent 20%, rgba(255,255,255,0.35) 50%, transparent 80%)',
+                                backgroundSize: '50% 100%',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: '-100% center',
+                            }}
+                        >
+                            {year}
+                        </span>
+                    </motion.span>
                 </motion.div>
             </Link>
         </motion.div>
@@ -153,6 +175,13 @@ export default function Favorites() {
                     from { transform: translateX(-100px) rotate(var(--rot, 0deg)); opacity: 0; }
                     5% { opacity: 1; }
                     to { transform: translateX(calc(100vw + 100px)) rotate(var(--rot, 0deg)); opacity: 1; }
+                }
+                @keyframes yearShine {
+                    from { background-position: -100% center; }
+                    to { background-position: 200% center; }
+                }
+                .year-text-shine {
+                    animation: yearShine 0.7s ease-in-out forwards;
                 }
             `}</style>
             <div className="w-full flex flex-col pt-20">
