@@ -53,7 +53,7 @@ export function FavoriteGridCard({ data, onOpen }) {
                 animate={{ opacity: isHovered ? 1 : 0 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
             >
-                <h3 className="font-semibold text-sm leading-tight uppercase">{data.title}</h3>
+                <h3 className="font-clash font-medium text-sm leading-tight uppercase">{data.title}</h3>
                 <p className={`text-xs mt-1 ${textColorSecondary}`}>{data.author}</p>
             </motion.div>
         </motion.li>
@@ -115,7 +115,7 @@ export function FavoriteModal({ data, onClose }) {
                 >
                     <div className="min-w-0 mr-4">
                         <h2
-                            className="text-lg font-semibold leading-tight truncate"
+                            className="text-lg font-clash font-medium leading-tight truncate"
                             style={{ color: barText }}
                         >
                             {data.title}

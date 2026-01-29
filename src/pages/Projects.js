@@ -29,9 +29,9 @@ function Card({ data, onOpen, large, hidden }) {
                 layoutId={`card-title-${data.id}`}
                 className={`absolute top-4 left-4 max-w-[300px] ${data.dark ? "text-black" : "text-white"}`}
             >
-                <span className="uppercase text-[10px] sm:text-xs tracking-wide font-medium">{data.category}</span>
-                <h2 className="text-lg sm:text-2xl font-semibold leading-snug mt-1">{data.title}</h2>
-                <p className="text-xs sm:text-sm opacity-80 mt-1">{data.subtitle}</p>
+                <span className="uppercase text-[10px] sm:text-xs tracking-wide font-medium opacity-60">{data.category}</span>
+                <h2 className="text-lg sm:text-2xl font-clash font-medium leading-snug -mt-0.5">{data.title}</h2>
+                <p className="text-xs sm:text-sm opacity-80 -mt-0.5">{data.subtitle}</p>
             </motion.div>
         </motion.li>
     );
@@ -96,20 +96,20 @@ function Modal({ data, onClose }) {
 
                 <motion.div
                     layoutId={`card-title-${data.id}`}
-                    className={`absolute top-6 left-6 max-w-[320px] ${data.dark ? "text-black" : "text-white"}`}
+                    className={`absolute top-6 left-6 max-w-[70%] ${data.dark ? "text-black" : "text-white"}`}
                 >
-                    <span className="uppercase text-[10px] sm:text-xs tracking-wide font-medium">{data.category}</span>
-                    <h2 className="text-xl sm:text-3xl font-semibold leading-tight mt-1">{data.title}</h2>
-                    <p className="text-sm sm:text-lg opacity-90 mt-1">{data.subtitle}</p>
+                    <span className="uppercase text-[10px] sm:text-xs tracking-wide font-medium opacity-60">{data.category}</span>
+                    <h2 className="text-xl sm:text-3xl font-clash font-medium leading-tight -mt-0.5">{data.title}</h2>
+                    <p className="text-sm sm:text-lg opacity-80 -mt-0.5">{data.subtitle}</p>
                 </motion.div>
 
-                <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 bg-white text-neutral-800">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
-                        <div className="text-xs sm:text-sm text-neutral-600 font-medium">
+                <div className="p-4 sm:p-8 space-y-3 sm:space-y-4 bg-white text-neutral-800">
+                    <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 sm:gap-0">
+                        <div className="text-xs sm:text-sm text-neutral-600 font-medium flex items-center">
                             {data.period}
                         </div>
                         {data.attachments && data.attachments.length > 0 && (
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
                                 {data.attachments.map((attachment, index) => (
                                     <a
                                         key={index}
@@ -157,7 +157,7 @@ export default function AppStore() {
         <AnimatedPage>
             <div className="w-full max-w-[1200px] mx-auto pt-20 px-5">
                 <header className="flex items-center justify-between mb-6">
-                    <h1 className="text-4xl font-semibold tracking-tight">My Work</h1>
+                    <h1 className="text-4xl font-clash font-medium tracking-tight leading-none">selected work</h1>
                     <motion.button
                         className="relative overflow-hidden bg-neutral-900 hover:bg-neutral-800 text-white px-4 py-2 sm:px-5 sm:py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out"
                         whileHover={{ scale: 1.05 }}

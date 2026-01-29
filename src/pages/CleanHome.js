@@ -172,7 +172,7 @@ const CustomCursor = ({ mousePos, mouseTrail, isHoveringNav }) => {
 };
 
 const AnimatedTitle = ({ mousePos, isLoaded, shouldAnimateIntro }) => {
-    const name = "Will Hunt";
+    const name = "will hunt";
     const greeting = "Hi, I'm ";
 
     return (
@@ -187,7 +187,7 @@ const AnimatedTitle = ({ mousePos, isLoaded, shouldAnimateIntro }) => {
             </motion.p>
 
             <div className="overflow-visible">
-                <h1 className="text-7xl font-bold text-gray-900 leading-none">
+                <h1 className="text-7xl font-clash font-medium text-gray-900 leading-none">
                     {name.split(' ').map((word, wordIndex) => (
                         <span key={wordIndex} className="inline-block">
                             {word.split('').map((letter, letterIndex) => {

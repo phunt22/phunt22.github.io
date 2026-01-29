@@ -74,8 +74,8 @@ export default function Navbar() {
                                 className="w-full h-full object-cover"
                             />
                         </motion.div>
-                        <div>
-                            <h1 className="text-xl font-bold text-gray-800">Will Hunt</h1>
+                        <div className="leading-tight">
+                            <h1 className="text-xl font-clash font-medium text-gray-800">will hunt</h1>
                             <p className="text-sm text-gray-600">Software Engineer</p>
                         </div>
                     </Link>
