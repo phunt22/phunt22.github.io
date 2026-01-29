@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import resumePdf from "../assets/Resume.pdf";
 
 export default function CleanHome() {
@@ -376,18 +376,20 @@ const MagneticNav = ({ mousePos, setIsHoveringNav, shouldAnimateIntro }) => {
     ];
 
     return (
-        <nav className="absolute top-8 right-8">
-            <div className="flex space-x-8">
-                {navItems.map((item, index) => (
-                    <MagneticNavItem
-                        key={item.label}
-                        item={item}
-                        mousePos={mousePos}
-                        index={index}
-                        setIsHoveringNav={setIsHoveringNav}
-                        shouldAnimateIntro={shouldAnimateIntro}
-                    />
-                ))}
+        <nav className="absolute top-0 left-0 right-0">
+            <div className="flex justify-end items-center px-8 py-4" style={{ minHeight: '80px' }}>
+                <div className="flex space-x-8">
+                    {navItems.map((item, index) => (
+                        <MagneticNavItem
+                            key={item.label}
+                            item={item}
+                            mousePos={mousePos}
+                            index={index}
+                            setIsHoveringNav={setIsHoveringNav}
+                            shouldAnimateIntro={shouldAnimateIntro}
+                        />
+                    ))}
+                </div>
             </div>
         </nav>
     );
@@ -396,8 +398,12 @@ const MagneticNav = ({ mousePos, setIsHoveringNav, shouldAnimateIntro }) => {
 const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav, shouldAnimateIntro }) => {
     const itemRef = useRef(null);
     const [itemPos, setItemPos] = useState({ x: 0, y: 0 });
+    const [clicked, setClicked] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (clicked) return;
+
         const element = itemRef.current;
         if (!element) return;
 
@@ -423,7 +429,20 @@ const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav, shouldAnimat
         } else {
             setItemPos({ x: 0, y: 0 });
         }
-    }, [mousePos]);
+    }, [mousePos, clicked]);
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setClicked(true);
+        setItemPos({ x: 0, y: 0 });
+        setTimeout(() => {
+            navigate(item.href);
+        }, 250);
+    };
+
+    const springConfig = clicked
+        ? { type: "spring", stiffness: 200, damping: 25 }
+        : { type: "spring", stiffness: 300, damping: 30 };
 
     return (
         <motion.div
@@ -437,15 +456,15 @@ const MagneticNavItem = ({ item, mousePos, index, setIsHoveringNav, shouldAnimat
             }}
             transition={{
                 opacity: shouldAnimateIntro ? { duration: 0.6, delay: 2.5 + index * 0.1 } : { duration: 0 },
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                y: { type: "spring", stiffness: 300, damping: 30 }
+                x: springConfig,
+                y: springConfig
             }}
             onMouseEnter={() => setIsHoveringNav(true)}
             onMouseLeave={() => setIsHoveringNav(false)}
         >
-            <Link to={item.href} className="block">
+            <a href={item.href} onClick={handleClick} className="block">
                 {item.label}
-            </Link>
+            </a>
         </motion.div>
     );
 };
