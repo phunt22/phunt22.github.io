@@ -11,12 +11,12 @@ export default function Navbar() {
     const backgroundColor = useTransform(
         scrollY,
         [0, 100, 200],
-        ['rgba(255, 255, 255, 0.05)', 'rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.7)']
+        ['rgba(255, 255, 255, 0.6)', 'rgba(255, 255, 255, 0.75)', 'rgba(255, 255, 255, 0.85)']
     );
     const backdropBlur = useTransform(
         scrollY,
         [0, 100, 200],
-        ['blur(0px)', 'blur(6px)', 'blur(12px)']
+        ['blur(12px)', 'blur(16px)', 'blur(20px)']
     );
     const borderOpacity = useTransform(
         scrollY,
