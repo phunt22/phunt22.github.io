@@ -19,6 +19,15 @@ export const TYPE_LABELS = {
 // Available years (for landing page)
 export const FAVORITE_YEARS = [2026, 2025];
 
+// Per-year color themes
+export const YEAR_THEMES = {
+    2025: { bg: '#2C2418', text: '#E8D5B7' },
+    2026: { bg: '#1A2332', text: '#B8CDE0' },
+};
+
+const DEFAULT_THEME = { bg: '#1E1E1E', text: '#D4D4D4' };
+export const getYearTheme = (year) => YEAR_THEMES[year] || DEFAULT_THEME;
+
 // Favorites data with background colors
 export const favorites = [
     // ==================== 2025 MUSIC ====================

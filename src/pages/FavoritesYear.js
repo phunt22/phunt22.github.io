@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
-import { getFavoritesByYear, filterByTypes, FAVORITE_TYPES, TYPE_LABELS } from '../data/favorites';
+import { getFavoritesByYear, filterByTypes, FAVORITE_TYPES, TYPE_LABELS, getYearTheme } from '../data/favorites';
 
 // Fisher-Yates shuffle
 const shuffleArray = (array) => {
@@ -215,6 +215,7 @@ export default function FavoritesYear() {
     const [activeFilters, setActiveFilters] = useState(new Set());
     const [shuffleKey, setShuffleKey] = useState(0);
 
+    const theme = getYearTheme(year);
     const yearFavorites = getFavoritesByYear(year);
     const filteredFavorites = filterByTypes(yearFavorites, activeFilters);
 
@@ -247,17 +248,14 @@ export default function FavoritesYear() {
             <div className="w-full h-screen flex flex-col overflow-hidden pt-[80px]">
                 {/* Header */}
                 <div
-                    className="flex items-center space-x-3 py-2 px-4 shrink-0"
-                    style={{
-                        backdropFilter: "blur(20px)",
-                        WebkitBackdropFilter: "blur(20px)",
-                        backgroundColor: "rgba(0, 0, 0, 0.85)"
-                    }}
+                    className="flex items-center space-x-3 py-3 px-4 shrink-0"
+                    style={{ backgroundColor: theme.bg }}
                 >
                     <Link to="/favorites">
                         <motion.button
-                            className="w-8 h-8 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-                            whileHover={{ scale: 1.05 }}
+                            className="w-8 h-8 flex items-center justify-center transition-colors"
+                            style={{ color: theme.text, opacity: 0.7 }}
+                            whileHover={{ scale: 1.05, opacity: 1 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -265,7 +263,10 @@ export default function FavoritesYear() {
                             </svg>
                         </motion.button>
                     </Link>
-                    <h1 className="text-base font-medium text-white">
+                    <h1
+                        className="text-lg font-clash font-semibold"
+                        style={{ color: theme.text }}
+                    >
                         {year}
                     </h1>
                 </div>

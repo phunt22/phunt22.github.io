@@ -1,30 +1,14 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
-import { FAVORITE_YEARS } from '../data/favorites';
-
-const YEAR_THEMES = {
-    2025: {
-        bg: '#2C2418',
-        text: '#E8D5B7',
-    },
-    2026: {
-        bg: '#1A2332',
-        text: '#B8CDE0',
-    },
-};
-
-const DEFAULT_THEME = {
-    bg: '#1E1E1E',
-    text: '#D4D4D4',
-};
+import { FAVORITE_YEARS, getYearTheme } from '../data/favorites';
 
 export default function Favorites() {
     return (
         <AnimatedPage>
             <div className="w-full flex flex-col pt-20">
                 {FAVORITE_YEARS.map((year, index) => {
-                    const theme = YEAR_THEMES[year] || DEFAULT_THEME;
+                    const theme = getYearTheme(year);
                     return (
                         <motion.div
                             key={year}
