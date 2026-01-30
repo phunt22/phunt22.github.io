@@ -16,7 +16,6 @@ function App() {
           <Route path="/" element={
             <div className='min-h-screen flex flex-col'>
               <CleanHome />
-              <Footer />
             </div>
           } />
           <Route path="/projects" element={
