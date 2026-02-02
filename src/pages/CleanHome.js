@@ -120,7 +120,7 @@ export default function CleanHome() {
     return (
         <div
             ref={containerRef}
-            className={`relative flex-1 overflow-hidden ${isHoveringNav ? 'cursor-auto' : 'cursor-none'}`}
+            className={`relative flex-1 overflow-hidden ${isHoveringNav ? 'cursor-auto' : 'md:cursor-none'}`}
             style={{ minHeight: '100%', backgroundColor: '#f0f0f0' }}
         >
             {/* SVG noise filter definition */}
@@ -169,8 +169,8 @@ export default function CleanHome() {
             </motion.div>
 
             {/* Editorial composition — name + description + resume, left-aligned */}
-            <div className="absolute inset-0 flex items-start px-8 pt-[18vh]">
-                <div className="relative flex flex-col" style={{ zIndex: 30, maxWidth: '65%' }}>
+            <div className="absolute inset-0 flex items-start px-5 md:px-8 pt-[12vh] md:pt-[18vh]">
+                <div className="relative flex flex-col max-w-full md:max-w-[65%]" style={{ zIndex: 30 }}>
                     {/* Name — single line */}
                     <motion.h1
                         className="font-clash font-medium lowercase leading-[0.85] text-black whitespace-nowrap"
@@ -222,6 +222,7 @@ export default function CleanHome() {
                 <img
                     src="/assets/headshot.png"
                     alt="Will Hunt"
+                    className="max-h-[45vh] md:max-h-none"
                     style={{
                         height: 'clamp(300px, 65vh, 700px)',
                         width: 'auto',
@@ -272,7 +273,7 @@ export default function CleanHome() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 2, ease: "easeOut" }}
-                        className="text-gray-400 text-xs font-light pointer-events-none"
+                        className="hidden md:inline text-gray-400 text-xs font-light pointer-events-none"
                     >
                         press c to clear
                     </motion.span>
@@ -367,7 +368,7 @@ const MagneticButton = ({ mousePos, shouldAnimateIntro }) => {
         >
             <motion.button
                 ref={buttonRef}
-                className="relative overflow-hidden rounded-lg bg-black px-7 py-4 text-lg font-semibold text-white shadow-lg hover:shadow-black/30 focus-visible:outline-black before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out whitespace-nowrap cursor-none"
+                className="relative overflow-hidden rounded-lg bg-black px-7 py-4 text-lg font-semibold text-white shadow-lg hover:shadow-black/30 focus-visible:outline-black before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out whitespace-nowrap md:cursor-none"
                 animate={{
                     x: buttonPos.x,
                     y: buttonPos.y

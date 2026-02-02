@@ -46,7 +46,7 @@ export default function Navbar() {
                 boxShadow: `0 1px 3px 0 rgba(0, 0, 0, ${shadowOpacity})`
             }}
         >
-            <div className="flex justify-between items-center px-8 py-4">
+            <div className="flex justify-between items-center px-4 md:px-8 py-4">
                 {/* Logo/Name */}
                 <motion.div
                     whileHover="hover"
@@ -119,7 +119,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <motion.div
-                className="md:hidden overflow-hidden rounded-xl mx-8 mb-4 shadow-lg border border-gray-200/30"
+                className="md:hidden overflow-hidden rounded-xl mx-4 mb-4 shadow-lg border border-gray-200/30"
                 initial={false}
                 style={{
                     backdropFilter: "blur(12px)",
@@ -140,8 +140,8 @@ export default function Navbar() {
                                 to={item.href}
                                 onClick={() => setIsMenuOpen(false)}
                                 className={`block py-3 px-6 transition-all duration-200 ${location.pathname === item.href
-                                    ? 'text-[#4b2e83] bg-[#4b2e83]/10 font-semibold mx-2 rounded-lg'
-                                    : 'text-gray-700 hover:text-[#4b2e83] hover:bg-gray-50/90 mx-2 rounded-lg'
+                                    ? 'text-[#000000] bg-[#000000]/10 font-semibold mx-2 rounded-lg'
+                                    : 'text-gray-700 hover:text-[#000000] hover:bg-gray-50/90 mx-2 rounded-lg'
                                     }`}
                             >
                                 {item.label}

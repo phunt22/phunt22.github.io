@@ -23,14 +23,14 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
         <div className="fixed bottom-4 z-40 w-full flex justify-center pointer-events-none">
             <div className="relative pointer-events-auto">
                 <div
-                    className="flex items-center py-3 px-6"
+                    className="flex items-center py-3 px-4 md:px-6"
                     style={{
                         backdropFilter: "blur(20px)",
                         WebkitBackdropFilter: "blur(20px)",
                         backgroundColor: "rgba(0, 0, 0, 0.7)"
                     }}
                 >
-                    <div className="flex items-center space-x-6 md:space-x-8">
+                    <div className="flex items-center space-x-4 md:space-x-8">
                         {types.map((type) => (
                             <motion.button
                                 key={type}
@@ -117,7 +117,7 @@ export default function FavoritesYear() {
 
     return (
         <AnimatedPage>
-            <div className="w-full h-screen flex flex-col overflow-hidden pt-[80px]">
+            <div className="w-full h-screen flex flex-col overflow-hidden pt-[96px] md:pt-[80px]">
                 {/* Header */}
                 <div
                     className="flex items-center space-x-3 py-3 px-4 shrink-0"

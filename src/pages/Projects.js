@@ -155,9 +155,9 @@ export default function AppStore() {
 
     return (
         <AnimatedPage>
-            <div className="w-full max-w-[1200px] mx-auto pt-20 px-5">
-                <header className="flex items-center justify-between mb-6">
-                    <h1 className="text-4xl font-clash font-medium tracking-tight leading-none">selected work</h1>
+            <div className="w-full max-w-[1200px] mx-auto pt-24 md:pt-20 px-5">
+                <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-6">
+                    <h1 className="text-3xl sm:text-4xl font-clash font-medium tracking-tight leading-none">selected work</h1>
                     <motion.button
                         className="relative overflow-hidden bg-neutral-900 hover:bg-neutral-800 text-white px-4 py-2 sm:px-5 sm:py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out"
                         whileHover={{ scale: 1.05 }}

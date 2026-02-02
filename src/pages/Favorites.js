@@ -184,7 +184,7 @@ export default function Favorites() {
                     animation: yearShine 0.7s ease-in-out forwards;
                 }
             `}</style>
-            <div className="w-full flex flex-col pt-20">
+            <div className="w-full flex flex-col pt-24 md:pt-20">
                 {FAVORITE_YEARS.map((year, index) => (
                     <YearBanner key={year} year={year} index={index} />
                 ))}
