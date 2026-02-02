@@ -11,12 +11,12 @@ export default function Navbar() {
     const backgroundColor = useTransform(
         scrollY,
         [0, 100, 200],
-        ['rgba(255, 255, 255, 0.05)', 'rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.7)']
+        ['rgba(255, 255, 255, 0.6)', 'rgba(255, 255, 255, 0.75)', 'rgba(255, 255, 255, 0.85)']
     );
     const backdropBlur = useTransform(
         scrollY,
         [0, 100, 200],
-        ['blur(0px)', 'blur(6px)', 'blur(12px)']
+        ['blur(12px)', 'blur(16px)', 'blur(20px)']
     );
     const borderOpacity = useTransform(
         scrollY,
@@ -31,6 +31,7 @@ export default function Navbar() {
 
     const navItems = [
         { label: 'Projects', href: '/projects' },
+        { label: 'Favorites', href: '/favorites' },
         // { label: 'Experience', href: '/experience' }
     ];
 
@@ -54,7 +55,7 @@ export default function Navbar() {
                 >
                     <Link to="/" className="flex items-center space-x-3">
                         <motion.div
-                            className="w-12 h-12 bg-gradient-to-r from-[#4b2e83] to-[#32006e] rounded-full flex items-center justify-center shadow-lg overflow-hidden"
+                            className="w-12 h-12 bg-black/60 rounded-full flex items-center justify-center shadow-lg overflow-hidden"
                             variants={{
                                 hover: {
                                     rotate: -8,
@@ -70,11 +71,12 @@ export default function Navbar() {
                             <img
                                 src="/assets/headshot.png"
                                 alt="Will Hunt"
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover scale-[1.15]"
+                                style={{ objectPosition: '62% 30%' }}
                             />
                         </motion.div>
-                        <div>
-                            <h1 className="text-xl font-bold text-gray-800">Will Hunt</h1>
+                        <div className="leading-tight">
+                            <h1 className="text-xl font-clash font-medium text-gray-800">will hunt</h1>
                             <p className="text-sm text-gray-600">Software Engineer</p>
                         </div>
                     </Link>
