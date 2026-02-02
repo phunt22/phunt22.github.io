@@ -194,7 +194,7 @@ export default function CleanHome() {
                         transition={shouldAnimateIntro ? { duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
                     >
                         I'm a software engineer who believes tech is a medium to do good. Previously, I built REV's mobile app from 0 to 10k users, interned on USAA's telematics innovation team, and led a fundraising guild for Seattle Children's Hospital. Currently, I'm wrapping up my CS degree at UW, interning at an AI startup, and hosting a{' '}
-                        <a href="https://modelmadness.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-black transition-colors">March Madness data science competition</a>.
+                        <a href="https://www.modelmadness.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-black transition-colors">March Madness data science competition</a>.
                     </motion.p>
 
                     {/* Resume button — below description */}
