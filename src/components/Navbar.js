@@ -55,7 +55,7 @@ export default function Navbar() {
                 >
                     <Link to="/" className="flex items-center space-x-3">
                         <motion.div
-                            className="w-12 h-12 bg-gradient-to-r from-[#4b2e83] to-[#32006e] rounded-full flex items-center justify-center shadow-lg overflow-hidden"
+                            className="w-12 h-12 bg-black/60 rounded-full flex items-center justify-center shadow-lg overflow-hidden"
                             variants={{
                                 hover: {
                                     rotate: -8,
@@ -71,7 +71,8 @@ export default function Navbar() {
                             <img
                                 src="/assets/headshot.png"
                                 alt="Will Hunt"
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover scale-[1.15]"
+                                style={{ objectPosition: '62% 30%' }}
                             />
                         </motion.div>
                         <div className="leading-tight">
