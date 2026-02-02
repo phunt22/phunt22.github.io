@@ -37,7 +37,7 @@ export const favorites = [
         author: "MJ Lenderman",
         image: "/assets/favorites/manning-fireworks.png",
         bgColor: "#34423d",
-        description: "",
+        description: "coming soon",
         year: 2026
     },
     {
@@ -47,7 +47,7 @@ export const favorites = [
         author: "Daniel Caesar",
         image: "/assets/favorites/son-of-spergy.png",
         bgColor: "#6d282b",
-        description: "https://www.youtube.com/watch?v=rMWjbb2l5BE",
+        description: "coming soon",
         year: 2026
     },
 
@@ -59,7 +59,7 @@ export const favorites = [
         author: "Spike Jonze",
         image: "/assets/favorites/her movie.jpg",
         bgColor: "#b52943",
-        description: "",
+        description: "coming soon",
         year: 2026
     },
 
@@ -71,7 +71,7 @@ export const favorites = [
         author: "Cary Joji Fukunaga",
         image: "/assets/favorites/maniac.jpg",
         bgColor: "#000000",
-        description: "",
+        description: "coming soon",
         year: 2026
     }
 ];

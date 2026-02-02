@@ -256,7 +256,7 @@ export default function CleanHome() {
                                 href={social.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-125 ${hoverBg[social.name]} text-gray-400 hover:text-white`}
+                                className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 ${hoverBg[social.name]} text-gray-400 hover:text-white`}
                                 aria-label={social.name}
                             >
                                 {social.icon}
