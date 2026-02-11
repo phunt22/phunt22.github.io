@@ -21,7 +21,7 @@ export const FAVORITE_YEARS = [2026];
 
 // Per-year color themes
 export const YEAR_THEMES = {
-    2026: { bg: '#000000', text: '#B8CDE0' },
+    2026: { bg: '#f0f0f0', text: '#1a1a1a' },
 };
 
 const DEFAULT_THEME = { bg: '#1E1E1E', text: '#D4D4D4' };

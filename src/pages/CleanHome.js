@@ -187,8 +187,8 @@ export default function CleanHome() {
 
                     {/* Description — constrained to title width */}
                     <motion.p
-                        className="mt-1.5 text-gray-600 text-base font-normal leading-relaxed"
-                        style={{ letterSpacing: '0.01em', maxWidth: 'clamp(340px, 44vw, 720px)' }}
+                        className="mt-1.5 text-gray-600 text-sm md:text-base font-normal leading-relaxed"
+                        style={{ letterSpacing: '0.01em', maxWidth: 'clamp(280px, 44vw, 720px)' }}
                         initial={shouldAnimateIntro ? { opacity: 0, y: 20 } : false}
                         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
                         transition={shouldAnimateIntro ? { duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
@@ -233,23 +233,15 @@ export default function CleanHome() {
                 />
             </motion.div>
 
-            {/* Bottom bar — left info column | right resume */}
-            <div className="absolute bottom-0 left-0 right-0 px-8 py-6 flex items-end justify-between" style={{ zIndex: 40 }}>
-                {/* Left: information column — metadata + social icons on one vertical axis */}
+            {/* Bottom bar — centered on mobile, left-aligned on desktop */}
+            <div className="absolute bottom-0 left-0 right-0 px-5 md:px-8 py-6 flex items-end justify-center md:justify-between" style={{ zIndex: 40 }}>
+                {/* Social icons — centered on mobile, left on desktop */}
                 <motion.div
                     className="flex flex-col gap-3"
                     initial={shouldAnimateIntro ? { opacity: 0, y: 16 } : false}
                     animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 16 }}
                     transition={shouldAnimateIntro ? { duration: 0.8, delay: 1.6 } : { duration: 0 }}
                 >
-                    {/* <div className="flex flex-col gap-0.5">
-                        <span className="text-[10px] text-gray-500 font-light uppercase tracking-[0.2em]">
-                            Seattle, WA
-                        </span>
-                        <span className="text-[10px] text-gray-500 font-light uppercase tracking-[0.2em]">
-                            Typescript · Python · React
-                        </span>
-                    </div> */}
                     <div className="flex space-x-4">
                         {socialLinks.map((social) => (
                             <a
@@ -257,7 +249,7 @@ export default function CleanHome() {
                                 href={social.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 ${hoverBg[social.name]} text-gray-400 hover:text-white`}
+                                className={`w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 ${hoverBg[social.name]} text-gray-400 hover:text-white`}
                                 aria-label={social.name}
                             >
                                 {social.icon}
@@ -266,7 +258,7 @@ export default function CleanHome() {
                     </div>
                 </motion.div>
 
-                {/* Right: clear hint */}
+                {/* Right: clear hint (desktop only) */}
                 {showClearHint && (
                     <motion.span
                         initial={{ opacity: 0 }}
