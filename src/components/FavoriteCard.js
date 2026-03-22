@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const getBrightness = (hex) => {
@@ -8,9 +7,7 @@ const getBrightness = (hex) => {
     return (r * 299 + g * 587 + b * 114) / 1000;
 };
 
-export function FavoriteGridCard({ data, onOpen }) {
-    const [isHovered, setIsHovered] = useState(false);
-
+export function FavoriteGridCard({ data, onOpen, hoverEnabled = true, isOpen = false }) {
     const textColor = getBrightness(data.bgColor) > 128 ? 'text-black' : 'text-white';
     const textColorSecondary = getBrightness(data.bgColor) > 128 ? 'text-black/70' : 'text-white/70';
 
@@ -18,11 +15,8 @@ export function FavoriteGridCard({ data, onOpen }) {
         <motion.li
             layout
             layoutId={data.id}
-            className="relative cursor-pointer w-[calc(50vw)] h-[calc(50vw)] sm:w-[calc(33.333vw)] sm:h-[calc(33.333vw)] md:w-[calc(25vw)] md:h-[calc(25vw)] lg:w-[calc(20vw)] lg:h-[calc(20vw)] xl:w-[calc(16.666vw)] xl:h-[calc(16.666vw)]"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className={`${hoverEnabled ? 'group' : ''} relative cursor-pointer w-[calc(50vw)] h-[calc(50vw)] sm:w-[calc(33.333vw)] sm:h-[calc(33.333vw)] md:w-[calc(25vw)] md:h-[calc(25vw)] lg:w-[calc(20vw)] lg:h-[calc(20vw)] xl:w-[calc(16.666vw)] xl:h-[calc(16.666vw)]`}
             onClick={() => onOpen(data.id)}
-            whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -37,25 +31,21 @@ export function FavoriteGridCard({ data, onOpen }) {
                 style={{ backgroundColor: data.bgColor }}
             />
 
-            {/* Image - fades out on hover */}
-            <motion.img
+            {/* Image - fades out on hover or when this card's modal is open */}
+            <img
                 src={data.image}
                 alt={data.title}
-                className="absolute inset-0 w-full h-full object-cover"
-                animate={{ opacity: isHovered ? 0 : 1 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-out group-hover:opacity-0 ${isOpen ? 'opacity-0' : ''}`}
                 draggable={false}
             />
 
-            {/* Text - fades in on hover, centered */}
-            <motion.div
-                className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center ${textColor}`}
-                animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
+            {/* Text - fades in on hover or when this card's modal is open */}
+            <div
+                className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center ${textColor} transition-opacity duration-200 ease-out group-hover:opacity-100 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
             >
                 <h3 className="font-clash font-medium text-sm leading-tight uppercase">{data.title}</h3>
                 <p className={`text-xs mt-1 ${textColorSecondary}`}>{data.author}</p>
-            </motion.div>
+            </div>
         </motion.li>
     );
 }
@@ -77,20 +67,12 @@ export function FavoriteModal({ data, onClose }) {
     const barText = isLight ? '#000000' : '#ffffff';
     const barTextSecondary = isLight ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
 
-    // Lock body scroll when modal is open
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, []);
-
     return (
         <motion.aside
             className="fixed inset-0 z-50 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, pointerEvents: 'none' }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             {/* Backdrop */}
