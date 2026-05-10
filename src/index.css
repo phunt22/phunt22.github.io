@@ -12,33 +12,6 @@ code {
     monospace;
 }
 
-html {  
+html {
   scroll-behavior: smooth;
-}
-
-.fade-in-footer {
-  opacity: 0;
-  transform: translateY(4px);
-  animation: footerFade 600ms ease-out forwards;
-  animation-delay: 2400ms;
-  will-change: opacity, transform;
-}
-
-@keyframes footerFade {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-in-footer {
-    animation-duration: 0ms;
-    animation-delay: 0ms;
-    opacity: 1;
-  }
 }
