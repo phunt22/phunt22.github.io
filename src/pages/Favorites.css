@@ -29,7 +29,7 @@
     background-size: 256px 256px;
 }
 
-.favorites__year {
+.favorites__label {
     position: relative;
     z-index: 10;
     display: inline-block;
@@ -42,18 +42,18 @@
 }
 
 @media (min-width: 768px) {
-    .favorites__year {
+    .favorites__label {
         font-size: 6rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .favorites__year {
+    .favorites__label {
         font-size: 8rem;
     }
 }
 
-.favorites__year-shine {
+.favorites__label-shine {
     position: absolute;
     inset: 0;
     pointer-events: none;

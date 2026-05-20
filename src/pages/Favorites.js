@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
 import BackLink from '../components/BackLink';
-import { FAVORITE_YEARS, getYearTheme, getFavoritesByYear } from '../data/favorites';
+import {
+    FAVORITE_YEARS,
+    FAVORITE_SECTIONS,
+    getYearTheme,
+    getFavoritesByYear,
+} from '../data/favorites';
 import './Favorites.css';
 
 const NOISE_BG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
@@ -42,17 +47,12 @@ function FlyingImage({ src, speed, onDone }) {
     );
 }
 
-function YearBanner({ year, index }) {
-    const theme = getYearTheme(year);
+function Banner({ label, to, theme, imageSrcs = [], index }) {
     const [isHovered, setIsHovered] = useState(false);
     const [flyingImages, setFlyingImages] = useState([]);
     const [shineKey, setShineKey] = useState(0);
     const nextId = useRef(0);
     const hoverStart = useRef(0);
-
-    const imageSrcs = useMemo(() => {
-        return getFavoritesByYear(year).filter(f => f.image).map(f => f.image);
-    }, [year]);
 
     const getSpeed = useCallback(() => {
         const elapsed = (Date.now() - hoverStart.current) / 1000;
@@ -97,12 +97,11 @@ function YearBanner({ year, index }) {
 
     return (
         <motion.div
-            key={year}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.15 + index * 0.1 }}
         >
-            <Link to={`/favorites/${year}`} className="favorites__banner-link">
+            <Link to={to} className="favorites__banner-link">
                 <motion.div
                     className="favorites__banner"
                     style={{ backgroundColor: theme.bg }}
@@ -121,14 +120,14 @@ function YearBanner({ year, index }) {
                     ))}
 
                     <motion.span
-                        className="favorites__year"
+                        className="favorites__label"
                         style={{ color: theme.text }}
                         animate={{ scale: isHovered ? 1.08 : 1 }}
                         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                     >
-                        {year}
-                        <span key={shineKey} aria-hidden="true" className="favorites__year-shine">
-                            {year}
+                        {label}
+                        <span key={shineKey} aria-hidden="true" className="favorites__label-shine">
+                            {label}
                         </span>
                     </motion.span>
                 </motion.div>
@@ -138,14 +137,39 @@ function YearBanner({ year, index }) {
 }
 
 export default function Favorites() {
+    const yearBanners = FAVORITE_YEARS.map((year) => ({
+        key: `year-${year}`,
+        label: String(year),
+        to: `/favorites/${year}`,
+        theme: getYearTheme(year),
+        imageSrcs: getFavoritesByYear(year).filter(f => f.image).map(f => f.image),
+    }));
+
+    const sectionBanners = FAVORITE_SECTIONS.map((section) => ({
+        key: `section-${section.slug}`,
+        label: section.label,
+        to: `/favorites/${section.slug}`,
+        theme: section.theme,
+        imageSrcs: [],
+    }));
+
+    const banners = [...yearBanners, ...sectionBanners];
+
     return (
         <AnimatedPage>
             <div className="favorites">
                 <div className="page-top">
                     <BackLink />
                 </div>
-                {FAVORITE_YEARS.map((year, index) => (
-                    <YearBanner key={year} year={year} index={index} />
+                {banners.map((banner, index) => (
+                    <Banner
+                        key={banner.key}
+                        label={banner.label}
+                        to={banner.to}
+                        theme={banner.theme}
+                        imageSrcs={banner.imageSrcs}
+                        index={index}
+                    />
                 ))}
             </div>
         </AnimatedPage>

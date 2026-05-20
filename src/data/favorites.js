@@ -27,6 +27,21 @@ export const YEAR_THEMES = {
 const DEFAULT_THEME = { bg: '#1E1E1E', text: '#D4D4D4' };
 export const getYearTheme = (year) => YEAR_THEMES[year] || DEFAULT_THEME;
 
+// Static section banners (non-year). Each renders the same banner style on
+// /favorites and links to its own page.
+export const FAVORITE_SECTIONS = [
+    {
+        label: 'Seattle Beer',
+        slug: 'beer',
+        theme: { bg: '#C19A4A', text: '#ffffff' },
+    },
+    {
+        label: 'Seattle Coffee',
+        slug: 'coffee',
+        theme: { bg: '#1a0f08', text: '#c8b0a0' },
+    },
+];
+
 // Favorites data with background colors
 export const favorites = [
     // ==================== 2026 MUSIC ====================
