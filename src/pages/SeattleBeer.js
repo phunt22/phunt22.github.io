@@ -1,16 +1,14 @@
-import BackLink from '../components/BackLink';
+import ThemedPageHeader from '../components/ThemedPageHeader';
+import { FAVORITE_SECTIONS } from '../data/favorites';
+
+const theme = FAVORITE_SECTIONS.find(s => s.slug === 'beer').theme;
 
 function SeattleBeer() {
     return (
         <>
-            <div className="page-top">
-                <BackLink to="/favorites" />
-            </div>
+            <ThemedPageHeader title="Seattle Beer" theme={theme} />
             <div style={{ padding: 'var(--space-2xl) var(--space-xl)', maxWidth: 1200, margin: '0 auto' }}>
-                <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-4xl)', fontWeight: 500, letterSpacing: '-0.02em' }}>
-                    Seattle Beer
-                </h1>
-                <p style={{ color: 'var(--color-text-muted)', marginTop: 'var(--space-lg)' }}>
+                <p style={{ color: 'var(--color-text-muted)' }}>
                     Coming soon.
                 </p>
             </div>

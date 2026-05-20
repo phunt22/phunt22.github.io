@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
+import ThemedPageHeader from '../components/ThemedPageHeader';
 import { FavoriteGridCard, FavoriteModal } from '../components/FavoriteCard';
 import { getFavoritesByYear, filterByTypes, FAVORITE_TYPES, TYPE_LABELS, getYearTheme } from '../data/favorites';
 import './FavoritesYear.css';
@@ -98,23 +99,7 @@ export default function FavoritesYear() {
     return (
         <AnimatedPage>
             <div className="favorites-year">
-                <div className="favorites-year__header" style={{ backgroundColor: theme.bg }}>
-                    <Link to="/favorites">
-                        <motion.button
-                            className="favorites-year__back"
-                            style={{ color: theme.text }}
-                            whileHover={{ scale: 1.05, opacity: 1 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </motion.button>
-                    </Link>
-                    <h1 className="favorites-year__title" style={{ color: theme.text }}>
-                        {year}
-                    </h1>
-                </div>
+                <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
 
                 <div className="favorites-year__grid-wrapper">
                     <LayoutGroup>

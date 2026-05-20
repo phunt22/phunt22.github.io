@@ -25,7 +25,7 @@ function Home() {
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="home__social"
+                            className={`home__social home__social--${social.name}`}
                             aria-label={social.name}
                         >
                             {social.icon}

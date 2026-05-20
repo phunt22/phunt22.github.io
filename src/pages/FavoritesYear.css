@@ -6,37 +6,6 @@
     overflow: hidden;
 }
 
-.favorites-year__header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-md) var(--space-lg);
-    flex-shrink: 0;
-}
-
-.favorites-year__back {
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    opacity: 0.7;
-    transition: opacity var(--transition-fast);
-}
-
-.favorites-year__back svg {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-
-.favorites-year__title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: var(--text-lg);
-}
-
 .favorites-year__grid-wrapper {
     flex: 1;
     overflow-y: auto;
