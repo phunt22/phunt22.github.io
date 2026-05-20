@@ -1,0 +1,86 @@
+.favorites {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 6rem;
+}
+
+@media (min-width: 768px) {
+    .favorites {
+        padding-top: 5rem;
+    }
+}
+
+.favorites__banner {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28vh;
+    min-height: 180px;
+}
+
+.favorites__banner-link {
+    display: block;
+    text-decoration: none;
+}
+
+.favorites__noise {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    background-size: 256px 256px;
+}
+
+.favorites__year {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 4.5rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .favorites__year {
+        font-size: 6rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .favorites__year {
+        font-size: 8rem;
+    }
+}
+
+.favorites__year-shine {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: -100% center;
+    animation: yearShine 0.7s ease-in-out forwards;
+}
+
+@keyframes yearShine {
+    from { background-position: -100% center; }
+    to { background-position: 200% center; }
+}
+
+@keyframes flyAcross {
+    from { transform: translateX(-100px) rotate(var(--rot, 0deg)); opacity: 0; }
+    5% { opacity: 1; }
+    to { transform: translateX(calc(100vw + 100px)) rotate(var(--rot, 0deg)); opacity: 1; }
+}

@@ -1,8 +1,10 @@
+import './Thoughts.css';
+
 function Thoughts() {
     return (
-        <div style={{ padding: '4rem 2rem' }}>
-            <h1>Thoughts</h1>
-            <p>Coming soon.</p>
+        <div className="thoughts">
+            <h1 className="thoughts__title">Thoughts</h1>
+            <p className="thoughts__body">Coming soon.</p>
         </div>
     );
 }

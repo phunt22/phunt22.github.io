@@ -12,12 +12,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={
-          <div className='min-h-screen flex flex-col'>
-            {/* <CleanHome /> */}
-            <Home />
-          </div>
-        } />
+        <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/favorites/:year" element={<FavoritesYear />} />

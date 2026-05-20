@@ -1,8 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 ::selection {
-  background-color: black;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
