@@ -2,13 +2,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 6rem var(--space-xl) 0;
-}
-
-@media (min-width: 768px) {
-    .projects {
-        padding-top: 5rem;
-    }
+    padding: 0 var(--space-xl);
 }
 
 .projects__header {
@@ -17,7 +11,8 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--space-md);
-    margin-bottom: var(--space-xl);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-2xl);
 }
 
 @media (min-width: 640px) {

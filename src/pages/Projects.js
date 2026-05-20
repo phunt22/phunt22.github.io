@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import AnimatedPage from "../components/AnimatedPage";
+import BackLink from "../components/BackLink";
 import { projects } from "../data/projects";
 import resumePdf from "../assets/Resume.pdf";
 import './Projects.css';
@@ -149,6 +150,9 @@ export default function Projects() {
 
     return (
         <AnimatedPage>
+            <div className="page-top">
+                <BackLink />
+            </div>
             <div className="projects">
                 <header className="projects__header">
                     <h1 className="projects__title">selected work</h1>

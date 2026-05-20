@@ -2,13 +2,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 6rem;
-}
-
-@media (min-width: 768px) {
-    .favorites {
-        padding-top: 5rem;
-    }
 }
 
 .favorites__banner {

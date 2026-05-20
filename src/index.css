@@ -81,6 +81,10 @@ a {
   color: inherit;
 }
 
+.page-top {
+  padding: var(--space-xl);
+}
+
 code {
   font-family: var(--font-mono);
 }

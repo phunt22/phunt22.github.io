@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
+import BackLink from '../components/BackLink';
 import { FAVORITE_YEARS, getYearTheme, getFavoritesByYear } from '../data/favorites';
 import './Favorites.css';
 
@@ -140,6 +141,9 @@ export default function Favorites() {
     return (
         <AnimatedPage>
             <div className="favorites">
+                <div className="page-top">
+                    <BackLink />
+                </div>
                 {FAVORITE_YEARS.map((year, index) => (
                     <YearBanner key={year} year={year} index={index} />
                 ))}
