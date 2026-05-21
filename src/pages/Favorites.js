@@ -167,7 +167,7 @@ export default function Favorites() {
 
     return (
         <AnimatedPage>
-            <ThemedPageHeader title="Favorites" backTo="/" theme={FAVORITES_THEME} />
+            <ThemedPageHeader title="favorites" backTo="/" theme={FAVORITES_THEME} />
             <div className="favorites">
                 {banners.map((banner, index) => (
                     <Banner

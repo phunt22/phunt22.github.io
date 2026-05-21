@@ -1,7 +1,5 @@
 import './App.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
-import CleanHome from './pages/CleanHome';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Favorites from './pages/Favorites';
