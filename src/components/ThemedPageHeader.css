@@ -33,3 +33,7 @@
     font-size: var(--text-lg);
     margin: 0;
 }
+
+.themed-header__extra {
+    margin-left: auto;
+}

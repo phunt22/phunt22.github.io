@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import AnimatedPage from "../components/AnimatedPage";
-import BackLink from "../components/BackLink";
+import ThemedPageHeader from "../components/ThemedPageHeader";
 import { projects } from "../data/projects";
 import resumePdf from "../assets/Resume.pdf";
 import './Projects.css';
+
+const THEME = { bg: '#f0f0f0', text: '#1a1a1a' };
 
 function Card({ data, onOpen, large, hidden }) {
     const cardClass = [
@@ -150,25 +152,20 @@ export default function Projects() {
 
     return (
         <AnimatedPage>
-            <div className="page-top">
-                <BackLink />
-            </div>
+            <ThemedPageHeader title="selected work" backTo="/" theme={THEME}>
+                <motion.button
+                    className="projects__resume"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => window.open(resumePdf, '_blank')}
+                >
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Resume</span>
+                </motion.button>
+            </ThemedPageHeader>
             <div className="projects">
-                <header className="projects__header">
-                    <h1 className="projects__title">selected work</h1>
-                    <motion.button
-                        className="projects__resume"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => window.open(resumePdf, '_blank')}
-                    >
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <span>Resume</span>
-                    </motion.button>
-                </header>
-
                 <LayoutGroup>
                     <ul className="projects__list">
                         {projects.map((project, idx) => (

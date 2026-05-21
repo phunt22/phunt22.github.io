@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './ThemedPageHeader.css';
 
-export default function ThemedPageHeader({ title, backTo = '/favorites', theme }) {
+export default function ThemedPageHeader({ title, backTo = '/favorites', theme, children }) {
     return (
         <div className="themed-header" style={{ backgroundColor: theme.bg }}>
             <Link to={backTo}>
@@ -20,6 +20,7 @@ export default function ThemedPageHeader({ title, backTo = '/favorites', theme }
             <h1 className="themed-header__title" style={{ color: theme.text }}>
                 {title}
             </h1>
+            {children && <div className="themed-header__extra">{children}</div>}
         </div>
     );
 }

@@ -2,39 +2,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-xl);
-}
-
-.projects__header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-    margin-bottom: var(--space-2xl);
-}
-
-@media (min-width: 640px) {
-    .projects__header {
-        flex-direction: row;
-        align-items: center;
-        gap: 0;
-    }
-}
-
-.projects__title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1;
-}
-
-@media (min-width: 640px) {
-    .projects__title {
-        font-size: var(--text-4xl);
-    }
+    padding: var(--space-2xl) var(--space-xl) 0;
 }
 
 .projects__resume {
@@ -43,40 +11,14 @@
     background: var(--color-text);
     color: var(--color-bg);
     border: none;
-    padding: var(--space-sm) var(--space-lg);
+    padding: var(--space-xs) var(--space-md);
     border-radius: var(--radius-md);
     font-weight: 500;
     font-size: var(--text-sm);
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    transition: background var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-@media (min-width: 640px) {
-    .projects__resume {
-        padding: var(--space-md) var(--space-xl);
-        font-size: var(--text-base);
-    }
-}
-
-.projects__resume:hover {
-    background: #333;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.projects__resume::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.7s ease-in-out;
-}
-
-.projects__resume:hover::before {
-    transform: translateX(100%);
+    gap: var(--space-xs);
+    transition: background var(--transition-fast);
 }
 
 .projects__resume svg {
@@ -84,11 +26,8 @@
     height: 1rem;
 }
 
-@media (min-width: 640px) {
-    .projects__resume svg {
-        width: 1.25rem;
-        height: 1.25rem;
-    }
+.projects__resume:hover {
+    background: #333;
 }
 
 .projects__list {

@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
-import BackLink from '../components/BackLink';
+import ThemedPageHeader from '../components/ThemedPageHeader';
 import {
     FAVORITE_YEARS,
     FAVORITE_SECTIONS,
@@ -123,12 +123,20 @@ function Banner({ label, to, theme, imageSrcs = [], index }) {
                         className="favorites__label"
                         style={{ color: theme.text }}
                         animate={{ scale: isHovered ? 1.08 : 1 }}
-                        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                        transition={{ type: 'spring', stiffness: 260, damping: 36 }}
                     >
                         {label}
-                        <span key={shineKey} aria-hidden="true" className="favorites__label-shine">
-                            {label}
-                        </span>
+                        {shineKey > 0 && (
+                            <span
+                                key={shineKey}
+                                aria-hidden="true"
+                                className="favorites__label-shine"
+                                style={{ '--shine-color': theme.bg }}
+                                onAnimationEnd={() => setShineKey(0)}
+                            >
+                                {label}
+                            </span>
+                        )}
                     </motion.span>
                 </motion.div>
             </Link>
@@ -155,12 +163,12 @@ export default function Favorites() {
 
     const banners = [...yearBanners, ...sectionBanners];
 
+    const FAVORITES_THEME = { bg: '#f0f0f0', text: '#1a1a1a' };
+
     return (
         <AnimatedPage>
+            <ThemedPageHeader title="Favorites" backTo="/" theme={FAVORITES_THEME} />
             <div className="favorites">
-                <div className="page-top">
-                    <BackLink />
-                </div>
                 {banners.map((banner, index) => (
                     <Banner
                         key={banner.key}
