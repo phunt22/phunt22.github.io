@@ -151,7 +151,7 @@ export default function Projects() {
     const close = () => setOpenId(null);
 
     return (
-        <AnimatedPage>
+        <>
             <ThemedPageHeader title="selected work" backTo="/" theme={THEME}>
                 <motion.button
                     className="projects__resume"
@@ -165,31 +165,33 @@ export default function Projects() {
                     <span>Resume</span>
                 </motion.button>
             </ThemedPageHeader>
-            <div className="projects">
-                <LayoutGroup>
-                    <ul className="projects__list">
-                        {projects.map((project, idx) => (
-                            <Card
-                                key={project.id}
-                                data={project}
-                                onOpen={open}
-                                large={window.innerWidth > 768 ? (idx % 4 === 0 || idx % 4 === 3) : false}
-                                hidden={openId === project.id}
-                            />
-                        ))}
-                    </ul>
+            <AnimatedPage>
+                <div className="projects">
+                    <LayoutGroup>
+                        <ul className="projects__list">
+                            {projects.map((project, idx) => (
+                                <Card
+                                    key={project.id}
+                                    data={project}
+                                    onOpen={open}
+                                    large={window.innerWidth > 768 ? (idx % 4 === 0 || idx % 4 === 3) : false}
+                                    hidden={openId === project.id}
+                                />
+                            ))}
+                        </ul>
 
-                    <AnimatePresence mode="wait">
-                        {openId && (
-                            <Modal
-                                key="modal"
-                                data={projects.find((p) => p.id === openId)}
-                                onClose={close}
-                            />
-                        )}
-                    </AnimatePresence>
-                </LayoutGroup>
-            </div>
-        </AnimatedPage>
+                        <AnimatePresence mode="wait">
+                            {openId && (
+                                <Modal
+                                    key="modal"
+                                    data={projects.find((p) => p.id === openId)}
+                                    onClose={close}
+                                />
+                            )}
+                        </AnimatePresence>
+                    </LayoutGroup>
+                </div>
+            </AnimatedPage>
+        </>
     );
 }

@@ -166,20 +166,22 @@ export default function Favorites() {
     const FAVORITES_THEME = { bg: '#f0f0f0', text: '#1a1a1a' };
 
     return (
-        <AnimatedPage>
+        <>
             <ThemedPageHeader title="favorites" backTo="/" theme={FAVORITES_THEME} />
-            <div className="favorites">
-                {banners.map((banner, index) => (
-                    <Banner
-                        key={banner.key}
-                        label={banner.label}
-                        to={banner.to}
-                        theme={banner.theme}
-                        imageSrcs={banner.imageSrcs}
-                        index={index}
-                    />
-                ))}
-            </div>
-        </AnimatedPage>
+            <AnimatedPage>
+                <div className="favorites">
+                    {banners.map((banner, index) => (
+                        <Banner
+                            key={banner.key}
+                            label={banner.label}
+                            to={banner.to}
+                            theme={banner.theme}
+                            imageSrcs={banner.imageSrcs}
+                            index={index}
+                        />
+                    ))}
+                </div>
+            </AnimatedPage>
+        </>
     );
 }

@@ -97,10 +97,10 @@ export default function FavoritesYear() {
     const close = () => setOpenId(null);
 
     return (
-        <AnimatedPage>
+        <>
+            <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
+            <AnimatedPage>
             <div className="favorites-year">
-                <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
-
                 <div className="favorites-year__grid-wrapper">
                     <LayoutGroup>
                         <motion.ul className="favorites-year__grid">
@@ -165,6 +165,7 @@ export default function FavoritesYear() {
                 toggleFilter={toggleFilter}
                 clearFilters={clearFilters}
             />
-        </AnimatedPage>
+            </AnimatedPage>
+        </>
     );
 }
