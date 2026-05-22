@@ -13,7 +13,7 @@ function Thoughts() {
             <AnimatedPage>
                 <div className="thoughts">
                     <p className="thoughts__intro">
-                        A random collection of things that I've been thinking about. Most written in one(ish) sitting, mostly unserious. 
+                        
                     </p>
 
                     <ul className="thoughts__list">

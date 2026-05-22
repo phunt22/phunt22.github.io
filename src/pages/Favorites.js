@@ -99,7 +99,7 @@ function Banner({ label, to, theme, imageSrcs = [], index }) {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.15 + index * 0.1 }}
+            transition={{ duration: 0.3, delay: 0.05 + index * 0.05 }}
         >
             <Link to={to} className="favorites__banner-link">
                 <motion.div
