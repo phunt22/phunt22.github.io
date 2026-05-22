@@ -7,9 +7,10 @@ function SeattleCoffee() {
     return (
         <>
             <ThemedPageHeader title="Seattle Coffee" theme={theme} />
-            <div style={{ padding: 'var(--space-2xl) var(--space-xl)', maxWidth: 1200, margin: '0 auto' }}>
+            <div style={{ padding: 'var(--space-2xl) var(--space-xl)', maxWidth: 800, margin: '0 auto' }}>
                 <p style={{ color: 'var(--color-text-muted)' }}>
-                    Coming soon.
+                    Similar to the beer page, I figured that if I'm going to have all of this coffee, 
+                    I might as well keep track. If you ever have any recs (or want to grab one) let me know!
                 </p>
             </div>
         </>
