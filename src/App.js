@@ -1,6 +1,7 @@
 import './App.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import Featured from './pages/Featured';
 import Projects from './pages/Projects';
 import Favorites from './pages/Favorites';
 import FavoritesYear from './pages/FavoritesYear';
@@ -13,6 +14,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/featured" element={<Featured />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/favorites/beer" element={<SeattleBeer />} />

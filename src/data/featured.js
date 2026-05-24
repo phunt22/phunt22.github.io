@@ -1,4 +1,4 @@
-export const projects = [
+export const featured = [
     {
         id: "emojigen",
         category: "Machine Learning",

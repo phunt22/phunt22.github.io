@@ -378,7 +378,7 @@ const MagneticButton = ({ mousePos, shouldAnimateIntro }) => {
 
 const MagneticNav = ({ mousePos, setIsHoveringNav, shouldAnimateIntro }) => {
     const navItems = [
-        { label: 'Projects', href: '/projects' },
+        { label: 'Featured', href: '/featured' },
         { label: 'Favorites', href: '/favorites' },
     ];
 

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import './ThemedPageHeader.css';
 
 const NAV_PAGES = [
-    { to: '/projects', label: 'projects', match: '/projects' },
+    { to: '/featured', label: 'featured', match: '/featured' },
     { to: '/favorites', label: 'favorites', match: '/favorites' },
     { to: '/thoughts', label: 'thoughts', match: '/thoughts' },
 ];

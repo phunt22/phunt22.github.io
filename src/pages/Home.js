@@ -11,12 +11,13 @@ function Home() {
             <div className="home__right">
                 <h1 className="home__name">Will Hunt</h1>
                 <p className="home__blurb">
-                    Short blurb about who you are and what you're working on. Keep it to a sentence or two so the page feels light.
+                    Short blurb about who you are and what you're working on. Keep it to a sentence or two so the page feels light. 
                 </p>
                 <nav className="home__links">
-                    <Link to="/projects">Projects</Link>
+                    <Link to="/featured">Featured</Link>
                     <Link to="/favorites">Favorites</Link>
                     <Link to="/thoughts">Thoughts</Link>
+                    <Link to="/projects">Projects</Link>
                 </nav>
                 <div className="home__socials">
                     {socialLinks.map((social) => (
