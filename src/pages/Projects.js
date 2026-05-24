@@ -15,6 +15,10 @@ export default function Projects() {
                         <a href={p.href} className="projects__link">{p.title}</a>
                     </li>
                 ))}
+                <li className="projects__item">
+                    <p className='projects__number'>+</p>
+                    <a href="mailto:pw.hunt11@gmail.com" className="projects__link"> + Request a project</a>
+                </li>
             </ul>
         </div>
     );
