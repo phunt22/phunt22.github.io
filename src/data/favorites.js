@@ -70,6 +70,17 @@ export const favorites = [
         author: "Cary Joji Fukunaga",
         image: "/assets/favorites/maniac.jpg",
         bgColor: "#000000",
+        contain: true,
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-movie-3",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "Fantastic Planet",
+        author: "René Laloux",
+        image: "/assets/favorites/fantastic-planet.jpg",
+        bgColor: "#c8a020",
         description: "coming soon",
         year: 2026
     },

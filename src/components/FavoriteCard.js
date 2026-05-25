@@ -35,7 +35,8 @@ export function FavoriteGridCard({ data, onOpen, hoverEnabled = true, isOpen = f
             <img
                 src={data.image}
                 alt={data.title}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-out group-hover:opacity-0 ${isOpen ? 'opacity-0' : ''}`}
+                className={`absolute inset-0 w-full h-full transition-opacity duration-200 ease-out group-hover:opacity-0 ${isOpen ? 'opacity-0' : ''}`}
+                style={{ objectFit: data.contain ? 'contain' : 'cover' }}
                 draggable={false}
             />
 
@@ -66,6 +67,8 @@ export function FavoriteModal({ data, onClose }) {
     const isLight = getBrightness(data.bgColor) > 128;
     const barText = isLight ? '#000000' : '#ffffff';
     const barTextSecondary = isLight ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
+    const selectionText = isLight ? '#000000' : '#ffffff';
+    const modalId = `fav-modal-${data.id}`;
 
     return (
         <motion.aside
@@ -87,10 +90,12 @@ export function FavoriteModal({ data, onClose }) {
 
             {/* Modal content */}
             <motion.div
+                id={modalId}
                 className="relative max-w-[1000px] w-[94vw] max-h-[90vh] overflow-y-auto shadow-2xl bg-white"
                 exit={{ scale: 0.95 }}
             >
-                {/* Colored top bar */}
+                <style>{`#${modalId} ::selection { background-color: ${data.bgColor}; color: ${selectionText}; }`}</style>
+                {/* Top bar */}
                 <div
                     className="sticky top-0 z-10 flex items-center justify-between px-5 py-4"
                     style={{ backgroundColor: data.bgColor }}
