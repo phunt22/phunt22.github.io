@@ -17,7 +17,7 @@ export default function Projects() {
                 ))}
                 <li className="projects__item">
                     <p className='projects__number'>+</p>
-                    <a href="mailto:pw.hunt11@gmail.com" className="projects__link"> + Request a project</a>
+                    <a href="mailto:pw.hunt11@gmail.com" className="projects__link"> + Request project</a>
                 </li>
             </ul>
         </div>
