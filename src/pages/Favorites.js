@@ -13,6 +13,17 @@ import './Favorites.css';
 
 const NOISE_BG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`;
 
+// Track cursor globally so banners can detect "already hovered" on mount
+// (browsers don't fire mouseenter for a stationary cursor after SPA navigation).
+let lastPointerX = -1;
+let lastPointerY = -1;
+if (typeof window !== 'undefined') {
+    window.addEventListener('pointermove', (e) => {
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+    }, { passive: true });
+}
+
 function FlyingImage({ src, speed, onDone }) {
     const style = useMemo(() => {
         const size = 48 + Math.random() * 40;
@@ -53,6 +64,19 @@ function Banner({ label, to, theme, imageSrcs = [], index }) {
     const [shineKey, setShineKey] = useState(0);
     const nextId = useRef(0);
     const hoverStart = useRef(0);
+    const bannerRef = useRef(null);
+
+    useEffect(() => {
+        if (!bannerRef.current || lastPointerX < 0) return;
+        const rect = bannerRef.current.getBoundingClientRect();
+        if (
+            lastPointerX >= rect.left && lastPointerX <= rect.right &&
+            lastPointerY >= rect.top && lastPointerY <= rect.bottom
+        ) {
+            setIsHovered(true);
+            setShineKey((k) => k + 1);
+        }
+    }, []);
 
     const getSpeed = useCallback(() => {
         const elapsed = (Date.now() - hoverStart.current) / 1000;
@@ -103,6 +127,7 @@ function Banner({ label, to, theme, imageSrcs = [], index }) {
         >
             <Link to={to} className="favorites__banner-link">
                 <motion.div
+                    ref={bannerRef}
                     className="favorites__banner"
                     style={{ backgroundColor: theme.bg }}
                     onMouseEnter={() => { setIsHovered(true); setShineKey(k => k + 1); }}
