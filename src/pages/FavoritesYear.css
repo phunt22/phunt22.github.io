@@ -18,6 +18,10 @@
     display: none;
 }
 
+.favorites-year__grid-wrapper--locked {
+    overflow: hidden;
+}
+
 .favorites-year__grid {
     display: flex;
     flex-wrap: wrap;

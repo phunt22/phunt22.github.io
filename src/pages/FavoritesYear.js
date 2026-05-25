@@ -70,16 +70,16 @@ export default function FavoritesYear() {
     const { year } = useParams();
     const [openId, setOpenId] = useState(null);
     const [activeFilters, setActiveFilters] = useState(new Set());
-    const [shuffleKey, setShuffleKey] = useState(0);
 
     const theme = getYearTheme(year);
     const yearFavorites = getFavoritesByYear(year);
-    const filteredFavorites = filterByTypes(yearFavorites, activeFilters);
 
-    const shuffledFavorites = useMemo(() => {
-        return shuffleArray(filteredFavorites);
+    const stableOrder = useMemo(() => {
+        return shuffleArray(yearFavorites);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [shuffleKey, JSON.stringify([...activeFilters]), year]);
+    }, [year]);
+
+    const displayedFavorites = filterByTypes(stableOrder, activeFilters);
 
     const toggleFilter = (type) => {
         setActiveFilters(prev => {
@@ -88,7 +88,6 @@ export default function FavoritesYear() {
             else next.add(type);
             return next;
         });
-        setShuffleKey(k => k + 1);
     };
 
     const clearFilters = () => setActiveFilters(new Set());
@@ -96,20 +95,24 @@ export default function FavoritesYear() {
     const open = (id) => setOpenId(id);
     const close = () => setOpenId(null);
 
+    const wrapperClassName = `favorites-year__grid-wrapper${openId ? ' favorites-year__grid-wrapper--locked' : ''}`;
+
     return (
         <>
             <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
             <AnimatedPage>
             <div className="favorites-year">
-                <div className="favorites-year__grid-wrapper">
+                <div className={wrapperClassName}>
                     <LayoutGroup>
                         <motion.ul className="favorites-year__grid">
                             <AnimatePresence mode="popLayout">
-                                {shuffledFavorites.map((item) => (
+                                {displayedFavorites.map((item) => (
                                     <FavoriteGridCard
                                         key={item.id}
                                         data={item}
                                         onOpen={open}
+                                        hoverEnabled={!openId}
+                                        isOpen={openId === item.id}
                                     />
                                 ))}
                             </AnimatePresence>
@@ -119,14 +122,14 @@ export default function FavoritesYear() {
                             {openId && (
                                 <FavoriteModal
                                     key="modal"
-                                    data={shuffledFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
+                                    data={displayedFavorites.find((f) => f.id === openId) || yearFavorites.find((f) => f.id === openId)}
                                     onClose={close}
                                 />
                             )}
                         </AnimatePresence>
                     </LayoutGroup>
 
-                    {shuffledFavorites.length === 0 && (
+                    {displayedFavorites.length === 0 && (
                         <motion.div
                             className="favorites-year__empty"
                             initial={{ opacity: 0 }}

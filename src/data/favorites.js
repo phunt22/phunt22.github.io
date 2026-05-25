@@ -78,14 +78,36 @@ export const favorites = [
         year: 2026
     },
 
-    // ==================== 2026 VIDEOS ====================
     {
-        id: "fav-2026-video-1",
-        type: FAVORITE_TYPES.VIDEO,
+        id: "fav-2026-movie-2",
+        type: FAVORITE_TYPES.MOVIE,
         title: "Maniac",
         author: "Cary Joji Fukunaga",
         image: "/assets/favorites/maniac.jpg",
         bgColor: "#000000",
+        contain: true,
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-movie-3",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "Fantastic Planet",
+        author: "René Laloux",
+        image: "/assets/favorites/fantastic-planet.jpg",
+        bgColor: "#c8a020",
+        description: "coming soon",
+        year: 2026
+    },
+
+    // ==================== 2026 VIDEOS ====================
+    {
+        id: "fav-2026-video-2",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "Why don't we die more often?",
+        author: "Michael MacKelvie",
+        image: "/assets/favorites/why-dont-we-die.jpg",
+        bgColor: "#2a6496",
         description: "coming soon",
         year: 2026
     }

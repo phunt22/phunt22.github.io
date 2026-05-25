@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './FavoriteCard.css';
 
@@ -9,20 +8,22 @@ const getBrightness = (hex) => {
     return (r * 299 + g * 587 + b * 114) / 1000;
 };
 
-export function FavoriteGridCard({ data, onOpen }) {
-    const [isHovered, setIsHovered] = useState(false);
-
+export function FavoriteGridCard({ data, onOpen, hoverEnabled = true, isOpen = false }) {
     const isLight = getBrightness(data.bgColor) > 128;
+    const cardClassName = [
+        'favorite-card',
+        hoverEnabled && 'favorite-card--hoverable',
+        isOpen && 'favorite-card--open',
+    ].filter(Boolean).join(' ');
+    const imageClassName = `favorite-card__image${data.contain ? ' favorite-card__image--contain' : ''}`;
+    const overlayClassName = `favorite-card__hover favorite-card__hover--${isLight ? 'light' : 'dark'}`;
 
     return (
         <motion.li
             layout
             layoutId={data.id}
-            className="favorite-card"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className={cardClassName}
             onClick={() => onOpen(data.id)}
-            whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -33,23 +34,17 @@ export function FavoriteGridCard({ data, onOpen }) {
         >
             <div className="favorite-card__bg" style={{ backgroundColor: data.bgColor }} />
 
-            <motion.img
+            <img
                 src={data.image}
                 alt={data.title}
-                className="favorite-card__image"
-                animate={{ opacity: isHovered ? 0 : 1 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
+                className={imageClassName}
                 draggable={false}
             />
 
-            <motion.div
-                className={`favorite-card__hover ${isLight ? 'favorite-card__hover--light' : 'favorite-card__hover--dark'}`}
-                animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-            >
+            <div className={overlayClassName}>
                 <h3 className="favorite-card__title">{data.title}</h3>
                 <p className="favorite-card__author">{data.author}</p>
-            </motion.div>
+            </div>
         </motion.li>
     );
 }
@@ -68,20 +63,15 @@ export function FavoriteModal({ data, onClose }) {
     const isLight = getBrightness(data.bgColor) > 128;
     const barText = isLight ? '#000000' : '#ffffff';
     const barTextSecondary = isLight ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
-
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, []);
+    const selectionText = isLight ? '#000000' : '#ffffff';
+    const modalId = `fav-modal-${data.id}`;
 
     return (
         <motion.aside
             className="favorite-modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, pointerEvents: 'none' }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <motion.div
@@ -94,9 +84,12 @@ export function FavoriteModal({ data, onClose }) {
             />
 
             <motion.div
+                id={modalId}
                 className="favorite-modal__content"
                 exit={{ scale: 0.95 }}
             >
+                <style>{`#${modalId} ::selection { background-color: ${data.bgColor}; color: ${selectionText}; }`}</style>
+
                 <div className="favorite-modal__bar" style={{ backgroundColor: data.bgColor }}>
                     <div className="favorite-modal__heading">
                         <h2 className="favorite-modal__title" style={{ color: barText }}>
