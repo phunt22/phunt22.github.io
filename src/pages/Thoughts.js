@@ -13,7 +13,7 @@ function Thoughts() {
             <AnimatedPage>
                 <div className="thoughts">
                     <p className="thoughts__intro">
-                        
+                       Also coming soon. Promise that some stuff is in the works
                     </p>
 
                     <ul className="thoughts__list">

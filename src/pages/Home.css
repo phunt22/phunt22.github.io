@@ -22,6 +22,8 @@
     width: 100%;
     max-width: 520px;
     aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
 }
 
 .home__right {

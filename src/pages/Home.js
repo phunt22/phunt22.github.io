@@ -6,13 +6,31 @@ function Home() {
     return (
         <div className="home">
             <div className="home__left">
-                <div className="home__headshot" />
+                <img
+                    src="/assets/landing_headshot.JPG"
+                    alt="Will Hunt"
+                    className="home__headshot"
+                    draggable={false}
+                />
             </div>
             <div className="home__right">
                 <h1 className="home__name">Will Hunt</h1>
-                <p className="home__blurb">
-                    Short blurb about who you are and what you're working on. Keep it to a sentence or two so the page feels light. 
-                </p>
+                <div className="home__blurb__container">
+                    <p className="home__blurb">
+                        I’m a recent UW Computer Science grad with experience across enterprise software, consumer apps, agent infra, and fundraising. 
+                        {/* diverse set of experiences across enterprise software, consumer apps, and AI infra, as well as areas like fundraising.  */}
+                    </p>
+                    <p className="home__blurb">
+                        I'm currently at arker.ai working on the future of virtual computers for agents, and assistant-coaching cross-country/track at Bishop 
+                        Blanchet High School.           
+                    </p>
+                    <p className="home__blurb">
+                        I enjoy running, sports, coffee, and (almost) anything outdoors!
+                    </p>
+                    <p className="home__blurb">
+                        This website is a work in progress, mostly for fun. Enjoy!
+                    </p>
+                </div>
                 <nav className="home__links">
                     <Link to="/featured">Featured</Link>
                     <Link to="/favorites">Favorites</Link>
