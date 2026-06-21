@@ -1,24 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 ::selection {
-  background-color: black;
-  color: white;
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-html:has(.hide-scrollbar) {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-html:has(.hide-scrollbar)::-webkit-scrollbar {
-  display: none;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }

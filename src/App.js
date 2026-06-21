@@ -1,51 +1,27 @@
 import './App.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import { AnimatePresence } from 'framer-motion';
-import CleanHome from './pages/CleanHome';
+import Home from './pages/Home';
+import Featured from './pages/Featured';
 import Projects from './pages/Projects';
 import Favorites from './pages/Favorites';
 import FavoritesYear from './pages/FavoritesYear';
-import Footer from './components/Footer';
+// import SeattleBeer from './pages/SeattleBeer';
+// import SeattleCoffee from './pages/SeattleCoffee';
+import Thoughts from './pages/Thoughts';
 
 function App() {
   return (
     <HashRouter>
-      <AnimatePresence mode="wait">
-        <Routes>
-          <Route path="/" element={
-            <div className='min-h-screen flex flex-col'>
-              <CleanHome />
-            </div>
-          } />
-          <Route path="/projects" element={
-            <div className='min-h-screen flex flex-col cursor-auto'>
-              <Navbar />
-              <main className='flex-1'>
-                <Projects />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/favorites" element={
-            <div className='min-h-screen flex flex-col cursor-auto hide-scrollbar'>
-              <Navbar />
-              <main className='flex-1'>
-                <Favorites />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/favorites/:year" element={
-            <div className='min-h-screen flex flex-col cursor-auto hide-scrollbar'>
-              <Navbar />
-              <main className='flex-1'>
-                <FavoritesYear />
-              </main>
-            </div>
-          } />
-        </Routes>
-      </AnimatePresence>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/featured" element={<Featured />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/favorites" element={<Favorites />} />
+        {/* <Route path="/favorites/beer" element={<SeattleBeer />} /> */}
+        {/* <Route path="/favorites/coffee" element={<SeattleCoffee />} /> */}
+        <Route path="/favorites/:year" element={<FavoritesYear />} />
+        <Route path="/thoughts" element={<Thoughts />} />
+      </Routes>
     </HashRouter>
   );
 }

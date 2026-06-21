@@ -1,0 +1,19 @@
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.back-link:hover {
+    opacity: 0.55;
+}
+
+.back-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}

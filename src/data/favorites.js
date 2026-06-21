@@ -27,6 +27,21 @@ export const YEAR_THEMES = {
 const DEFAULT_THEME = { bg: '#1E1E1E', text: '#D4D4D4' };
 export const getYearTheme = (year) => YEAR_THEMES[year] || DEFAULT_THEME;
 
+// Static section banners (non-year). Each renders the same banner style on
+// /favorites and links to its own page.
+export const FAVORITE_SECTIONS = [
+//     {
+//         label: 'Seattle Beer',
+//         slug: 'beer',
+//         theme: { bg: '#C19A4A', text: '#ffffff' },
+//     },
+//     {
+//         label: 'Seattle Coffee',
+//         slug: 'coffee',
+//         theme: { bg: '#1a0f08', text: '#c8b0a0' },
+//     },
+];
+
 // Favorites data with background colors
 export const favorites = [
     // ==================== 2026 MUSIC ====================
@@ -84,8 +99,28 @@ export const favorites = [
         description: "coming soon",
         year: 2026
     },
+    {
+        id: "fav-2026-movie-4",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "Reversion",
+        author: "David Orlowitz",
+        image: "/assets/favorites/reversion.jpg",
+        bgColor: "#3a4a45",
+        description: "coming soon",
+        year: 2026
+    },
 
     // ==================== 2026 VIDEOS ====================
+    {
+        id: "fav-2026-video-1",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "Working with Zuckerberg & Carmack",
+        author: "Philip Su × Ryan Peterman",
+        image: "/assets/favorites/philip-su-ryan-peterman.jpg",
+        bgColor: "#6470d4",
+        description: "coming soon",
+        year: 2026
+    },
     {
         id: "fav-2026-video-2",
         type: FAVORITE_TYPES.VIDEO,
@@ -93,6 +128,28 @@ export const favorites = [
         author: "Michael MacKelvie",
         image: "/assets/favorites/why-dont-we-die.jpg",
         bgColor: "#2a6496",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-video-3",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "Birds Do Not Sing in Caves",
+        author: "Horses",
+        image: "/assets/favorites/birds-do-not-sing-in-caves.jpg",
+        bgColor: "#b04a2a",
+        description: "coming soon",
+        year: 2026
+    },
+
+    // ==================== 2026 BOOKS ====================
+    {
+        id: "fav-2026-book-1",
+        type: FAVORITE_TYPES.BOOK,
+        title: "Society of the Spectacle",
+        author: "Guy Debord",
+        image: "/assets/favorites/society-of-the-spectacle.jpg",
+        bgColor: "#1a1a1a",
         description: "coming soon",
         year: 2026
     }

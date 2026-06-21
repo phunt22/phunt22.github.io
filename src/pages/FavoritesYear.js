@@ -1,11 +1,12 @@
 import { useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
+import ThemedPageHeader from '../components/ThemedPageHeader';
 import { FavoriteGridCard, FavoriteModal } from '../components/FavoriteCard';
 import { getFavoritesByYear, filterByTypes, FAVORITE_TYPES, TYPE_LABELS, getYearTheme } from '../data/favorites';
+import './FavoritesYear.css';
 
-// Fisher-Yates shuffle
 const shuffleArray = (array) => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -20,25 +21,16 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
     const hasActiveFilters = activeFilters.size > 0;
 
     return (
-        <div className="fixed bottom-4 z-40 w-full flex justify-center pointer-events-none">
-            <div className="relative pointer-events-auto">
-                <div
-                    className="flex items-center py-3 px-4 md:px-6"
-                    style={{
-                        backdropFilter: "blur(20px)",
-                        WebkitBackdropFilter: "blur(20px)",
-                        backgroundColor: "rgba(0, 0, 0, 0.7)"
-                    }}
-                >
-                    <div className="flex items-center space-x-4 md:space-x-8">
+        <div className="filter-bar">
+            <div className="filter-bar__inner">
+                <div className="filter-bar__main">
+                    <div className="filter-bar__list">
                         {types.map((type) => (
                             <motion.button
                                 key={type}
                                 onClick={() => toggleFilter(type)}
-                                className="text-sm font-medium"
-                                animate={{
-                                    color: activeFilters.has(type) ? '#ffffff' : '#6b7280'
-                                }}
+                                className="filter-bar__button"
+                                animate={{ color: activeFilters.has(type) ? '#ffffff' : '#6b7280' }}
                                 transition={{ duration: 0.1 }}
                                 whileHover={{
                                     scale: 1.05,
@@ -52,25 +44,18 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
                     </div>
                 </div>
 
-                {/* X button - positioned to the right, outside main bar */}
                 <AnimatePresence>
                     {hasActiveFilters && (
                         <motion.button
                             onClick={clearFilters}
-                            className="absolute left-full top-0 h-full px-4 text-gray-400 hover:text-white transition-colors flex items-center"
-                            style={{
-                                backdropFilter: "blur(20px)",
-                                WebkitBackdropFilter: "blur(20px)",
-                                backgroundColor: "rgba(0, 0, 0, 0.7)",
-                                marginLeft: -1
-                            }}
+                            className="filter-bar__clear"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                             whileTap={{ scale: 0.9 }}
                         >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </motion.button>
@@ -89,7 +74,6 @@ export default function FavoritesYear() {
     const theme = getYearTheme(year);
     const yearFavorites = getFavoritesByYear(year);
 
-    // Shuffle once on mount, then keep stable order
     const stableOrder = useMemo(() => {
         return shuffleArray(yearFavorites);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,11 +84,8 @@ export default function FavoritesYear() {
     const toggleFilter = (type) => {
         setActiveFilters(prev => {
             const next = new Set(prev);
-            if (next.has(type)) {
-                next.delete(type);
-            } else {
-                next.add(type);
-            }
+            if (next.has(type)) next.delete(type);
+            else next.add(type);
             return next;
         });
     };
@@ -114,40 +95,16 @@ export default function FavoritesYear() {
     const open = (id) => setOpenId(id);
     const close = () => setOpenId(null);
 
-    return (
-        <AnimatedPage>
-            <div className="w-full h-screen flex flex-col overflow-hidden pt-[96px] md:pt-[80px]">
-                {/* Header */}
-                <div
-                    className="flex items-center space-x-3 py-3 px-4 shrink-0"
-                    style={{ backgroundColor: theme.bg }}
-                >
-                    <Link to="/favorites">
-                        <motion.button
-                            className="w-8 h-8 flex items-center justify-center transition-colors"
-                            style={{ color: theme.text, opacity: 0.7 }}
-                            whileHover={{ scale: 1.05, opacity: 1 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </motion.button>
-                    </Link>
-                    <h1
-                        className="text-lg font-clash font-semibold"
-                        style={{ color: theme.text }}
-                    >
-                        {year}
-                    </h1>
-                </div>
+    const wrapperClassName = `favorites-year__grid-wrapper${openId ? ' favorites-year__grid-wrapper--locked' : ''}`;
 
-                {/* Grid - scrollable area */}
-                <div className={`flex-1 hide-scrollbar pb-20 ${openId ? 'overflow-hidden' : 'overflow-y-auto'}`}>
+    return (
+        <>
+            <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
+            <AnimatedPage>
+            <div className="favorites-year">
+                <div className={wrapperClassName}>
                     <LayoutGroup>
-                        <motion.ul
-                            className="flex flex-wrap justify-start w-full"
-                        >
+                        <motion.ul className="favorites-year__grid">
                             <AnimatePresence mode="popLayout">
                                 {displayedFavorites.map((item) => (
                                     <FavoriteGridCard
@@ -161,7 +118,6 @@ export default function FavoritesYear() {
                             </AnimatePresence>
                         </motion.ul>
 
-                        {/* Modal */}
                         <AnimatePresence mode="wait">
                             {openId && (
                                 <FavoriteModal
@@ -173,14 +129,13 @@ export default function FavoritesYear() {
                         </AnimatePresence>
                     </LayoutGroup>
 
-                    {/* Empty state */}
                     {displayedFavorites.length === 0 && (
                         <motion.div
-                            className="flex flex-col items-center justify-center py-20"
+                            className="favorites-year__empty"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                         >
-                            <p className="text-gray-400 text-lg">
+                            <p className="favorites-year__empty-text">
                                 {(() => {
                                     const types = [...activeFilters];
                                     const labels = types.map(t => TYPE_LABELS[t].toLowerCase());
@@ -190,7 +145,6 @@ export default function FavoritesYear() {
                                                      t === FAVORITE_TYPES.MUSIC ? 'listened to' : 'watched';
                                         return `guess I haven't ${verb} any ${labels[0]} this year`;
                                     }
-                                    // Group by verb
                                     const read = types.filter(t => t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE);
                                     const watched = types.filter(t => t === FAVORITE_TYPES.MOVIE || t === FAVORITE_TYPES.VIDEO);
                                     const listened = types.filter(t => t === FAVORITE_TYPES.MUSIC);
@@ -201,10 +155,7 @@ export default function FavoritesYear() {
                                     return `guess I haven't ${parts.join(' or ')} this year`;
                                 })()}
                             </p>
-                            <button
-                                onClick={clearFilters}
-                                className="mt-4 text-gray-600 hover:text-gray-900 underline"
-                            >
+                            <button onClick={clearFilters} className="favorites-year__empty-clear">
                                 Clear filters
                             </button>
                         </motion.div>
@@ -212,12 +163,12 @@ export default function FavoritesYear() {
                 </div>
             </div>
 
-            {/* Filter bar */}
             <FilterBar
                 activeFilters={activeFilters}
                 toggleFilter={toggleFilter}
                 clearFilters={clearFilters}
             />
-        </AnimatedPage>
+            </AnimatedPage>
+        </>
     );
 }
