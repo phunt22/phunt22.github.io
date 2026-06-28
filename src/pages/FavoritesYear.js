@@ -141,11 +141,11 @@ export default function FavoritesYear() {
                                     const labels = types.map(t => TYPE_LABELS[t].toLowerCase());
                                     if (types.length === 1) {
                                         const t = types[0];
-                                        const verb = (t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE) ? 'read' :
+                                        const verb = t === FAVORITE_TYPES.BOOK ? 'read' :
                                                      t === FAVORITE_TYPES.MUSIC ? 'listened to' : 'watched';
                                         return `guess I haven't ${verb} any ${labels[0]} this year`;
                                     }
-                                    const read = types.filter(t => t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE);
+                                    const read = types.filter(t => t === FAVORITE_TYPES.BOOK);
                                     const watched = types.filter(t => t === FAVORITE_TYPES.MOVIE || t === FAVORITE_TYPES.VIDEO);
                                     const listened = types.filter(t => t === FAVORITE_TYPES.MUSIC);
                                     const parts = [];

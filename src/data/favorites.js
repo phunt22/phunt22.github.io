@@ -2,7 +2,6 @@
 export const FAVORITE_TYPES = {
     MUSIC: 'music',
     BOOK: 'book',
-    ARTICLE: 'article',
     MOVIE: 'movie',
     VIDEO: 'video'
 };
@@ -11,7 +10,6 @@ export const FAVORITE_TYPES = {
 export const TYPE_LABELS = {
     [FAVORITE_TYPES.MUSIC]: 'Music',
     [FAVORITE_TYPES.BOOK]: 'Books',
-    [FAVORITE_TYPES.ARTICLE]: 'Articles',
     [FAVORITE_TYPES.MOVIE]: 'Movies',
     [FAVORITE_TYPES.VIDEO]: 'Videos'
 };
@@ -51,7 +49,7 @@ export const favorites = [
         title: "Manning Fireworks",
         author: "MJ Lenderman",
         image: "/assets/favorites/manning-fireworks.png",
-        bgColor: "#34423d",
+        bgColor: "#31443E",
         description: "coming soon",
         year: 2026
     },
@@ -61,7 +59,47 @@ export const favorites = [
         title: "Son of Spergy",
         author: "Daniel Caesar",
         image: "/assets/favorites/son-of-spergy.png",
-        bgColor: "#6d282b",
+        bgColor: "#7B262D",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-3",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "Heavy Metal",
+        author: "Cameron Winter",
+        image: "/assets/favorites/heavy-metal.jpg",
+        bgColor: "#717086",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-4",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "BULLDAWG",
+        author: "Kenny Mason",
+        image: "/assets/favorites/bulldawg.jpg",
+        bgColor: "#131219",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-5",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "How Do You Sleep at Night?",
+        author: "Teezo Touchdown",
+        image: "/assets/favorites/how-do-you-sleep-at-night.jpg",
+        bgColor: "#FBFBFB",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-6",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "F65",
+        author: "IDK",
+        image: "/assets/favorites/f65.jpg",
+        bgColor: "#003F78",
         description: "coming soon",
         year: 2026
     },
@@ -73,7 +111,7 @@ export const favorites = [
         title: "Her",
         author: "Spike Jonze",
         image: "/assets/favorites/her movie.jpg",
-        bgColor: "#b52943",
+        bgColor: "#524A38",
         description: "coming soon",
         year: 2026
     },
@@ -95,7 +133,7 @@ export const favorites = [
         title: "Fantastic Planet",
         author: "René Laloux",
         image: "/assets/favorites/fantastic-planet.jpg",
-        bgColor: "#c8a020",
+        bgColor: "#CFAE27",
         description: "coming soon",
         year: 2026
     },
@@ -105,7 +143,7 @@ export const favorites = [
         title: "Reversion",
         author: "David Orlowitz",
         image: "/assets/favorites/reversion.jpg",
-        bgColor: "#3a4a45",
+        bgColor: "#154553",
         description: "coming soon",
         year: 2026
     },
@@ -117,7 +155,7 @@ export const favorites = [
         title: "Working with Zuckerberg & Carmack",
         author: "Philip Su × Ryan Peterman",
         image: "/assets/favorites/philip-su-ryan-peterman.jpg",
-        bgColor: "#6470d4",
+        bgColor: "#5566D0",
         description: "coming soon",
         year: 2026
     },
@@ -137,8 +175,18 @@ export const favorites = [
         title: "Birds Do Not Sing in Caves",
         author: "Horses",
         image: "/assets/favorites/birds-do-not-sing-in-caves.jpg",
-        bgColor: "#b04a2a",
+        bgColor: "#524A38",
         description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-video-4",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "The Truly Absurd Secrets of An Incredible Americano",
+        author: "James Hoffmann",
+        image: "/assets/favorites/incredible-americano.jpg",
+        bgColor: "#D4D4D4",
+        description: "Got an espresso machine and am becoming a student of the game. This video has some interesting espresso history and anatomy, along with some unexpected tips on how to make a great Americano.",
         year: 2026
     },
 
@@ -149,7 +197,17 @@ export const favorites = [
         title: "Society of the Spectacle",
         author: "Guy Debord",
         image: "/assets/favorites/society-of-the-spectacle.jpg",
-        bgColor: "#1a1a1a",
+        bgColor: "#252324",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-book-2",
+        type: FAVORITE_TYPES.BOOK,
+        title: "The Design of Everyday Things",
+        author: "Don Norman",
+        image: "/assets/favorites/design-of-everyday-things.jpg",
+        bgColor: "#DBD10B",
         description: "coming soon",
         year: 2026
     }
