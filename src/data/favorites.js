@@ -103,6 +103,16 @@ export const favorites = [
         description: "coming soon",
         year: 2026
     },
+    {
+        id: "fav-2026-music-7",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "Blizzard",
+        author: "Dove Ellis",
+        image: "/assets/favorites/blizzard-dove-ellis.jpg",
+        bgColor: "#717428",
+        description: "coming soon",
+        year: 2026
+    },
 
     // ==================== 2026 MOVIES ====================
     {
@@ -111,7 +121,7 @@ export const favorites = [
         title: "Her",
         author: "Spike Jonze",
         image: "/assets/favorites/her movie.jpg",
-        bgColor: "#524A38",
+        bgColor: "#CC073E",
         description: "coming soon",
         year: 2026
     },
@@ -144,6 +154,16 @@ export const favorites = [
         author: "David Orlowitz",
         image: "/assets/favorites/reversion.jpg",
         bgColor: "#154553",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-movie-5",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "The Wild Robot",
+        author: "Chris Sanders",
+        image: "/assets/favorites/the-wild-robot.jpg",
+        bgColor: "#0E2B25",
         description: "coming soon",
         year: 2026
     },

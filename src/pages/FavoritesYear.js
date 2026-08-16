@@ -163,12 +163,12 @@ export default function FavoritesYear() {
                 </div>
             </div>
 
+            </AnimatedPage>
             <FilterBar
                 activeFilters={activeFilters}
                 toggleFilter={toggleFilter}
                 clearFilters={clearFilters}
             />
-            </AnimatedPage>
         </>
     );
 }
