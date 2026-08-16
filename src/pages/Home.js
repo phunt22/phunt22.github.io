@@ -6,12 +6,28 @@ function Home() {
     return (
         <div className="home">
             <div className="home__left">
-                <img
-                    src="/assets/landing_headshot.JPG"
-                    alt="Will Hunt"
-                    className="home__headshot"
-                    draggable={false}
-                />
+                <div className="home__portrait">
+                    <img
+                        src="/assets/landing_headshot.JPG"
+                        alt="Will Hunt"
+                        className="home__headshot"
+                        draggable={false}
+                    />
+                    <div className="home__socials">
+                        {socialLinks.map((social) => (
+                            <a
+                                key={social.name}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`home__social home__social--${social.name}`}
+                                aria-label={social.name}
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
+                    </div>
+                </div>
             </div>
             <div className="home__right">
                 <h1 className="home__name">Will Hunt</h1>
@@ -37,7 +53,7 @@ function Home() {
                     <Link to="/thoughts">Thoughts</Link>
                     <Link to="/projects">Projects</Link>
                 </nav>
-                <div className="home__socials">
+                <div className="home__socials home__socials--mobile">
                     {socialLinks.map((social) => (
                         <a
                             key={social.name}
