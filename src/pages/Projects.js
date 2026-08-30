@@ -3,6 +3,7 @@ import './Projects.css';
 const projects = [
     { title: 'Alex Brandon Portfolio', href: 'https://alexbrandon.co/' },
     { title: 'Model Madness', href: 'https://modelmadness.dev/' },
+    { title: 'Bananza', href: 'http://localhost:5173' },
 ];
 
 export default function Projects() {

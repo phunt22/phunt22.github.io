@@ -27,7 +27,6 @@
     color: var(--color-text);
     font-size: var(--text-md);
     line-height: 1.7;
-    padding-left: var(--space-xl);
 }
 
 .thought-page__body p {
@@ -36,6 +35,30 @@
 
 .thought-page__body p:last-child {
     margin-bottom: 0;
+}
+
+.thought-page__body ul {
+    margin: 0;
+    padding-left: var(--space-xl);
+}
+
+.thought-page__body li {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-xs);
+}
+
+.thought-page__body li:last-child {
+    margin-bottom: 0;
+}
+
+.thought-page__body a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+.thought-page__body a:hover {
+    color: var(--color-text-muted);
 }
 
 .thought-page__body code {

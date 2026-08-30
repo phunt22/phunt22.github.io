@@ -13,16 +13,23 @@ function Thoughts() {
             <AnimatedPage>
                 <div className="thoughts">
                     <p className="thoughts__intro">
-                       Also coming soon. Promise that some stuff is in the works
+                        Writing in my notes app that I've cleaned up and published:
                     </p>
 
                     <ul className="thoughts__list">
                         {thoughts.map((thought) => (
                             <li key={thought.slug} className="thoughts__item">
-                                <Link to={`/thoughts/${thought.slug}`} className="thoughts__card">
-                                    <h2 className="thoughts__title">{thought.title}</h2>
-                                    <p className="thoughts__blurb">{thought.blurb}</p>
-                                </Link>
+                                {thought.published ? (
+                                    <Link to={`/thoughts/${thought.slug}`} className="thoughts__card">
+                                        <h2 className="thoughts__title">{thought.title}</h2>
+                                        {thought.blurb && <p className="thoughts__blurb">{thought.blurb}</p>}
+                                    </Link>
+                                ) : (
+                                    <div className="thoughts__card thoughts__card--draft">
+                                        <h2 className="thoughts__title">{thought.title}</h2>
+                                        <p className="thoughts__blurb">{thought.blurb}</p>
+                                    </div>
+                                )}
                             </li>
                         ))}
                     </ul>

@@ -70,7 +70,11 @@ export const favorites = [
         author: "Cameron Winter",
         image: "/assets/favorites/heavy-metal.jpg",
         bgColor: "#717086",
-        description: "coming soon",
+        description: `Heavy Metal is a funny name for an album that sounds far from it in genre. The album gets its title on “Cancer of the Skull,” where he describes his work in music as a “cancer” of the fingers that has consumed him, making him “full of heavy metals”. Winter has said that he pulled this line because he “thought it was funny”, but this irony is perhaps the key part of this album.
+
+“Cancer of the Skull” described his songs as “a hundred ugly babies” that he cannot feed, making his creativity feel like an obligation more than a gift. This same contradiction runs across other themes in this album. On “Try as I may,” Love is so wanted, yet so isolating, inconvenient, and difficult to sustain. Faith appears suddenly, almost absurdly, on the back half of “$0” where Winter goes from feeling worthless to a declaration that “God is real.”
+
+The “heaviness” of this album is not from loud, distorted guitars, but rather the weight of desire becoming an inescapable obligation.`,
         year: 2026
     },
     {
@@ -100,7 +104,15 @@ export const favorites = [
         author: "IDK",
         image: "/assets/favorites/f65.jpg",
         bgColor: "#003F78",
-        description: "coming soon",
+        description: `My most well-spent $20 might have been a ticket to see IDK perform F65 live at Neumos, a small venue in Seattle. One of my favorite things about IDK is how he is able to reinvent himself on each of his albums, and in this case, within the album itself. Very few artists can put features from NLE Choppa, Saucy Santana, and Rich The Kid on the same project as a Stevie Wonder cover and five-minute jazz outro. At this show, he showed why he is regarded as such an impressive performer—performing seven different albums, with a costume change for each, showcasing his ability to embody a different identity on each project.
+
+IDK self-produced F65, stating that the inspiration was “the feeling of driving my Mercedes AMG at high speeds to calming jazz music.” This contrast, and his “love for juxtaposition,” became the inspiration for the album, which incorporates themes and sounds of F1 (specifically Lewis Hamilton), jazz, and what he calls “suburban trap music,” best explained by his 2015 album SubTrap.
+
+A 53-minute album intended to be listened to front to back—a lost art in the streaming era—is always a fun album to revisit.`,
+        descriptionLink: {
+            text: "SubTrap",
+            href: "https://www.complex.com/music/a/zach-frydenlund/jay-idk-subtrap-project-premiere-stream"
+        },
         year: 2026
     },
     {

@@ -37,14 +37,14 @@ function Home() {
                         {/* diverse set of experiences across enterprise software, consumer apps, and AI infra, as well as areas like fundraising.  */}
                     </p>
                     <p className="home__blurb">
-                        I'm currently at arker.ai working on the future of virtual computers for agents, and assistant-coaching cross-country/track at Bishop 
+                        I'm currently at <a href="https://arker.ai" target="_blank" rel="noopener noreferrer">arker.ai</a> working on the future of virtual computers for agents, and assistant-coaching Cross Country at Bishop 
                         Blanchet High School.           
                     </p>
                     <p className="home__blurb">
                         I enjoy running, sports, coffee, and (almost) anything outdoors!
                     </p>
                     <p className="home__blurb">
-                        This website is a work in progress, mostly for fun. Enjoy!
+                        This website is a constant work in progress, mostly for fun. Enjoy!
                     </p>
                 </div>
                 <nav className="home__links">

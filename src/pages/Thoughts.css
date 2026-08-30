@@ -50,6 +50,14 @@
     color: var(--color-text-muted);
 }
 
+.thoughts__card--draft:hover {
+    transform: none;
+}
+
+.thoughts__card--draft:hover .thoughts__title {
+    color: var(--color-text);
+}
+
 .thoughts__blurb {
     margin: 0;
     color: var(--color-text-muted);

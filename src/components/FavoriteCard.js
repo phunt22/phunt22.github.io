@@ -50,10 +50,25 @@ export function FavoriteGridCard({ data, onOpen, hoverEnabled = true, isOpen = f
 }
 
 function FavoriteContent({ data }) {
+    const renderDescription = () => {
+        if (!data.descriptionLink) return data.description;
+
+        const { text, href } = data.descriptionLink;
+        const [before, ...afterParts] = data.description.split(text);
+
+        return (
+            <>
+                {before}
+                <a href={href} target="_blank" rel="noreferrer">{text}</a>
+                {afterParts.join(text)}
+            </>
+        );
+    };
+
     return (
         <div className="favorite-modal__body">
             {data.description && (
-                <p className="favorite-modal__description">{data.description}</p>
+                <p className="favorite-modal__description">{renderDescription()}</p>
             )}
         </div>
     );

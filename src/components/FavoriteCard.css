@@ -180,4 +180,15 @@
 .favorite-modal__description {
     color: var(--color-text-muted);
     line-height: 1.6;
+    white-space: pre-line;
+}
+
+.favorite-modal__description a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+.favorite-modal__description a:hover {
+    color: var(--color-text);
 }
