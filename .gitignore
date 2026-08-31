@@ -19,6 +19,7 @@ bower_components/
 dist/
 build/
 out/
+src/assets/Resume.pdf
 
 # Coverage
 coverage/

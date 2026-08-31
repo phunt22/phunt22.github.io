@@ -9,6 +9,7 @@ npm install          # Install dependencies
 npm start            # Start dev server (localhost:3000)
 npm run build        # Production build
 npm run deploy       # Build and deploy to GitHub Pages
+npm run resume:build # Compile resume/Resume.tex into the website PDF
 npm run optimize-images  # Run image optimization script
 ```
 
@@ -65,4 +66,6 @@ Tailwind CSS with custom config in `tailwind.config.js`:
 Static files in `public/assets/`:
 - `optimized/` - Headshots
 - `projects/` - Project thumbnails, videos, PDFs
-- `Resume.pdf`
+
+The resume source is `resume/Resume.tex`. The generated (gitignored) PDF is
+`src/assets/Resume.pdf`; it is compiled automatically before start/build/deploy.
