@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, usePresence } from 'framer-motion';
 import './FavoriteCard.css';
 
 const getBrightness = (hex) => {
@@ -50,43 +50,63 @@ export function FavoriteGridCard({ data, onOpen, hoverEnabled = true, isOpen = f
 }
 
 function FavoriteContent({ data }) {
+    const renderDescription = () => {
+        if (!data.descriptionLink) return data.description;
+
+        const { text, href } = data.descriptionLink;
+        const [before, ...afterParts] = data.description.split(text);
+
+        return (
+            <>
+                {before}
+                <a href={href} target="_blank" rel="noreferrer">{text}</a>
+                {afterParts.join(text)}
+            </>
+        );
+    };
+
     return (
         <div className="favorite-modal__body">
             {data.description && (
-                <p className="favorite-modal__description">{data.description}</p>
+                <p className="favorite-modal__description">{renderDescription()}</p>
             )}
         </div>
     );
 }
 
 export function FavoriteModal({ data, onClose }) {
+    const [isPresent, safeToRemove] = usePresence();
     const isLight = getBrightness(data.bgColor) > 128;
     const barText = isLight ? '#000000' : '#ffffff';
     const barTextSecondary = isLight ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
     const selectionText = isLight ? '#000000' : '#ffffff';
     const modalId = `fav-modal-${data.id}`;
 
+    const finishExit = (event) => {
+        if (!isPresent && event.target === event.currentTarget) {
+            safeToRemove();
+        }
+    };
+
     return (
-        <motion.aside
-            className="favorite-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, pointerEvents: 'none' }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+        <aside
+            className={`favorite-modal${isPresent ? '' : ' favorite-modal--exiting'}`}
+            onAnimationEnd={finishExit}
         >
             <motion.div
                 className="favorite-modal__backdrop"
                 onClick={onClose}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut", delay: 0.15 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
             />
 
             <motion.div
                 id={modalId}
                 className="favorite-modal__content"
-                exit={{ scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
             >
                 <style>{`#${modalId} ::selection { background-color: ${data.bgColor}; color: ${selectionText}; }`}</style>
 
@@ -114,6 +134,6 @@ export function FavoriteModal({ data, onClose }) {
 
                 <FavoriteContent data={data} />
             </motion.div>
-        </motion.aside>
+        </aside>
     );
 }

@@ -14,11 +14,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "prestart": "npm run resume:build",
     "start": "react-scripts start",
+    "prebuild": "npm run resume:build",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "resume:build": "./scripts/build-resume.sh",
     "optimize-images": "./scripts/optimize-images.sh"
   },
   "eslintConfig": {

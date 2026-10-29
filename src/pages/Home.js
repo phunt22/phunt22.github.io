@@ -6,12 +6,28 @@ function Home() {
     return (
         <div className="home">
             <div className="home__left">
-                <img
-                    src="/assets/landing_headshot.JPG"
-                    alt="Will Hunt"
-                    className="home__headshot"
-                    draggable={false}
-                />
+                <div className="home__portrait">
+                    <img
+                        src="/assets/landing_headshot.JPG"
+                        alt="Will Hunt"
+                        className="home__headshot"
+                        draggable={false}
+                    />
+                    <div className="home__socials">
+                        {socialLinks.map((social) => (
+                            <a
+                                key={social.name}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`home__social home__social--${social.name}`}
+                                aria-label={social.name}
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
+                    </div>
+                </div>
             </div>
             <div className="home__right">
                 <h1 className="home__name">Will Hunt</h1>
@@ -21,14 +37,14 @@ function Home() {
                         {/* diverse set of experiences across enterprise software, consumer apps, and AI infra, as well as areas like fundraising.  */}
                     </p>
                     <p className="home__blurb">
-                        I'm currently at arker.ai working on the future of virtual computers for agents, and assistant-coaching cross-country/track at Bishop 
+                        I'm currently at <a href="https://arker.ai" target="_blank" rel="noopener noreferrer">arker.ai</a> working on the future of virtual computers for agents, and assistant-coaching Cross Country at Bishop 
                         Blanchet High School.           
                     </p>
                     <p className="home__blurb">
                         I enjoy running, sports, coffee, and (almost) anything outdoors!
                     </p>
                     <p className="home__blurb">
-                        This website is a work in progress, mostly for fun. Enjoy!
+                        This website is a constant work in progress, mostly for fun. Enjoy!
                     </p>
                 </div>
                 <nav className="home__links">
@@ -37,7 +53,7 @@ function Home() {
                     <Link to="/thoughts">Thoughts</Link>
                     <Link to="/projects">Projects</Link>
                 </nav>
-                <div className="home__socials">
+                <div className="home__socials home__socials--mobile">
                     {socialLinks.map((social) => (
                         <a
                             key={social.name}

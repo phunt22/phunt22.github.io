@@ -105,6 +105,20 @@
     justify-content: center;
 }
 
+.favorite-modal--exiting {
+    animation: favorite-modal-exit 200ms ease-out forwards;
+}
+
+@keyframes favorite-modal-exit {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 .favorite-modal__backdrop {
     position: absolute;
     inset: 0;
@@ -114,7 +128,7 @@
 
 .favorite-modal__content {
     position: relative;
-    max-width: 1000px;
+    max-width: 880px;
     width: 94vw;
     max-height: 90vh;
     overflow-y: auto;
@@ -180,4 +194,15 @@
 .favorite-modal__description {
     color: var(--color-text-muted);
     line-height: 1.6;
+    white-space: pre-line;
+}
+
+.favorite-modal__description a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+.favorite-modal__description a:hover {
+    color: var(--color-text);
 }

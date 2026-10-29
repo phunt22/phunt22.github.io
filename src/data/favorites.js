@@ -2,7 +2,6 @@
 export const FAVORITE_TYPES = {
     MUSIC: 'music',
     BOOK: 'book',
-    ARTICLE: 'article',
     MOVIE: 'movie',
     VIDEO: 'video'
 };
@@ -11,7 +10,6 @@ export const FAVORITE_TYPES = {
 export const TYPE_LABELS = {
     [FAVORITE_TYPES.MUSIC]: 'Music',
     [FAVORITE_TYPES.BOOK]: 'Books',
-    [FAVORITE_TYPES.ARTICLE]: 'Articles',
     [FAVORITE_TYPES.MOVIE]: 'Movies',
     [FAVORITE_TYPES.VIDEO]: 'Videos'
 };
@@ -51,7 +49,7 @@ export const favorites = [
         title: "Manning Fireworks",
         author: "MJ Lenderman",
         image: "/assets/favorites/manning-fireworks.png",
-        bgColor: "#34423d",
+        bgColor: "#31443E",
         description: "coming soon",
         year: 2026
     },
@@ -61,8 +59,80 @@ export const favorites = [
         title: "Son of Spergy",
         author: "Daniel Caesar",
         image: "/assets/favorites/son-of-spergy.png",
-        bgColor: "#6d282b",
+        bgColor: "#7B262D",
         description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-3",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "Heavy Metal",
+        author: "Cameron Winter",
+        image: "/assets/favorites/heavy-metal.jpg",
+        bgColor: "#717086",
+        description: `Heavy Metal is a funny name for an album that sounds far from it in genre. The album gets its title on “Cancer of the Skull,” where he describes his work in music as a “cancer” of the fingers that has consumed him, making him “full of heavy metals”. Winter has said that he pulled this line because he “thought it was funny”, but this irony is perhaps the key part of this album.
+
+“Cancer of the Skull” described his songs as “a hundred ugly babies” that he cannot feed, making his creativity feel like an obligation more than a gift. This same contradiction runs across other themes in this album. On “Try as I may,” Love is so wanted, yet so isolating, inconvenient, and difficult to sustain. Faith appears suddenly, almost absurdly, on the back half of “$0” where Winter goes from feeling worthless to a declaration that “God is real.”
+
+The “heaviness” of this album is not from loud, distorted guitars, but rather the weight of desire becoming an inescapable obligation.`,
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-4",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "BULLDAWG",
+        author: "Kenny Mason",
+        image: "/assets/favorites/bulldawg.jpg",
+        bgColor: "#131219",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-5",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "How Do You Sleep at Night?",
+        author: "Teezo Touchdown",
+        image: "/assets/favorites/how-do-you-sleep-at-night.jpg",
+        bgColor: "#FBFBFB",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-6",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "F65",
+        author: "IDK",
+        image: "/assets/favorites/f65.jpg",
+        bgColor: "#003F78",
+        description: `My most well-spent $20 might have been a ticket to see IDK perform F65 live at Neumos, a small venue in Seattle. One of my favorite things about IDK is how he is able to reinvent himself on each of his albums, and in this case, within the album itself. Very few artists can put features from NLE Choppa, Saucy Santana, and Rich The Kid on the same project as a Stevie Wonder cover and five-minute jazz outro. At this show, he showed why he is regarded as such an impressive performer—performing seven different albums, with a costume change for each, showcasing his ability to embody a different identity on each project.
+
+IDK self-produced F65, stating that the inspiration was “the feeling of driving my Mercedes AMG at high speeds to calming jazz music.” This contrast, and his “love for juxtaposition,” became the inspiration for the album, which incorporates themes and sounds of F1 (specifically Lewis Hamilton), jazz, and what he calls “suburban trap music,” best explained by his 2015 album SubTrap.
+
+A 53-minute album intended to be listened to front to back—a lost art in the streaming era—is always a fun album to revisit.`,
+        descriptionLink: {
+            text: "SubTrap",
+            href: "https://www.complex.com/music/a/zach-frydenlund/jay-idk-subtrap-project-premiere-stream"
+        },
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-7",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "Blizzard",
+        author: "Dove Ellis",
+        image: "/assets/favorites/blizzard-dove-ellis.jpg",
+        bgColor: "#717428",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-music-8",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "The Pilgrim, Their God and the King of My Decrepit Mountain",
+        author: "Tapir!",
+        image: "/assets/favorites/tapir-the-pilgrim.jpg",
+        bgColor: "#3D77BB",
+        description: "The title is rather literal for this album split into 3 disks (or discs, if you are from London like them). Great for a cold fall morning",
         year: 2026
     },
 
@@ -73,7 +143,7 @@ export const favorites = [
         title: "Her",
         author: "Spike Jonze",
         image: "/assets/favorites/her movie.jpg",
-        bgColor: "#b52943",
+        bgColor: "#CC073E",
         description: "coming soon",
         year: 2026
     },
@@ -95,7 +165,7 @@ export const favorites = [
         title: "Fantastic Planet",
         author: "René Laloux",
         image: "/assets/favorites/fantastic-planet.jpg",
-        bgColor: "#c8a020",
+        bgColor: "#CFAE27",
         description: "coming soon",
         year: 2026
     },
@@ -105,7 +175,27 @@ export const favorites = [
         title: "Reversion",
         author: "David Orlowitz",
         image: "/assets/favorites/reversion.jpg",
-        bgColor: "#3a4a45",
+        bgColor: "#154553",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-movie-5",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "The Wild Robot",
+        author: "Chris Sanders",
+        image: "/assets/favorites/the-wild-robot.jpg",
+        bgColor: "#0E2B25",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-movie-6",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "Project Hail Mary",
+        author: "Phil Lord & Christopher Miller",
+        image: "/assets/favorites/project-hail-mary.jpg",
+        bgColor: "#B94D22",
         description: "coming soon",
         year: 2026
     },
@@ -117,7 +207,7 @@ export const favorites = [
         title: "Working with Zuckerberg & Carmack",
         author: "Philip Su × Ryan Peterman",
         image: "/assets/favorites/philip-su-ryan-peterman.jpg",
-        bgColor: "#6470d4",
+        bgColor: "#5566D0",
         description: "coming soon",
         year: 2026
     },
@@ -137,8 +227,28 @@ export const favorites = [
         title: "Birds Do Not Sing in Caves",
         author: "Horses",
         image: "/assets/favorites/birds-do-not-sing-in-caves.jpg",
-        bgColor: "#b04a2a",
+        bgColor: "#524A38",
         description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-video-4",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "The Truly Absurd Secrets of An Incredible Americano",
+        author: "James Hoffmann",
+        image: "/assets/favorites/incredible-americano.jpg",
+        bgColor: "#D4D4D4",
+        description: "Got an espresso machine and am becoming a student of the game. This video has some interesting espresso history and anatomy, along with some unexpected tips on how to make a great Americano.",
+        year: 2026
+    },
+    {
+        id: "fav-2026-video-5",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "12 Guys Ran 5:15 Per Mile for 200 Miles To Win Hood To Coast Relay",
+        author: "Bandit Running",
+        image: "/assets/favorites/hood-to-coast-relay.jpg",
+        bgColor: "#17201C",
+        description: "See you next year",
         year: 2026
     },
 
@@ -149,7 +259,27 @@ export const favorites = [
         title: "Society of the Spectacle",
         author: "Guy Debord",
         image: "/assets/favorites/society-of-the-spectacle.jpg",
-        bgColor: "#1a1a1a",
+        bgColor: "#252324",
+        description: "coming soon",
+        year: 2026
+    },
+    {
+        id: "fav-2026-book-2",
+        type: FAVORITE_TYPES.BOOK,
+        title: "The Design of Everyday Things",
+        author: "Don Norman",
+        image: "/assets/favorites/design-of-everyday-things.jpg",
+        bgColor: "#DBD10B",
+        description: "Feels like more of a book on human psychology than a book on teakettles and doors (which is what I expected). Very engaging, my biggest takeaway is to think of design as a medium of communication between person and object. Recommend!",
+        year: 2026
+    },
+    {
+        id: "fav-2026-book-3",
+        type: FAVORITE_TYPES.BOOK,
+        title: "The Running Ground",
+        author: "Nicholas Thompson",
+        image: "/assets/favorites/the-running-ground.jpg",
+        bgColor: "#555555",
         description: "coming soon",
         year: 2026
     }

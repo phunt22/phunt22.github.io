@@ -69,6 +69,7 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
 export default function FavoritesYear() {
     const { year } = useParams();
     const [openId, setOpenId] = useState(null);
+    const [isHoverSuppressed, setIsHoverSuppressed] = useState(false);
     const [activeFilters, setActiveFilters] = useState(new Set());
 
     const theme = getYearTheme(year);
@@ -93,7 +94,16 @@ export default function FavoritesYear() {
     const clearFilters = () => setActiveFilters(new Set());
 
     const open = (id) => setOpenId(id);
-    const close = () => setOpenId(null);
+    const close = () => {
+        setIsHoverSuppressed(true);
+        setOpenId(null);
+    };
+
+    const restoreHover = () => {
+        if (!openId && isHoverSuppressed) {
+            setIsHoverSuppressed(false);
+        }
+    };
 
     const wrapperClassName = `favorites-year__grid-wrapper${openId ? ' favorites-year__grid-wrapper--locked' : ''}`;
 
@@ -102,7 +112,7 @@ export default function FavoritesYear() {
             <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
             <AnimatedPage>
             <div className="favorites-year">
-                <div className={wrapperClassName}>
+                <div className={wrapperClassName} onPointerMove={restoreHover}>
                     <LayoutGroup>
                         <motion.ul className="favorites-year__grid">
                             <AnimatePresence mode="popLayout">
@@ -111,7 +121,7 @@ export default function FavoritesYear() {
                                         key={item.id}
                                         data={item}
                                         onOpen={open}
-                                        hoverEnabled={!openId}
+                                        hoverEnabled={!openId && !isHoverSuppressed}
                                         isOpen={openId === item.id}
                                     />
                                 ))}
@@ -141,11 +151,11 @@ export default function FavoritesYear() {
                                     const labels = types.map(t => TYPE_LABELS[t].toLowerCase());
                                     if (types.length === 1) {
                                         const t = types[0];
-                                        const verb = (t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE) ? 'read' :
+                                        const verb = t === FAVORITE_TYPES.BOOK ? 'read' :
                                                      t === FAVORITE_TYPES.MUSIC ? 'listened to' : 'watched';
                                         return `guess I haven't ${verb} any ${labels[0]} this year`;
                                     }
-                                    const read = types.filter(t => t === FAVORITE_TYPES.BOOK || t === FAVORITE_TYPES.ARTICLE);
+                                    const read = types.filter(t => t === FAVORITE_TYPES.BOOK);
                                     const watched = types.filter(t => t === FAVORITE_TYPES.MOVIE || t === FAVORITE_TYPES.VIDEO);
                                     const listened = types.filter(t => t === FAVORITE_TYPES.MUSIC);
                                     const parts = [];
@@ -163,12 +173,12 @@ export default function FavoritesYear() {
                 </div>
             </div>
 
+            </AnimatedPage>
             <FilterBar
                 activeFilters={activeFilters}
                 toggleFilter={toggleFilter}
                 clearFilters={clearFilters}
             />
-            </AnimatedPage>
         </>
     );
 }
