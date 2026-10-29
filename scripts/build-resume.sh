@@ -24,5 +24,6 @@ else
   exit 127
 fi
 
+mkdir -p "$(dirname "$output_file")"
 cp "$build_dir/Resume.pdf" "$output_file"
 echo "Built $output_file"
