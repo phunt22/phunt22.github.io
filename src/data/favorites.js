@@ -125,6 +125,16 @@ A 53-minute album intended to be listened to front to back—a lost art in the s
         description: "coming soon",
         year: 2026
     },
+    {
+        id: "fav-2026-music-8",
+        type: FAVORITE_TYPES.MUSIC,
+        title: "The Pilgrim, Their God and the King of My Decrepit Mountain",
+        author: "Tapir!",
+        image: "/assets/favorites/tapir-the-pilgrim.jpg",
+        bgColor: "#3D77BB",
+        description: "The title is rather literal for this album split into 3 disks (or discs, if you are from London like them). Great for a cold fall morning",
+        year: 2026
+    },
 
     // ==================== 2026 MOVIES ====================
     {
@@ -179,6 +189,16 @@ A 53-minute album intended to be listened to front to back—a lost art in the s
         description: "coming soon",
         year: 2026
     },
+    {
+        id: "fav-2026-movie-6",
+        type: FAVORITE_TYPES.MOVIE,
+        title: "Project Hail Mary",
+        author: "Phil Lord & Christopher Miller",
+        image: "/assets/favorites/project-hail-mary.jpg",
+        bgColor: "#B94D22",
+        description: "coming soon",
+        year: 2026
+    },
 
     // ==================== 2026 VIDEOS ====================
     {
@@ -221,6 +241,16 @@ A 53-minute album intended to be listened to front to back—a lost art in the s
         description: "Got an espresso machine and am becoming a student of the game. This video has some interesting espresso history and anatomy, along with some unexpected tips on how to make a great Americano.",
         year: 2026
     },
+    {
+        id: "fav-2026-video-5",
+        type: FAVORITE_TYPES.VIDEO,
+        title: "12 Guys Ran 5:15 Per Mile for 200 Miles To Win Hood To Coast Relay",
+        author: "Bandit Running",
+        image: "/assets/favorites/hood-to-coast-relay.jpg",
+        bgColor: "#17201C",
+        description: "See you next year",
+        year: 2026
+    },
 
     // ==================== 2026 BOOKS ====================
     {
@@ -240,6 +270,16 @@ A 53-minute album intended to be listened to front to back—a lost art in the s
         author: "Don Norman",
         image: "/assets/favorites/design-of-everyday-things.jpg",
         bgColor: "#DBD10B",
+        description: "Feels like more of a book on human psychology than a book on teakettles and doors (which is what I expected). Very engaging, my biggest takeaway is to think of design as a medium of communication between person and object. Recommend!",
+        year: 2026
+    },
+    {
+        id: "fav-2026-book-3",
+        type: FAVORITE_TYPES.BOOK,
+        title: "The Running Ground",
+        author: "Nicholas Thompson",
+        image: "/assets/favorites/the-running-ground.jpg",
+        bgColor: "#555555",
         description: "coming soon",
         year: 2026
     }

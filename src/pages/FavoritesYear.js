@@ -69,6 +69,7 @@ function FilterBar({ activeFilters, toggleFilter, clearFilters }) {
 export default function FavoritesYear() {
     const { year } = useParams();
     const [openId, setOpenId] = useState(null);
+    const [isHoverSuppressed, setIsHoverSuppressed] = useState(false);
     const [activeFilters, setActiveFilters] = useState(new Set());
 
     const theme = getYearTheme(year);
@@ -93,7 +94,16 @@ export default function FavoritesYear() {
     const clearFilters = () => setActiveFilters(new Set());
 
     const open = (id) => setOpenId(id);
-    const close = () => setOpenId(null);
+    const close = () => {
+        setIsHoverSuppressed(true);
+        setOpenId(null);
+    };
+
+    const restoreHover = () => {
+        if (!openId && isHoverSuppressed) {
+            setIsHoverSuppressed(false);
+        }
+    };
 
     const wrapperClassName = `favorites-year__grid-wrapper${openId ? ' favorites-year__grid-wrapper--locked' : ''}`;
 
@@ -102,7 +112,7 @@ export default function FavoritesYear() {
             <ThemedPageHeader title={year} backTo="/favorites" theme={theme} />
             <AnimatedPage>
             <div className="favorites-year">
-                <div className={wrapperClassName}>
+                <div className={wrapperClassName} onPointerMove={restoreHover}>
                     <LayoutGroup>
                         <motion.ul className="favorites-year__grid">
                             <AnimatePresence mode="popLayout">
@@ -111,7 +121,7 @@ export default function FavoritesYear() {
                                         key={item.id}
                                         data={item}
                                         onOpen={open}
-                                        hoverEnabled={!openId}
+                                        hoverEnabled={!openId && !isHoverSuppressed}
                                         isOpen={openId === item.id}
                                     />
                                 ))}

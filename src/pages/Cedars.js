@@ -25,7 +25,7 @@ export default function Cedars() {
 
             <ul>
                 <li>
-                    <strong>Rainier Beer</strong> — The most aggressively Washington-branded beer
+                    <strong>Rainier Beer</strong>: The most aggressively Washington-branded beer
                     is brewed in Irwindale, California, and owned by Pabst. I wrote an{' '}
                     <a href="/assets/essays/beer-essay.pdf" target="_blank" rel="noreferrer">
                         essay on how beer companies take advantage of regional pride
@@ -33,11 +33,11 @@ export default function Cedars() {
                     for a marketing class in college. Interesting stuff.
                 </li>
                 <li>
-                    <strong>Swedish</strong> — Named for the Swedish-American community in Seattle
+                    <strong>Swedish</strong>: Named for the Swedish-American community in Seattle
                     that founded the hospital in the early 1900s.
                 </li>
                 <li>
-                    <strong>Virginia Mason</strong> — Funnily enough, the two founders of the
+                    <strong>Virginia Mason</strong>: Funnily enough, the two founders of the
                     Seattle clinic both had daughters named… Virginia Mason. Wow.
                 </li>
             </ul>

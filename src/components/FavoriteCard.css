@@ -105,6 +105,20 @@
     justify-content: center;
 }
 
+.favorite-modal--exiting {
+    animation: favorite-modal-exit 200ms ease-out forwards;
+}
+
+@keyframes favorite-modal-exit {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 .favorite-modal__backdrop {
     position: absolute;
     inset: 0;

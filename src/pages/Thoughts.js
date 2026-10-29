@@ -12,10 +12,6 @@ function Thoughts() {
             <ThemedPageHeader title="thoughts" backTo="/" theme={THEME} />
             <AnimatedPage>
                 <div className="thoughts">
-                    <p className="thoughts__intro">
-                        Writing in my notes app that I've cleaned up and published:
-                    </p>
-
                     <ul className="thoughts__list">
                         {thoughts.map((thought) => (
                             <li key={thought.slug} className="thoughts__item">
